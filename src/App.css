@@ -12,22 +12,18 @@
   color: var(--color-surface-text);
 }
 
-.editor-toolbar {
-  position: relative;
-  height: 64px;
-  border-bottom: 1px solid var(--color-gray-100);
-}
-
-.button-save {
-  min-width: 80px;
+.editor-content {
+  height: calc(100% - 64px);
+  min-height: 0;
 }
 
 .editor-canvas {
-  height: calc(100% - 64px);
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   justify-content: space-between;
   position: relative;
+  min-width: 0;
 }
 
 .editor-canvas.col {
@@ -60,92 +56,31 @@
   }
 }
 
+.panel {
+  height: calc(100% - 64px);
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-gray-100);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  &.panel-settings {
+    border-right: none;
+    border-left: 1px solid var(--color-gray-100);
+  }
+
+  h3 {
+    padding: var(--space-m);
+    border-bottom: 1px solid var(--color-gray-100);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-surface-text);
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
 .chat {
   width: 300px;
-}
-
-/* WP Button */
-.editor-toolbar .button-wordpress {
-  height: 64px;
-  width: 64px;
-  background-color: var(--color-black);
-  overflow: hidden;
-  border-radius: 0;
-  text-indent: -9999px;
-
-  &:hover {
-    background-color: var(--color-black) !important;
-  }
-}
-
-/* Document Bar */
-.document-bar {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
-  .button-prev,
-  .button-next {
-    opacity: 0;
-    padding: 0 2px;
-  }
-
-  .button-document-picker {
-    border: 1px solid var(--color-gray-200);
-    width: 300px;
-    position: relative;
-
-    .title-wrapper {
-      position: relative;
-
-      .icon {
-        position: absolute;
-        right: 0px;
-        top: 50%;
-        transform: translate(90%, -50%);
-        opacity: 0;
-
-        svg {
-          transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-      }
-    }
-
-    .document-title {
-      font-weight: 550;
-      letter-spacing: 0.5px;
-    }
-
-    small {
-      color: var(--color-surface-text-tertiary);
-      position: absolute;
-      right: var(--space-s);
-      font-size: 10px;
-    }
-
-    &.active {
-      background-color: var(--color-gray-100);
-      color: var(--color-theme);
-
-      .title-wrapper .icon {
-        opacity: 1;
-
-        svg {
-          transform: rotate(180deg);
-        }
-      }
-    }
-  }
-
-  &:focus-within,
-  &:hover {
-    .button-prev,
-    .button-next {
-      opacity: 1;
-    }
-
-    .title-wrapper .icon {
-      opacity: 1;
-    }
-  }
 }

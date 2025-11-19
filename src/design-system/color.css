@@ -36,3 +36,10 @@
   --color-alert-green: hsla(135, 44%, 51%, 1);
   --color-alert-purple: hsla(273, 100%, 44%, 1);
 }
+
+/** Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+}
+

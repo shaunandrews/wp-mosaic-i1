@@ -1,0 +1,39 @@
+.editor-toolbar {
+  position: relative;
+  height: 64px;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.button-save {
+  min-width: 80px;
+}
+
+/* WP Button */
+.editor-toolbar .button-wordpress {
+  height: 64px;
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-black);
+  overflow: hidden;
+  border-radius: 0;
+  color: var(--color-white);
+  text-indent: -9999px;
+  border-top-left-radius: var(--radius-l);
+
+  svg {
+    height: 32px;
+    width: 32px;
+  }
+
+  &:hover {
+    background-color: var(--color-black) !important;
+  }
+
+  &:focus {
+    outline-offset: -2px;
+    outline-width: 2px;
+  }
+}
+

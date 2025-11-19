@@ -1,0 +1,72 @@
+/* Document Bar */
+.document-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .button-prev,
+  .button-next {
+    opacity: 0;
+    padding: 0 2px;
+  }
+
+  .button-document-picker {
+    border: 1px solid var(--color-gray-200);
+    width: 300px;
+    position: relative;
+
+    .title-wrapper {
+      position: relative;
+
+      .icon {
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translate(90%, -50%);
+        opacity: 0;
+
+        svg {
+          transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+      }
+    }
+
+    .document-title {
+      font-weight: 550;
+      letter-spacing: 0.5px;
+    }
+
+    small {
+      color: var(--color-surface-text-tertiary);
+      position: absolute;
+      right: var(--space-s);
+      font-size: 10px;
+    }
+
+    &.active {
+      background-color: var(--color-gray-100);
+      color: var(--color-theme);
+
+      .title-wrapper .icon {
+        opacity: 1;
+
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &:focus-within,
+  &:hover {
+    .button-prev,
+    .button-next {
+      opacity: 1;
+    }
+
+    .title-wrapper .icon {
+      opacity: 1;
+    }
+  }
+}
+

@@ -60,7 +60,7 @@
     outline: none;
     background: transparent;
     color: var(--color-surface-text);
-    font-size: 14px;
+    /* font-size: 14px; */
     font-family: inherit;
 
     &::placeholder {
