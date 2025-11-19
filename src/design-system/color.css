@@ -1,0 +1,37 @@
+:root {
+  --color-background: var(--color-gray-900);
+  --color-background-text: var(--color-white);
+  --color-background-text-secondary: var(--color-gray-100);
+
+  --color-surface: var(--color-white);
+  --color-surface-text: var(--color-gray-900);
+  --color-surface-text-secondary: var(--color-gray-700);
+
+  /* Black and white */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Gray scale */
+  --color-gray-100: hsla(0, 0%, 94%, 1);
+  --color-gray-200: hsla(0, 0%, 88%, 1);
+  --color-gray-300: hsla(0, 0%, 87%, 1);
+  --color-gray-400: hsla(0, 0%, 80%, 1);
+  /* --color-gray-500: why no? */
+  --color-gray-600: hsla(0, 0%, 58%, 1);
+  --color-gray-700: hsla(0, 0%, 46%, 1);
+  --color-gray-800: hsla(0, 0%, 18%, 1);
+  --color-gray-900: hsla(0, 0%, 12%, 1);
+
+  /* Theme */
+  --color-theme: hsla(229, 80%, 57%, 1);
+  --color-theme-darker-10: hsla(229, 80%, 52%, 1);
+  --color-theme-darker-20: hsla(229, 80%, 47%, 1);
+  --color-theme-alpha-04: hsla(229, 80%, 57%, 0.04);
+  --color-theme-alpha-08: hsla(229, 80%, 57%, 0.08);
+
+  /* Alerts */
+  --color-alert-red: hsla(0, 79%, 45%, 1);
+  --color-alert-yellow: hsla(40, 85%, 61%, 1);
+  --color-alert-green: hsla(135, 44%, 51%, 1);
+  --color-alert-purple: hsla(273, 100%, 44%, 1);
+}
