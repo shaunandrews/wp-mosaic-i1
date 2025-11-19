@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
 import { Menu } from './components/Menu/Menu';
 import { Icon } from './components/Icon/Icon';
@@ -7,8 +8,11 @@ import pagesData from './data/pages.json';
 
 const pages = pagesData.pages;
 
+type ViewMode = 'single' | 'grid';
+
 function App() {
   const [selectedPage, setSelectedPage] = useState(pages[0]);
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
   const handlePageSelect = (item: { id: string; label: string }) => {
     setSelectedPage(item);
@@ -26,6 +30,10 @@ function App() {
     setSelectedPage(pages[nextIndex]);
   };
 
+  const handleToggleViewMode = () => {
+    setViewMode((prev) => (prev === 'single' ? 'grid' : 'single'));
+  };
+
   return (
     <div className="app row">
       <div className="stage fill m-s mr-0 radius-l">
@@ -36,6 +44,12 @@ function App() {
 
               <Button>
                 <Icon name="list" />
+              </Button>
+              <Button
+                onClick={handleToggleViewMode}
+                title={viewMode === 'single' ? 'Grid View' : 'Single View'}
+              >
+                {viewMode === 'single' ? 'Grid' : 'Single'}
               </Button>
               <Button type="primary">
                 <Icon name="plus" />
@@ -81,15 +95,49 @@ function App() {
               </Button>
             </div>
           </div>
-          <div className="editor-canvas p-l gap-l row wrap">
-            <div className="document">document 1</div>
-            <div className="document">document 2</div>
-            <div className="document">document 3</div>
-            <div className="document">document 4</div>
-            <div className="document">document 5</div>
-            <div className="document">document 6</div>
-            <div className="document">document 7</div>
-            <div className="document">document 8</div>
+          <div className={`editor-canvas ${viewMode === 'single' ? 'view-single' : 'view-grid'}`}>
+            {viewMode === 'single' ? (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedPage.id}
+                  layoutId={`document-${selectedPage.id}`}
+                  className="document document-single"
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  {selectedPage.label}
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              <motion.div
+                className="editor-canvas-grid row wrap gap-l p-l"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {pages.map((page) => (
+                  <motion.div
+                    key={page.id}
+                    layoutId={`document-${page.id}`}
+                    className="document document-grid"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                    onClick={() => {
+                      setSelectedPage(page);
+                      setViewMode('single');
+                    }}
+                    style={{ cursor: 'pointer' }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {page.label}
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
           </div>
         </div>
       </div>

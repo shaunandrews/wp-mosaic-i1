@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   useFloating,
   useClick,
@@ -74,28 +75,30 @@ export const Menu = ({ children, items, onItemSelect }: MenuProps) => {
             } as Partial<{ className: string }>)
           : children}
       </div>
-      {isOpen && (
-        <div
-          ref={refs.setFloating}
-          style={floatingStyles}
-          {...getFloatingProps()}
-          className="menu"
-        >
-          <ul className="menu-list p-xxs col gap-xxs">
-            {items.map((item, index) => (
-              <li key={item.id} className="menu-item">
-                <Button
-                  ref={index === 0 ? firstItemRef : null}
-                  className="menu-item-button"
-                  onClick={() => handleItemClick(item)}
-                >
-                  {item.label}
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {isOpen &&
+        createPortal(
+          <div
+            ref={refs.setFloating}
+            style={floatingStyles}
+            {...getFloatingProps()}
+            className="menu"
+          >
+            <ul className="menu-list p-xxs col gap-xxs">
+              {items.map((item, index) => (
+                <li key={item.id} className="menu-item">
+                  <Button
+                    ref={index === 0 ? firstItemRef : null}
+                    className="menu-item-button"
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item.label}
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </div>,
+          document.body
+        )}
     </>
   );
 };
