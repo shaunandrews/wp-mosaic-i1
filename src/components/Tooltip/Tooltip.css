@@ -1,0 +1,12 @@
+.tooltip {
+  background-color: var(--color-gray-900);
+  color: var(--color-white);
+  padding: var(--space-xs) var(--space-s);
+  border-radius: var(--radius-m);
+  font-size: 12px;
+  line-height: 1.4;
+  z-index: 1000;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+

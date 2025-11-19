@@ -6,17 +6,72 @@
   font-family: var(--font-body);
 }
 
+.stage {
+  overflow: hidden;
+}
+
 .editor {
   background-color: var(--color-surface);
+  color: var(--color-surface-text);
 }
 
 .editor-toolbar {
   height: 64px;
-  background-color: var(--color-surface);
-  color: var(--color-surface-text);
   border-bottom: 1px solid var(--color-gray-100);
+}
+
+.editor-canvas {
+  height: calc(100% - 64px);
+  overflow-y: auto;
+}
+
+.document {
+  height: 500px;
+  width: 300px;
+  border-radius: var(--radius-m);
+  outline: 1px solid var(--color-gray-200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-surface-text-tertiary);
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 700;
 }
 
 .chat {
   width: 300px;
+}
+
+/* Document Bar */
+.document-bar {
+  .button-prev,
+  .button-next {
+    opacity: 0;
+  }
+
+  &:hover {
+    .button-prev,
+    .button-next {
+      opacity: 1;
+    }
+  }
+}
+
+.button-document-picker {
+  border: 1px solid var(--color-gray-200) !important;
+  width: 300px;
+  position: relative;
+
+  .document-title {
+    font-weight: 550;
+    letter-spacing: 0.5px;
+  }
+
+  small {
+    color: var(--color-surface-text-tertiary);
+    position: absolute;
+    right: var(--space-s);
+    font-size: 10px;
+  }
 }

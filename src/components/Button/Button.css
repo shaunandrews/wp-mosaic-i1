@@ -1,0 +1,40 @@
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-surface-text);
+  cursor: pointer;
+  padding: 0 var(--space-xs);
+  height: 32px;
+  border-radius: var(--radius-m);
+}
+
+.button.align-center {
+  justify-content: center;
+}
+
+.button.align-left {
+  justify-content: flex-start;
+}
+
+.button.align-right {
+  justify-content: flex-end;
+}
+
+.button:hover {
+  color: var(--color-theme);
+  background-color: var(--color-gray-100);
+}
+
+.button:active {
+  background-color: var(--color-gray-200);
+}
+
+.button:focus {
+  outline: 1.5px solid var(--color-theme);
+  outline-offset: 1.5px;
+}
+

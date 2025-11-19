@@ -12,6 +12,7 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\""
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.16",
     "@wordpress/components": "^30.8.0",
     "@wordpress/icons": "^11.2.0",
     "react": "^18.3.1",

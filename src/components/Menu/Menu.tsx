@@ -1,0 +1,86 @@
+import { useState, useRef, useEffect } from 'react';
+import {
+  useFloating,
+  useClick,
+  useInteractions,
+  useDismiss,
+  offset,
+  flip,
+  shift,
+} from '@floating-ui/react';
+import './Menu.css';
+import { Button } from '../Button/Button';
+
+interface MenuProps {
+  children: React.ReactNode;
+  items: Array<{ id: string; label: string }>;
+  onItemSelect?: (item: { id: string; label: string }) => void;
+}
+
+export const Menu = ({ children, items, onItemSelect }: MenuProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const firstItemRef = useRef<HTMLButtonElement>(null);
+
+  const { refs, floatingStyles, context } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    placement: 'bottom-start',
+    middleware: [offset(-2), flip(), shift()],
+  });
+
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+  ]);
+
+  const handleItemClick = (item: { id: string; label: string }) => {
+    onItemSelect?.(item);
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    if (isOpen && firstItemRef.current) {
+      // Use setTimeout to ensure the menu is fully rendered before focusing
+      setTimeout(() => {
+        firstItemRef.current?.focus();
+      }, 0);
+    }
+  }, [isOpen]);
+
+  return (
+    <>
+      <div
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        style={{ display: 'inline-block' }}
+      >
+        {children}
+      </div>
+      {isOpen && (
+        <div
+          ref={refs.setFloating}
+          style={floatingStyles}
+          {...getFloatingProps()}
+          className="menu"
+        >
+          <ul className="menu-list p-xxs col gap-xxs">
+            {items.map((item, index) => (
+              <li key={item.id} className="menu-item">
+                <Button
+                  ref={index === 0 ? firstItemRef : null}
+                  className="menu-item-button"
+                  onClick={() => handleItemClick(item)}
+                >
+                  {item.label}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  );
+};
