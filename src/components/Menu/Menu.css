@@ -41,3 +41,30 @@
     color: var(--color-surface-text-tertiary);
   }
 }
+
+.menu-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-s);
+  border-bottom: 1px solid var(--color-gray-200);
+
+  .icon {
+    color: var(--color-surface-text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .menu-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--color-surface-text);
+    font-size: 14px;
+    font-family: inherit;
+
+    &::placeholder {
+      color: var(--color-surface-text-tertiary);
+    }
+  }
+}

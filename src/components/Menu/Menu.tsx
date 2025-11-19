@@ -40,6 +40,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
     const firstItemRef = useRef<HTMLButtonElement>(null);
     const selectedItemRef = useRef<HTMLButtonElement>(null);
     const menuContainerRef = useRef<HTMLDivElement>(null);
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const { refs, floatingStyles, context } = useFloating({
       open: isOpen,
@@ -89,6 +90,14 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (!isOpen) return;
 
+      // Don't interfere with typing in the search input
+      if (
+        document.activeElement === searchInputRef.current ||
+        (e.target instanceof HTMLElement && e.target.tagName === 'INPUT')
+      ) {
+        return;
+      }
+
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
         const items = getAllMenuItems();
@@ -113,15 +122,13 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
       if (isOpen) {
         // Use setTimeout to ensure the menu is fully rendered before focusing
         setTimeout(() => {
-          // Focus on the selected item if it exists, otherwise focus on the first item
-          if (selectedItemRef.current) {
-            selectedItemRef.current.focus();
-          } else if (firstItemRef.current) {
-            firstItemRef.current.focus();
+          // Focus on the search input when menu opens
+          if (searchInputRef.current) {
+            searchInputRef.current.focus();
           }
         }, 0);
       }
-    }, [isOpen, selectedItemId]);
+    }, [isOpen]);
 
     return (
       <>
@@ -150,6 +157,15 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
                 className="menu-list col"
                 onKeyDown={handleKeyDown}
               >
+                <div className="menu-search">
+                  <Icon name="search" />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    placeholder="Search commands and settings"
+                    className="menu-search-input"
+                  />
+                </div>
                 {groups.map((group, groupIndex) => {
                   let itemIndex = 0;
                   if (groupIndex > 0) {
