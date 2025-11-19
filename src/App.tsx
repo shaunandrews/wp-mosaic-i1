@@ -62,7 +62,7 @@ function App() {
       // Check for Command-K (Mac) or Ctrl-K (Windows/Linux)
       if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
         event.preventDefault();
-        menuRef.current?.open();
+        menuRef.current?.open(true);
       }
       // Check for Command-Shift-P (Mac) or Ctrl-Shift-P (Windows/Linux)
       if (
@@ -122,9 +122,11 @@ function App() {
             </div>
 
             <div className="document-bar row gap-xs">
-              <Button className="button-prev" onClick={handlePrevPage}>
-                <Icon name="chevron-left-small" />
-              </Button>
+              {viewMode === 'single' && (
+                <Button className="button-prev" onClick={handlePrevPage}>
+                  <Icon name="chevron-left-small" />
+                </Button>
+              )}
               <Menu
                 ref={menuRef}
                 groups={[
@@ -152,9 +154,11 @@ function App() {
                   <small>⌘K</small>
                 </Button>
               </Menu>
-              <Button className="button-next" onClick={handleNextPage}>
-                <Icon name="chevron-right-small" />
-              </Button>
+              {viewMode === 'single' && (
+                <Button className="button-next" onClick={handleNextPage}>
+                  <Icon name="chevron-right-small" />
+                </Button>
+              )}
             </div>
 
             <div className="editor-toolbar-end row gap-xs pr-s">

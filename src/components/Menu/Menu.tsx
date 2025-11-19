@@ -31,7 +31,7 @@ interface MenuProps {
 }
 
 export interface MenuHandle {
-  open: () => void;
+  open: (focusSearch?: boolean) => void;
 }
 
 export const Menu = forwardRef<MenuHandle, MenuProps>(
@@ -41,6 +41,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
     const selectedItemRef = useRef<HTMLButtonElement>(null);
     const menuContainerRef = useRef<HTMLDivElement>(null);
     const searchInputRef = useRef<HTMLInputElement>(null);
+    const shouldFocusSearchRef = useRef(false);
 
     const { refs, floatingStyles, context } = useFloating({
       open: isOpen,
@@ -58,7 +59,8 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
     ]);
 
     useImperativeHandle(ref, () => ({
-      open: () => {
+      open: (focusSearch = false) => {
+        shouldFocusSearchRef.current = focusSearch;
         setIsOpen(true);
       },
     }));
@@ -122,13 +124,22 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
       if (isOpen) {
         // Use setTimeout to ensure the menu is fully rendered before focusing
         setTimeout(() => {
-          // Focus on the search input when menu opens
-          if (searchInputRef.current) {
-            searchInputRef.current.focus();
+          if (shouldFocusSearchRef.current) {
+            // Focus on the search input when opened via cmd-k
+            searchInputRef.current?.focus();
+          } else {
+            // Focus on the selected item if it exists, otherwise focus on the first item
+            if (selectedItemRef.current) {
+              selectedItemRef.current.focus();
+            } else if (firstItemRef.current) {
+              firstItemRef.current.focus();
+            }
           }
+          // Reset the flag after focusing
+          shouldFocusSearchRef.current = false;
         }, 0);
       }
-    }, [isOpen]);
+    }, [isOpen, selectedItemId]);
 
     return (
       <>
@@ -162,7 +173,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
                   <input
                     ref={searchInputRef}
                     type="text"
-                    placeholder="Search commands and settings"
+                    placeholder="Pages, posts, settings, and more&hellip;"
                     className="menu-search-input"
                   />
                 </div>
