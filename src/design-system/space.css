@@ -222,6 +222,9 @@
 .gap-m {
   gap: var(--space-m);
 }
+.gap-l {
+  gap: var(--space-l);
+}
 .gap-xl {
   gap: var(--space-xl);
 }

@@ -24,17 +24,31 @@
   justify-content: flex-end;
 }
 
-.button:hover {
+/* Default type */
+.button.type-default:hover {
   color: var(--color-theme);
   background-color: var(--color-gray-100);
 }
 
-.button:active {
+.button.type-default:active {
   background-color: var(--color-gray-200);
+}
+
+/* Primary type */
+.button.type-primary {
+  background-color: var(--color-theme);
+  color: var(--color-white);
+}
+
+.button.type-primary:hover {
+  background-color: var(--color-theme-darker-10);
+}
+
+.button.type-primary:active {
+  background-color: var(--color-theme-darker-20);
 }
 
 .button:focus {
   outline: 1.5px solid var(--color-theme);
-  outline-offset: 1.5px;
+  outline-offset: 1px;
 }
-

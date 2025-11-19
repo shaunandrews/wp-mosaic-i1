@@ -25,13 +25,20 @@ function App() {
       <div className="stage fill m-s mr-0 radius-l">
         <div className="editor full-height">
           <div className="editor-toolbar row items-center justify-between">
-            <div className="editor-toolbar-start row gap-xs">
+            <div className="editor-toolbar-start row gap-xxs">
               <Button className="button-wordpress">WordPress</Button>
-              <Button>Add block</Button>
-              <Button>Tools</Button>
-              <Button>Undo</Button>
-              <Button>Redo</Button>
-              <Button>Layers</Button>
+              <Button>
+                <Icon name="plus" />
+              </Button>
+              <Button>
+                <Icon name="undo" />
+              </Button>
+              <Button>
+                <Icon name="redo" />
+              </Button>
+              <Button>
+                <Icon name="list" />
+              </Button>
             </div>
 
             <div className="document-bar row gap-xxs">
@@ -40,7 +47,10 @@ function App() {
               </Button>
               <Menu items={mockPages} onItemSelect={handlePageSelect}>
                 <Button align="center" className="button-document-picker">
-                  <span className="document-title">{selectedPage.label}</span>
+                  <span className="title-wrapper row items-center">
+                    <span className="document-title">{selectedPage.label}</span>
+                    <Icon name="chevron-down-small" />
+                  </span>
                   <small>⌘K</small>
                 </Button>
               </Menu>
@@ -49,15 +59,22 @@ function App() {
               </Button>
             </div>
 
-            <div className="editor-toolbar-end row gap-xs pr-m">
-              <Button>View: Desktop</Button>
-              <Button>Styles</Button>
-              <Button>Settings</Button>
-              <Button>Save</Button>
-              <Button>Options</Button>
+            <div className="editor-toolbar-end row gap-xxs pr-xs">
+              <Button>
+                <Icon name="view-desktop" />
+              </Button>
+              <Button>
+                <Icon name="drawer-right" />
+              </Button>
+              <Button type="primary" align="center" className="button-save">
+                Save
+              </Button>
+              <Button>
+                <Icon name="more" />
+              </Button>
             </div>
           </div>
-          <div className="editor-canvas row gap-s wrap">
+          <div className="editor-canvas p-l gap-l row wrap">
             <div className="document">document 1</div>
             <div className="document">document 2</div>
             <div className="document">document 3</div>
