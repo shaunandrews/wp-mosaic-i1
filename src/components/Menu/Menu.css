@@ -16,7 +16,7 @@
 .menu-list {
   display: flex;
   flex-direction: column;
-  max-height: 500px;
+  max-height: 520px;
 }
 
 .menu-header {
@@ -77,7 +77,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: var(--space-s);
+  padding: var(--space-xs) var(--space-s);
 
   .icon {
     color: var(--color-surface-text-tertiary);
@@ -102,13 +102,13 @@
 .menu-header.has-gradient-top::after {
   content: '';
   position: absolute;
-  bottom: -17px;
+  bottom: -7px;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 6px;
   background: linear-gradient(
     to bottom,
-    var(--color-surface) 0%,
+    rgba(0,0,0,0.05) 0%,
     transparent 100%
   );
   pointer-events: none;
@@ -118,13 +118,13 @@
 .menu-footer.has-gradient-bottom::before {
   content: '';
   position: absolute;
-  top: -17px;
+  top: -7px;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 6px;
   background: linear-gradient(
     to top,
-    var(--color-surface) 0%,
+    rgba(0,0,0,0.05) 0%,
     transparent 100%
   );
   pointer-events: none;
