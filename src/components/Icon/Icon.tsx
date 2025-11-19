@@ -82,8 +82,8 @@ const iconMap: Record<string, React.ReactNode> = {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M18 4H6C4.9 4 4 4.9 4 6V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V6C20 4.9 19.1 4 18 4ZM14 18.5H6C5.7 18.5 5.5 18.3 5.5 18V6C5.5 5.7 5.7 5.5 6 5.5H14V18.5ZM18.5 18C18.5 18.3 18.3 18.5 18 18.5H15.5V5.5H18C18.3 5.5 18.5 5.7 18.5 6V18Z"
         fill="currentColor"
       />

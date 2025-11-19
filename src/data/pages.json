@@ -5,6 +5,18 @@
     { "id": "3", "label": "Contact" },
     { "id": "4", "label": "Blog" },
     { "id": "5", "label": "Services" },
-    { "id": "6", "label": "Portfolio" }
+    { "id": "6", "label": "Portfolio" },
+    { "id": "7", "label": "Products" },
+    { "id": "8", "label": "Team" },
+    { "id": "9", "label": "Careers" },
+    { "id": "10", "label": "FAQ" },
+    { "id": "11", "label": "Testimonials" },
+    { "id": "12", "label": "Gallery" },
+    { "id": "13", "label": "News" },
+    { "id": "14", "label": "Events" },
+    { "id": "15", "label": "Resources" },
+    { "id": "16", "label": "Support" },
+    { "id": "17", "label": "Privacy Policy" },
+    { "id": "18", "label": "Terms of Service" }
   ]
 }

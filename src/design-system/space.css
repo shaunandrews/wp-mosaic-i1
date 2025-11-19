@@ -172,6 +172,12 @@
 .pl-s {
   padding-left: var(--space-s);
 }
+.pl-m {
+  padding-left: var(--space-m);
+}
+.pl-l {
+  padding-left: var(--space-l);
+}
 .pl-xl {
   padding-left: var(--space-xl);
 }

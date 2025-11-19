@@ -26,10 +26,6 @@
   min-width: 0;
 }
 
-.editor-canvas.col {
-  overflow: hidden;
-}
-
 .document {
   border-radius: var(--radius-m);
   background-color: var(--color-gray-200);
@@ -43,7 +39,7 @@
   font-weight: 700;
 
   .view-grid & {
-    height: 500px;
+    height: 340px;
     width: 300px;
   }
 

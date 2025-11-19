@@ -23,6 +23,7 @@ interface PanelConfig {
 
 const PANEL_CONFIG: PanelConfig[] = [
   { id: 'structure', position: 'left', buttonIcon: 'list' },
+  { id: 'inserter', position: 'left', buttonIcon: 'plus' },
   { id: 'settings', position: 'right', buttonIcon: 'drawer-right' },
 ];
 
@@ -135,16 +136,24 @@ function App() {
           />
           <div className="row editor-content">
             <AnimatePresence>
-              {getOpenPanelAt('left') === 'structure' && (
+              {getOpenPanelAt('left') && (
                 <motion.div
-                  key="structure"
-                  className="panel panel-structure"
+                  key="left-panel"
+                  className={`panel ${
+                    getOpenPanelAt('left') === 'structure'
+                      ? 'panel-structure'
+                      : 'panel-inserter'
+                  }`}
                   initial={{ width: 0, opacity: 0 }}
                   animate={{ width: 300, opacity: 1 }}
                   exit={{ width: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <h3>Structure</h3>
+                  {getOpenPanelAt('left') === 'structure' ? (
+                    <h3>Structure</h3>
+                  ) : (
+                    <h3>Inserter</h3>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>

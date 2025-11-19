@@ -15,10 +15,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-black);
+  background-color: #000;
   overflow: hidden;
   border-radius: 0;
-  color: var(--color-white);
+  color: #fff;
   text-indent: -9999px;
   border-top-left-radius: var(--radius-l);
 
@@ -28,7 +28,7 @@
   }
 
   &:hover {
-    background-color: var(--color-black) !important;
+    background-color: #000 !important;
   }
 
   &:focus {

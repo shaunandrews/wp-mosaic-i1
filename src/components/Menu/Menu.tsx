@@ -2,6 +2,7 @@ import React, {
   useState,
   useRef,
   useEffect,
+  useCallback,
   useImperativeHandle,
   forwardRef,
 } from 'react';
@@ -37,11 +38,24 @@ export interface MenuHandle {
 export const Menu = forwardRef<MenuHandle, MenuProps>(
   ({ children, groups, selectedItemId, onItemSelect }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [canScrollUp, setCanScrollUp] = useState(false);
+    const [canScrollDown, setCanScrollDown] = useState(false);
     const firstItemRef = useRef<HTMLButtonElement>(null);
     const selectedItemRef = useRef<HTMLButtonElement>(null);
+    const viewAllPagesRef = useRef<HTMLButtonElement>(null);
     const menuContainerRef = useRef<HTMLDivElement>(null);
+    const scrollableContainerRef = useRef<HTMLDivElement>(null);
     const searchInputRef = useRef<HTMLInputElement>(null);
     const shouldFocusSearchRef = useRef(false);
+
+    // Extract "view-all-pages" item from the last group if it exists
+    const viewAllPagesItem =
+      groups.length > 0 &&
+      groups[groups.length - 1].items.length === 1 &&
+      groups[groups.length - 1].items[0].id === 'view-all-pages'
+        ? groups[groups.length - 1].items[0]
+        : null;
+    const pageGroups = viewAllPagesItem ? groups.slice(0, -1) : groups;
 
     const { refs, floatingStyles, context } = useFloating({
       open: isOpen,
@@ -81,13 +95,25 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
     };
 
     const getAllMenuItems = (): HTMLButtonElement[] => {
-      if (!menuContainerRef.current) return [];
-      return Array.from(
-        menuContainerRef.current.querySelectorAll<HTMLButtonElement>(
-          '.button-menu-item'
-        )
+      if (!scrollableContainerRef.current) return [];
+      // Get all menu items from the scrollable container and footer
+      const container = scrollableContainerRef.current.closest('.menu-list');
+      if (!container) return [];
+      const allItems = Array.from(
+        container.querySelectorAll<HTMLButtonElement>('.button-menu-item')
       );
+      return allItems;
     };
+
+    const checkScrollState = useCallback(() => {
+      if (!scrollableContainerRef.current) return;
+      const container = scrollableContainerRef.current;
+      const canScrollUpValue = container.scrollTop > 0;
+      const canScrollDownValue =
+        container.scrollTop + container.clientHeight < container.scrollHeight;
+      setCanScrollUp(canScrollUpValue);
+      setCanScrollDown(canScrollDownValue);
+    }, []);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (!isOpen) return;
@@ -116,7 +142,11 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
           nextIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
         }
 
-        items[nextIndex]?.focus();
+        const nextItem = items[nextIndex];
+        if (nextItem) {
+          nextItem.focus();
+          nextItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       }
     };
 
@@ -129,17 +159,52 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
             searchInputRef.current?.focus();
           } else {
             // Focus on the selected item if it exists, otherwise focus on the first item
-            if (selectedItemRef.current) {
+            if (
+              selectedItemId === viewAllPagesItem?.id &&
+              viewAllPagesRef.current
+            ) {
+              viewAllPagesRef.current.focus();
+            } else if (selectedItemRef.current) {
               selectedItemRef.current.focus();
+              selectedItemRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+              });
             } else if (firstItemRef.current) {
               firstItemRef.current.focus();
+              firstItemRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+              });
             }
           }
           // Reset the flag after focusing
           shouldFocusSearchRef.current = false;
+          // Check scroll state after menu opens
+          checkScrollState();
         }, 0);
       }
-    }, [isOpen, selectedItemId]);
+    }, [isOpen, selectedItemId, checkScrollState]);
+
+    useEffect(() => {
+      if (!isOpen || !scrollableContainerRef.current) return;
+
+      const container = scrollableContainerRef.current;
+      checkScrollState();
+
+      const handleScroll = () => {
+        checkScrollState();
+      };
+
+      container.addEventListener('scroll', handleScroll);
+      // Also check on resize in case content changes
+      window.addEventListener('resize', checkScrollState);
+
+      return () => {
+        container.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', checkScrollState);
+      };
+    }, [isOpen, checkScrollState]);
 
     return (
       <>
@@ -163,71 +228,105 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
               {...getFloatingProps()}
               className="menu"
             >
-              <div
-                ref={menuContainerRef}
-                className="menu-list col"
-                onKeyDown={handleKeyDown}
-              >
-                <div className="menu-search">
-                  <Icon name="search" />
-                  <input
-                    ref={searchInputRef}
-                    type="text"
-                    placeholder="Pages, posts, settings, and more&hellip;"
-                    className="menu-search-input"
-                  />
+              <div className="menu-list col" onKeyDown={handleKeyDown}>
+                <div
+                  className={`menu-header ${canScrollUp ? 'has-gradient-top' : ''}`}
+                >
+                  <div className="menu-search">
+                    <Icon name="search" />
+                    <input
+                      ref={searchInputRef}
+                      type="text"
+                      placeholder="Pages, posts, settings, and more&hellip;"
+                      className="menu-search-input"
+                    />
+                  </div>
+                  {/* <div className="menu-tabs row gap-xxs pl-m">
+                    <Button>Pages</Button>
+                    <Button>Posts</Button>
+                    <Button>Other</Button>
+                  </div> */}
                 </div>
-                {groups.map((group, groupIndex) => {
-                  let itemIndex = 0;
-                  if (groupIndex > 0) {
-                    // Calculate the starting index for this group
-                    for (let i = 0; i < groupIndex; i++) {
-                      itemIndex += groups[i].items.length;
-                    }
-                  }
-                  return (
-                    <ul
-                      key={groupIndex}
-                      className="menu-group col gap-xxs p-xs"
-                    >
-                      {groupIndex === 0 && (
-                        <li className="menu-group-heading my-xxs ml-s">
-                          <h3>Recent pages</h3>
-                        </li>
-                      )}
-                      {group.items.map((item) => {
-                        const isSelected = selectedItemId === item.id;
-                        const currentIndex = itemIndex++;
-                        return (
-                          <li key={item.id} className="menu-item">
-                            <Button
-                              ref={(el) => {
-                                if (currentIndex === 0) {
-                                  firstItemRef.current = el;
-                                }
-                                if (isSelected) {
-                                  selectedItemRef.current = el;
-                                }
-                              }}
-                              className={`button-menu-item ${isSelected ? 'is-selected' : ''}`}
-                              onClick={() => handleItemClick(item)}
-                            >
-                              <span className="menu-item-content full-width row items-center gap-xxs">
-                                {isSelected && <Icon name="check" />}
-                                <span>{item.label}</span>
-                                {item.id === 'view-all-pages' && (
-                                  <small className="menu-item-shortcut">
-                                    ⌘⇧P
-                                  </small>
-                                )}
-                              </span>
-                            </Button>
-                          </li>
-                        );
-                      })}
+                <div
+                  ref={scrollableContainerRef}
+                  className="menu-list-scrollable"
+                >
+                  <div ref={menuContainerRef}>
+                    {pageGroups.map((group, groupIndex) => {
+                      let itemIndex = 0;
+                      if (groupIndex > 0) {
+                        // Calculate the starting index for this group
+                        for (let i = 0; i < groupIndex; i++) {
+                          itemIndex += pageGroups[i].items.length;
+                        }
+                      }
+                      return (
+                        <ul
+                          key={groupIndex}
+                          className="menu-group col gap-xxs p-xs"
+                        >
+                          {/* {groupIndex === 0 && (
+                            <li className="menu-group-heading my-xxs ml-s">
+                              <h3>Recent pages</h3>
+                            </li>
+                          )} */}
+                          {group.items.map((item) => {
+                            const isSelected = selectedItemId === item.id;
+                            const currentIndex = itemIndex++;
+                            return (
+                              <li key={item.id} className="menu-item">
+                                <Button
+                                  ref={(el) => {
+                                    if (currentIndex === 0) {
+                                      firstItemRef.current = el;
+                                    }
+                                    if (isSelected) {
+                                      selectedItemRef.current = el;
+                                    }
+                                  }}
+                                  className={`button-menu-item ${isSelected ? 'is-selected' : ''}`}
+                                  onClick={() => handleItemClick(item)}
+                                >
+                                  <span className="menu-item-content full-width row items-center gap-xxs">
+                                    {isSelected && <Icon name="check" />}
+                                    <span>{item.label}</span>
+                                  </span>
+                                </Button>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      );
+                    })}
+                  </div>
+                </div>
+                {viewAllPagesItem && (
+                  <div
+                    className={`menu-footer ${canScrollDown ? 'has-gradient-bottom' : ''}`}
+                  >
+                    <ul className="menu-group col gap-xxs p-xs">
+                      <li className="menu-item">
+                        <Button
+                          ref={(el) => {
+                            if (selectedItemId === viewAllPagesItem.id) {
+                              viewAllPagesRef.current = el;
+                            }
+                          }}
+                          className={`button-menu-item ${selectedItemId === viewAllPagesItem.id ? 'is-selected' : ''}`}
+                          onClick={() => handleItemClick(viewAllPagesItem)}
+                        >
+                          <span className="menu-item-content full-width row items-center gap-xxs">
+                            {selectedItemId === viewAllPagesItem.id && (
+                              <Icon name="check" />
+                            )}
+                            <span>{viewAllPagesItem.label}</span>
+                            <small className="menu-item-shortcut">⌘⇧P</small>
+                          </span>
+                        </Button>
+                      </li>
                     </ul>
-                  );
-                })}
+                  </div>
+                )}
               </div>
             </div>,
             document.body

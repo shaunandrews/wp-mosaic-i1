@@ -53,7 +53,7 @@ export const EditorToolbar = ({
         <Button onClick={() => onTogglePanel('structure')}>
           <Icon name="list" />
         </Button>
-        <Button variant="primary">
+        <Button variant="primary" onClick={() => onTogglePanel('inserter')}>
           <Icon name="plus" />
         </Button>
         <Button>
