@@ -3,21 +3,27 @@ import './App.css';
 import { Menu } from './components/Menu/Menu';
 import { Icon } from './components/Icon/Icon';
 import { Button } from './components/Button/Button';
+import pagesData from './data/pages.json';
 
-const mockPages = [
-  { id: '1', label: 'Home' },
-  { id: '2', label: 'About' },
-  { id: '3', label: 'Contact' },
-  { id: '4', label: 'Blog' },
-  { id: '5', label: 'Services' },
-  { id: '6', label: 'Portfolio' },
-];
+const pages = pagesData.pages;
 
 function App() {
-  const [selectedPage, setSelectedPage] = useState(mockPages[0]);
+  const [selectedPage, setSelectedPage] = useState(pages[0]);
 
   const handlePageSelect = (item: { id: string; label: string }) => {
     setSelectedPage(item);
+  };
+
+  const handlePrevPage = () => {
+    const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
+    const prevIndex = currentIndex > 0 ? currentIndex - 1 : pages.length - 1;
+    setSelectedPage(pages[prevIndex]);
+  };
+
+  const handleNextPage = () => {
+    const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
+    const nextIndex = currentIndex < pages.length - 1 ? currentIndex + 1 : 0;
+    setSelectedPage(pages[nextIndex]);
   };
 
   return (
@@ -25,9 +31,13 @@ function App() {
       <div className="stage fill m-s mr-0 radius-l">
         <div className="editor full-height">
           <div className="editor-toolbar row items-center justify-between">
-            <div className="editor-toolbar-start row gap-xxs">
+            <div className="editor-toolbar-start row gap-xs items-center">
               <Button className="button-wordpress">WordPress</Button>
+
               <Button>
+                <Icon name="list" />
+              </Button>
+              <Button type="primary">
                 <Icon name="plus" />
               </Button>
               <Button>
@@ -36,16 +46,13 @@ function App() {
               <Button>
                 <Icon name="redo" />
               </Button>
-              <Button>
-                <Icon name="list" />
-              </Button>
             </div>
 
-            <div className="document-bar row gap-xxs">
-              <Button className="button-prev">
+            <div className="document-bar row gap-xs">
+              <Button className="button-prev" onClick={handlePrevPage}>
                 <Icon name="chevron-left-small" />
               </Button>
-              <Menu items={mockPages} onItemSelect={handlePageSelect}>
+              <Menu items={pages} onItemSelect={handlePageSelect}>
                 <Button align="center" className="button-document-picker">
                   <span className="title-wrapper row items-center">
                     <span className="document-title">{selectedPage.label}</span>
@@ -54,12 +61,12 @@ function App() {
                   <small>⌘K</small>
                 </Button>
               </Menu>
-              <Button className="button-next">
+              <Button className="button-next" onClick={handleNextPage}>
                 <Icon name="chevron-right-small" />
               </Button>
             </div>
 
-            <div className="editor-toolbar-end row gap-xxs pr-xs">
+            <div className="editor-toolbar-end row gap-xs pr-s">
               <Button>
                 <Icon name="view-desktop" />
               </Button>

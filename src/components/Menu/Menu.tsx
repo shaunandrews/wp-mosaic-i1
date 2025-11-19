@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   useFloating,
   useClick,
@@ -39,6 +39,16 @@ export const Menu = ({ children, items, onItemSelect }: MenuProps) => {
   const handleItemClick = (item: { id: string; label: string }) => {
     onItemSelect?.(item);
     setIsOpen(false);
+    // Move focus back to the document picker button
+    setTimeout(() => {
+      const referenceElement = refs.reference.current;
+      if (referenceElement && referenceElement instanceof HTMLElement) {
+        const button = referenceElement.querySelector('button');
+        if (button) {
+          button.focus();
+        }
+      }
+    }, 0);
   };
 
   useEffect(() => {
@@ -57,7 +67,12 @@ export const Menu = ({ children, items, onItemSelect }: MenuProps) => {
         {...getReferenceProps()}
         style={{ display: 'inline-block' }}
       >
-        {children}
+        {React.isValidElement(children)
+          ? React.cloneElement(children, {
+              className:
+                `${(children.props as { className?: string }).className || ''} ${isOpen ? 'active' : ''}`.trim(),
+            } as Partial<{ className: string }>)
+          : children}
       </div>
       {isOpen && (
         <div

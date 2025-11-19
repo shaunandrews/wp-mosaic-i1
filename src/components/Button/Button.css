@@ -7,7 +7,7 @@
   align-items: center;
   color: var(--color-surface-text);
   cursor: pointer;
-  padding: 0 var(--space-xs);
+  padding: 0 var(--space-xxs);
   height: 32px;
   border-radius: var(--radius-m);
 }

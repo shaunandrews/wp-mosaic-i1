@@ -1,0 +1,10 @@
+{
+  "pages": [
+    { "id": "1", "label": "Home" },
+    { "id": "2", "label": "About" },
+    { "id": "3", "label": "Contact" },
+    { "id": "4", "label": "Blog" },
+    { "id": "5", "label": "Services" },
+    { "id": "6", "label": "Portfolio" }
+  ]
+}
