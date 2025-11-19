@@ -11,7 +11,8 @@ interface IconProps {
     | 'plus'
     | 'more'
     | 'undo'
-    | 'redo';
+    | 'redo'
+    | 'check';
 }
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -153,6 +154,20 @@ const iconMap: Record<string, React.ReactNode> = {
     >
       <path
         d="M15.3 6L14.2 7L17.1 10.3H7.7C6.8 10.3 6 10.6 5.4 11.2C4 12.7 4 15.4 4 16.8V17H5.5V16.7C5.5 15.6 5.5 13.2 6.5 12.2C6.8 11.9 7.2 11.7 7.8 11.7H17L14.2 14.5L15.3 15.6L19.9 11L15.3 6Z"
+        fill="currentColor"
+      />
+    </svg>
+  ),
+  check: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16.7002 7.10001L10.4002 15.6L7.1002 13.1L6.2002 14.3L10.7002 17.7L17.9002 8.00001L16.7002 7.10001Z"
         fill="currentColor"
       />
     </svg>

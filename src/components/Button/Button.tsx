@@ -1,22 +1,23 @@
-import { ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import './Button.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   align?: 'center' | 'left' | 'right';
-  type?: 'default' | 'primary';
+  variant?: 'default' | 'primary';
   className?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ 
   children, 
   align = 'left',
-  type = 'default',
+  variant = 'default',
   className = '',
   ...props 
 }, ref) => {
   const alignClass = `align-${align}`;
-  const typeClass = `type-${type}`;
+  const typeClass = `type-${variant}`;
   const classes = `button ${alignClass} ${typeClass} ${className}`.trim();
 
   return (
