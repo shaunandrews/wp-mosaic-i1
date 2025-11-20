@@ -23,6 +23,7 @@
   overflow: hidden;
   position: relative;
   min-width: 0;
+  background-color: var(--color-gray-100);
 }
 
 .panel {
