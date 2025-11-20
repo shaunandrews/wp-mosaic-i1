@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useRef } from 'react';
-import { Menu, type MenuHandle } from './Menu';
+import { MenuDocumentPicker, type MenuDocumentPickerHandle } from './MenuDocumentPicker';
 import { Button } from '../Button/Button';
 
 // Mock data for testing
@@ -19,7 +19,7 @@ const mockGroups = [
   },
 ];
 
-describe('Menu', () => {
+describe('MenuDocumentPicker', () => {
   beforeEach(() => {
     // Clear any existing portals
     document.body.innerHTML = '';
@@ -27,9 +27,9 @@ describe('Menu', () => {
 
   it('renders the menu trigger button', () => {
     render(
-      <Menu groups={mockGroups}>
+      <MenuDocumentPicker groups={mockGroups}>
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     expect(screen.getByRole('button', { name: 'Open Menu' })).toBeInTheDocument();
@@ -38,16 +38,16 @@ describe('Menu', () => {
   it('opens menu when trigger is clicked', async () => {
     const user = userEvent.setup();
     render(
-      <Menu groups={mockGroups}>
+      <MenuDocumentPicker groups={mockGroups}>
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Menu' });
     await user.click(trigger);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/Pages, posts, settings/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Search pages/i)).toBeInTheDocument();
     });
   });
 
@@ -56,9 +56,9 @@ describe('Menu', () => {
     const onItemSelect = vi.fn();
 
     render(
-      <Menu groups={mockGroups} selectedItemId="2" onItemSelect={onItemSelect}>
+      <MenuDocumentPicker groups={mockGroups} selectedItemId="2" onItemSelect={onItemSelect}>
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Menu' });
@@ -76,9 +76,9 @@ describe('Menu', () => {
     const user = userEvent.setup();
 
     render(
-      <Menu groups={mockGroups}>
+      <MenuDocumentPicker groups={mockGroups}>
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Menu' });
@@ -94,7 +94,7 @@ describe('Menu', () => {
 
   it('focuses the search input when menu is opened via ref.open(true)', async () => {
     const TestComponent = () => {
-      const menuRef = useRef<MenuHandle>(null);
+      const menuRef = useRef<MenuDocumentPickerHandle>(null);
 
       const handleKeyPress = () => {
         menuRef.current?.open(true);
@@ -103,9 +103,9 @@ describe('Menu', () => {
       return (
         <>
           <button onClick={handleKeyPress}>Simulate Cmd-K</button>
-          <Menu ref={menuRef} groups={mockGroups}>
+          <MenuDocumentPicker ref={menuRef} groups={mockGroups}>
             <Button>Open Menu</Button>
-          </Menu>
+          </MenuDocumentPicker>
         </>
       );
     };
@@ -126,9 +126,9 @@ describe('Menu', () => {
     const user = userEvent.setup();
 
     render(
-      <Menu groups={mockGroups} selectedItemId="1">
+      <MenuDocumentPicker groups={mockGroups} selectedItemId="1">
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Menu' });
@@ -146,16 +146,16 @@ describe('Menu', () => {
     const onItemSelect = vi.fn();
 
     render(
-      <Menu groups={mockGroups} onItemSelect={onItemSelect}>
+      <MenuDocumentPicker groups={mockGroups} onItemSelect={onItemSelect}>
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Menu' });
     await user.click(trigger);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/Pages, posts, settings/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Search pages/i)).toBeInTheDocument();
     });
 
     const aboutButton = screen.getByRole('button', { name: /About/i });
@@ -169,16 +169,16 @@ describe('Menu', () => {
     const onItemSelect = vi.fn();
 
     render(
-      <Menu groups={mockGroups} onItemSelect={onItemSelect}>
+      <MenuDocumentPicker groups={mockGroups} onItemSelect={onItemSelect}>
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Menu' });
     await user.click(trigger);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/Pages, posts, settings/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Search pages/i)).toBeInTheDocument();
     });
 
     const aboutButton = screen.getByRole('button', { name: /About/i });
@@ -193,9 +193,9 @@ describe('Menu', () => {
     const user = userEvent.setup();
 
     render(
-      <Menu groups={mockGroups}>
+      <MenuDocumentPicker groups={mockGroups}>
         <Button>Open Menu</Button>
-      </Menu>
+      </MenuDocumentPicker>
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Menu' });
@@ -211,7 +211,7 @@ describe('Menu', () => {
     const user = userEvent.setup();
 
     const TestComponent = () => {
-      const menuRef = useRef<MenuHandle>(null);
+      const menuRef = useRef<MenuDocumentPickerHandle>(null);
 
       const handleKeyPress = () => {
         menuRef.current?.open(true);
@@ -220,9 +220,9 @@ describe('Menu', () => {
       return (
         <>
           <button onClick={handleKeyPress}>Simulate Cmd-K</button>
-          <Menu ref={menuRef} groups={mockGroups}>
+          <MenuDocumentPicker ref={menuRef} groups={mockGroups}>
             <Button>Open Menu</Button>
-          </Menu>
+          </MenuDocumentPicker>
         </>
       );
     };

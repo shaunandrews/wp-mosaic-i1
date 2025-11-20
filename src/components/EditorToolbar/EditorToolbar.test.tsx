@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { EditorToolbar } from './EditorToolbar';
-import { type MenuHandle } from '../Menu/Menu';
+import { type MenuDocumentPickerHandle } from '../Menu/MenuDocumentPicker';
 
 const mockPages = [
   { id: '1', label: 'Page 1' },
@@ -11,7 +11,7 @@ const mockPages = [
 
 const mockMenuRef = {
   current: null,
-} as React.RefObject<MenuHandle | null>;
+} as React.RefObject<MenuDocumentPickerHandle | null>;
 
 describe('EditorToolbar', () => {
   it('calls onTogglePanel with "structure" when list button is clicked', async () => {

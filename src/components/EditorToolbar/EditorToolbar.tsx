@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { type MenuHandle } from '../Menu/Menu';
+import { type MenuDocumentPickerHandle } from '../Menu/MenuDocumentPicker';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import { DocumentBar } from '../DocumentBar/DocumentBar';
@@ -20,9 +20,8 @@ interface EditorToolbarProps {
   viewMode: ViewMode;
   selectedPage: Page;
   pages: Page[];
-  menuRef: React.RefObject<MenuHandle | null>;
+  menuRef: React.RefObject<MenuDocumentPickerHandle | null>;
   onPageSelect: (item: { id: string; label: string }) => void;
-  onActionSelect?: (action: { id: string; label: string }) => void;
   onPrevPage: () => void;
   onNextPage: () => void;
   onTogglePanel: (panelId: string) => void;
@@ -39,7 +38,6 @@ export const EditorToolbar = ({
   pages,
   menuRef,
   onPageSelect,
-  onActionSelect,
   onPrevPage,
   onNextPage,
   onTogglePanel,
@@ -110,7 +108,6 @@ export const EditorToolbar = ({
         pages={pages}
         menuRef={menuRef}
         onPageSelect={onPageSelect}
-        onActionSelect={onActionSelect}
         onPrevPage={onPrevPage}
         onNextPage={onNextPage}
       />

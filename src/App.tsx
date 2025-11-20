@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
-import { type MenuHandle } from './components/Menu/Menu';
+import { type MenuDocumentPickerHandle } from './components/Menu/MenuDocumentPicker';
 import { EditorToolbar } from './components/EditorToolbar/EditorToolbar';
 import { Button } from './components/Button/Button';
 import { Icon } from './components/Icon/Icon';
@@ -56,7 +56,7 @@ function AppContent() {
     const saved = localStorage.getItem('wordPressNavOpen');
     return saved !== null ? saved === 'true' : false;
   });
-  const menuRef = useRef<MenuHandle>(null);
+  const menuRef = useRef<MenuDocumentPickerHandle>(null);
 
   const getOpenPanelAt = (position: PanelPosition): string | null => {
     return panelState[position];
@@ -98,16 +98,6 @@ function AppContent() {
         selectPage(page, 'menu');
       }
     }
-  };
-
-  const handleActionSelect = (action: { id: string; label: string }) => {
-    // TODO: Implement action handlers
-    console.log('Action selected:', action);
-    // Example actions:
-    // - rename-page: Open rename dialog
-    // - duplicate: Duplicate the current page
-    // - add-before: Add a new page before the current page
-    // - add-after: Add a new page after the current page
   };
 
   const handlePrevPage = () => {
@@ -218,7 +208,6 @@ function AppContent() {
             pages={contextPages}
             menuRef={menuRef}
             onPageSelect={handlePageSelect}
-            onActionSelect={handleActionSelect}
             onPrevPage={handlePrevPage}
             onNextPage={handleNextPage}
             onTogglePanel={togglePanel}

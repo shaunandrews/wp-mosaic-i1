@@ -11,24 +11,10 @@
   }
 
   .button-document-picker {
+    min-width: 200px;
     border: 1px solid var(--color-gray-200);
-    min-width: 300px;
+    padding: 0 var(--space-l) 0 var(--space-s);
     position: relative;
-
-    .icon-search {
-      position: absolute;
-      left: var(--space-xs);
-      top: 50%;
-      height: 18px;
-      width: 18px;
-      transform: translateY(-50%);
-
-      .icon {
-        height: 100%;
-        width: 100%;
-        color: var(--color-surface-text-tertiary);
-      }
-    }
 
     .title-wrapper {
       position: relative;
@@ -60,13 +46,6 @@
       .breadcrumb-divider {
         color: var(--color-surface-text-tertiary);
       }
-    }
-
-    small {
-      color: var(--color-surface-text-tertiary);
-      position: absolute;
-      right: var(--space-s);
-      font-size: 10px;
     }
 
     &.active {
