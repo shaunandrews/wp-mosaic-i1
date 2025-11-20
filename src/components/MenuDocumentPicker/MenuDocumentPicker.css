@@ -51,9 +51,13 @@
 .menu-list .button-menu-item {
   width: 100%;
   padding: 0 var(--space-s);
+  padding-left: calc(var(--space-s) + 24px);
+
+  & > span {
+    text-align: left;
+  }
 
   &.is-selected {
-    padding-left: var(--space-xxs);
     background-color: var(--color-theme-alpha-08) !important;
     color: var(--color-theme);
   }
@@ -61,6 +65,10 @@
   .menu-item-shortcut {
     color: var(--color-surface-text-tertiary);
     margin-left: auto;
+  }
+
+  &.button-all-pages {
+    padding-left: var(--space-xxs);
   }
 }
 

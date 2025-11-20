@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { EditorToolbar } from './EditorToolbar';
-import { type MenuDocumentPickerHandle } from '../Menu/MenuDocumentPicker';
+import { type MenuDocumentPickerHandle } from '../MenuDocumentPicker/MenuDocumentPicker';
 
 const mockPages = [
   { id: '1', label: 'Page 1' },

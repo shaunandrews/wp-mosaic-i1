@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
-import { type MenuDocumentPickerHandle } from './components/Menu/MenuDocumentPicker';
+import { type MenuDocumentPickerHandle } from './components/MenuDocumentPicker/MenuDocumentPicker';
 import { EditorToolbar } from './components/EditorToolbar/EditorToolbar';
 import { Button } from './components/Button/Button';
 import { Icon } from './components/Icon/Icon';

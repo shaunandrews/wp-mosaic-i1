@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { type MenuDocumentPickerHandle } from '../Menu/MenuDocumentPicker';
+import { type MenuDocumentPickerHandle } from '../MenuDocumentPicker/MenuDocumentPicker';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import { DocumentBar } from '../DocumentBar/DocumentBar';

@@ -83,7 +83,7 @@ export const MenuDocumentPicker = forwardRef<
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
-    placement: 'bottom-start',
+    placement: 'bottom',
     middleware: [offset(6), flip(), shift()],
   });
 
@@ -321,7 +321,7 @@ export const MenuDocumentPicker = forwardRef<
                       return (
                         <ul
                           key={groupIndex}
-                          className="menu-group col gap-xxs p-xs"
+                          className="menu-group col gap-xxs px-xs"
                         >
                           {group.items.map((item) => {
                             const isSelected = selectedItemId === item.id;
@@ -340,10 +340,8 @@ export const MenuDocumentPicker = forwardRef<
                                   className={`button-menu-item ${isSelected ? 'is-selected' : ''}`}
                                   onClick={() => handleItemClick(item)}
                                 >
-                                  <span className="menu-item-content full-width row items-center gap-xxs">
-                                    {isSelected && <Icon name="check" />}
-                                    <span>{item.label}</span>
-                                  </span>
+                                  <span className="fill">{item.label}</span>
+                                  {isSelected && <Icon name="check" />}
                                 </Button>
                               </li>
                             );
@@ -366,16 +364,15 @@ export const MenuDocumentPicker = forwardRef<
                             viewAllPagesRef.current = el;
                           }
                         }}
-                        className={`button-menu-item ${selectedItemId === viewAllPagesItem.id ? 'is-selected' : ''}`}
+                        className={`button-menu-item button-all-pages gap-xs ${selectedItemId === viewAllPagesItem.id ? 'is-selected' : ''}`}
                         onClick={() => handleItemClick(viewAllPagesItem)}
                       >
-                        <span className="menu-item-content full-width row items-center gap-xxs">
-                          {selectedItemId === viewAllPagesItem.id && (
-                            <Icon name="check" />
-                          )}
-                          <span>{viewAllPagesItem.label}</span>
-                          <small className="menu-item-shortcut">⌘⇧P</small>
-                        </span>
+                        <Icon name="grid" />
+                        <span>{viewAllPagesItem.label}</span>
+                        <small className="menu-item-shortcut">⌘⇧P</small>
+                        {selectedItemId === viewAllPagesItem.id && (
+                          <Icon name="check" />
+                        )}
                       </Button>
                     </li>
                   </ul>

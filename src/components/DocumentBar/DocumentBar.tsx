@@ -1,7 +1,7 @@
 import {
   MenuDocumentPicker,
   type MenuDocumentPickerHandle,
-} from '../Menu/MenuDocumentPicker';
+} from '../MenuDocumentPicker/MenuDocumentPicker';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import { motion, AnimatePresence } from 'framer-motion';
