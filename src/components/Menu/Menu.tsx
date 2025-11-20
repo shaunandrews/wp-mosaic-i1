@@ -27,6 +27,7 @@ interface MenuGroup {
 interface MenuProps {
   children: React.ReactNode;
   groups: MenuGroup[];
+  templatesGroups?: MenuGroup[];
   selectedItemId?: string;
   onItemSelect?: (item: { id: string; label: string }) => void;
 }
@@ -36,8 +37,12 @@ export interface MenuHandle {
 }
 
 export const Menu = forwardRef<MenuHandle, MenuProps>(
-  ({ children, groups, selectedItemId, onItemSelect }, ref) => {
+  (
+    { children, groups, templatesGroups, selectedItemId, onItemSelect },
+    ref
+  ) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState<'pages' | 'templates'>('pages');
     const [canScrollUp, setCanScrollUp] = useState(false);
     const [canScrollDown, setCanScrollDown] = useState(false);
     const firstItemRef = useRef<HTMLButtonElement>(null);
@@ -48,14 +53,22 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
     const searchInputRef = useRef<HTMLInputElement>(null);
     const shouldFocusSearchRef = useRef(false);
 
-    // Extract "view-all-pages" item from the last group if it exists
+    // Extract "view-all-pages" item from the last group if it exists (only for pages)
     const viewAllPagesItem =
+      activeTab === 'pages' &&
       groups.length > 0 &&
       groups[groups.length - 1].items.length === 1 &&
       groups[groups.length - 1].items[0].id === 'view-all-pages'
         ? groups[groups.length - 1].items[0]
         : null;
-    const pageGroups = viewAllPagesItem ? groups.slice(0, -1) : groups;
+
+    // Determine which groups to display based on active tab
+    const displayGroups =
+      activeTab === 'pages'
+        ? viewAllPagesItem
+          ? groups.slice(0, -1)
+          : groups
+        : templatesGroups || [];
 
     const { refs, floatingStyles, context } = useFloating({
       open: isOpen,
@@ -115,8 +128,35 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
       setCanScrollDown(canScrollDownValue);
     }, []);
 
+    // Reset scroll position when switching tabs
+    useEffect(() => {
+      if (scrollableContainerRef.current) {
+        scrollableContainerRef.current.scrollTop = 0;
+        checkScrollState();
+      }
+    }, [activeTab, checkScrollState]);
+
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (!isOpen) return;
+
+      // Handle tab switching with left/right arrows
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        // Don't interfere if typing in search input
+        if (
+          document.activeElement === searchInputRef.current ||
+          (e.target instanceof HTMLElement && e.target.tagName === 'INPUT')
+        ) {
+          return;
+        }
+
+        e.preventDefault();
+        if (e.key === 'ArrowLeft') {
+          setActiveTab('pages');
+        } else {
+          setActiveTab('templates');
+        }
+        return;
+      }
 
       // Don't interfere with typing in the search input
       if (
@@ -184,7 +224,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
           checkScrollState();
         }, 0);
       }
-    }, [isOpen, selectedItemId, checkScrollState]);
+    }, [isOpen, selectedItemId, checkScrollState, activeTab]);
 
     useEffect(() => {
       if (!isOpen || !scrollableContainerRef.current) return;
@@ -204,7 +244,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
         container.removeEventListener('scroll', handleScroll);
         window.removeEventListener('resize', checkScrollState);
       };
-    }, [isOpen, checkScrollState]);
+    }, [isOpen, checkScrollState, activeTab]);
 
     return (
       <>
@@ -241,23 +281,34 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
                       className="menu-search-input"
                     />
                   </div>
-                  {/* <div className="menu-tabs row gap-xxs pl-m">
-                    <Button>Pages</Button>
-                    <Button>Posts</Button>
-                    <Button>Other</Button>
-                  </div> */}
+                  <div className="menu-tabs row m-s mt-0">
+                    <Button
+                      align="center"
+                      className={`menu-tab ${activeTab === 'pages' ? 'is-active' : ''}`}
+                      onClick={() => setActiveTab('pages')}
+                    >
+                      Pages
+                    </Button>
+                    <Button
+                      align="center"
+                      className={`menu-tab ${activeTab === 'templates' ? 'is-active' : ''}`}
+                      onClick={() => setActiveTab('templates')}
+                    >
+                      Templates
+                    </Button>
+                  </div>
                 </div>
                 <div
                   ref={scrollableContainerRef}
                   className="menu-list-scrollable"
                 >
                   <div ref={menuContainerRef}>
-                    {pageGroups.map((group, groupIndex) => {
+                    {displayGroups.map((group, groupIndex) => {
                       let itemIndex = 0;
                       if (groupIndex > 0) {
                         // Calculate the starting index for this group
                         for (let i = 0; i < groupIndex; i++) {
-                          itemIndex += pageGroups[i].items.length;
+                          itemIndex += displayGroups[i].items.length;
                         }
                       }
                       return (

@@ -77,15 +77,17 @@ export const PageGrid = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {pages.map((page, index) => (
-        <div key={page.id} data-index={index}>
-          <PageGridItem
-            page={page}
-            onClick={() => handleItemClick(page.id)}
-            isVisible={visibleIndices.has(index)}
-          />
-        </div>
-      ))}
+      <div className="page-grid-content">
+        {pages.map((page, index) => (
+          <div key={page.id} data-index={index} className="page-grid-cell">
+            <PageGridItem
+              page={page}
+              onClick={() => handleItemClick(page.id)}
+              isVisible={visibleIndices.has(index)}
+            />
+          </div>
+        ))}
+      </div>
     </motion.div>
   );
 };

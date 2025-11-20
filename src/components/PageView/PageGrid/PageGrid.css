@@ -1,11 +1,24 @@
 .page-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-l);
-  padding: var(--space-l);
+  display: block;
   width: 100%;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: var(--space-l);
 }
 
+.page-grid-content {
+  column-width: 300px;
+  column-gap: var(--space-l);
+  width: 100%;
+  /* Allow height to grow automatically */
+}
+
+.page-grid-cell {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: var(--space-l);
+  /* Fix for some browsers to ensure block formatting context and avoid splitting */
+  display: inline-block;
+  width: 100%;
+}

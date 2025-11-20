@@ -1,0 +1,21 @@
+{
+  "templates": [
+    {
+      "id": "template-general",
+      "label": "General"
+    },
+    {
+      "id": "template-blog-post",
+      "label": "Blog Post"
+    },
+    {
+      "id": "template-blog-list",
+      "label": "Blog List"
+    },
+    {
+      "id": "template-search-results",
+      "label": "Search Results"
+    }
+  ]
+}
+

@@ -1172,17 +1172,2098 @@
         ]
       }
     },
-    { "id": "5", "label": "Services" },
-    { "id": "6", "label": "Portfolio" },
-    { "id": "8", "label": "Team" },
-    { "id": "9", "label": "Careers" },
-    { "id": "10", "label": "FAQ" },
-    { "id": "11", "label": "Testimonials" },
-    { "id": "13", "label": "News" },
-    { "id": "14", "label": "Events" },
-    { "id": "15", "label": "Resources" },
-    { "id": "16", "label": "Support" },
-    { "id": "17", "label": "Privacy Policy" },
-    { "id": "18", "label": "Terms of Service" }
+    {
+      "id": "5",
+      "label": "Services",
+      "content": {
+        "blocks": [
+          {
+            "id": "services-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Our Services",
+              "subtitle": "Comprehensive solutions tailored to your needs",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "services-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "services-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "We offer a wide range of professional services designed to help you achieve your goals. Our team of experts is dedicated to delivering exceptional results.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "services-grid",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "services-grid-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "What We Offer",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "services-grid-content",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "service-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Service One",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "service-1-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Comprehensive service offering that addresses your specific needs with professional expertise."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "service-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Service Two",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "service-2-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Expert solutions designed to streamline your workflow and improve efficiency."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "service-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Service Three",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "service-3-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Tailored approach to meet your unique requirements and exceed expectations."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "service-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Service Four",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "service-4-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Innovative solutions that drive results and help you stay ahead of the competition."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "service-5",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Service Five",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "service-5-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Professional support and guidance throughout your entire journey with us."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "service-6",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Service Six",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "service-6-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "End-to-end solutions that cover all aspects of your project requirements."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "services-cta",
+            "type": "container",
+            "attributes": {
+              "backgroundColor": "var(--block-accent)",
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "services-cta-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Ready to Get Started?",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "services-cta-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Contact us today to learn more about how we can help you achieve your goals.",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "services-cta-button",
+                "type": "button",
+                "attributes": {
+                  "text": "Contact Us",
+                  "variant": "primary",
+                  "align": "center"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "6",
+      "label": "Portfolio",
+      "content": {
+        "blocks": [
+          {
+            "id": "portfolio-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Our Portfolio",
+              "subtitle": "Showcasing our best work and achievements",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "portfolio-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "portfolio-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Explore our collection of successful projects and see the quality of work we deliver for our clients.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "portfolio-grid",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "portfolio-grid-content",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "portfolio-item-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Project One",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "portfolio-item-1-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "A successful project that demonstrates our expertise and attention to detail."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "portfolio-item-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Project Two",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "portfolio-item-2-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Innovative solutions that delivered exceptional results for our client."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "portfolio-item-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Project Three",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "portfolio-item-3-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "A comprehensive project that showcases our full range of capabilities."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "portfolio-item-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Project Four",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "portfolio-item-4-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Delivering excellence through careful planning and execution."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "portfolio-item-5",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Project Five",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "portfolio-item-5-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "A standout project that exceeded client expectations."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "portfolio-item-6",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Project Six",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "portfolio-item-6-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Creative solutions that transformed our client's vision into reality."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "label": "Team",
+      "content": {
+        "blocks": [
+          {
+            "id": "team-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Our Team",
+              "subtitle": "Meet the talented people behind our success",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "team-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "team-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Our diverse team of professionals brings together years of experience, creativity, and dedication to deliver outstanding results.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "team-grid",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "team-grid-content",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "team-member-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member One",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "team-member-1-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Chief Executive Officer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "team-member-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member Two",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "team-member-2-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Chief Technology Officer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "team-member-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member Three",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "team-member-3-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Head of Design"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "team-member-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member Four",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "team-member-4-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Lead Developer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "team-member-5",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member Five",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "team-member-5-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Marketing Director"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "team-member-6",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member Six",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "team-member-6-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Operations Manager"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "9",
+      "label": "Careers",
+      "content": {
+        "blocks": [
+          {
+            "id": "careers-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Join Our Team",
+              "subtitle": "Build your career with us",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "careers-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "careers-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "We're always looking for talented individuals to join our growing team. Explore open positions and find your next opportunity.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "careers-openings",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "careers-openings-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Open Positions",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "careers-openings-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 2,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "career-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Senior Developer",
+                      "image": false
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "career-1-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "We're seeking an experienced developer to join our engineering team. You'll work on exciting projects and help shape our technology stack."
+                        }
+                      },
+                      {
+                        "id": "career-1-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Apply Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "career-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "UX Designer",
+                      "image": false
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "career-2-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Join our design team and create beautiful, user-friendly experiences. We're looking for creative thinkers with a passion for design."
+                        }
+                      },
+                      {
+                        "id": "career-2-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Apply Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "career-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Marketing Specialist",
+                      "image": false
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "career-3-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Help us grow our brand and reach new audiences. This role offers the opportunity to work on diverse marketing campaigns."
+                        }
+                      },
+                      {
+                        "id": "career-3-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Apply Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "career-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Project Manager",
+                      "image": false
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "career-4-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Lead projects from conception to completion. We need an organized, detail-oriented professional to keep our teams on track."
+                        }
+                      },
+                      {
+                        "id": "career-4-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Apply Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "careers-benefits",
+            "type": "section",
+            "attributes": {
+              "backgroundColor": "var(--block-surface-alt)",
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "careers-benefits-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Benefits & Perks",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "careers-benefits-list",
+                "type": "list",
+                "attributes": {
+                  "ordered": false,
+                  "items": [
+                    "Competitive salary and benefits package",
+                    "Flexible working hours and remote options",
+                    "Professional development opportunities",
+                    "Health and wellness programs",
+                    "Collaborative and inclusive work environment"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "10",
+      "label": "FAQ",
+      "content": {
+        "blocks": [
+          {
+            "id": "faq-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Frequently Asked Questions",
+              "subtitle": "Find answers to common questions",
+              "align": "center",
+              "backgroundImage": false
+            }
+          },
+          {
+            "id": "faq-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-6) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "faq-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Have a question? Check out our frequently asked questions below. If you can't find what you're looking for, feel free to contact us.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "faq-items",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "faq-item-1",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "faq-item-1-question",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 3,
+                      "content": "What services do you offer?"
+                    }
+                  },
+                  {
+                    "id": "faq-item-1-answer",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "We offer a comprehensive range of services tailored to meet your specific needs. Our services include consulting, development, design, and ongoing support. Please visit our Services page for more details."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "faq-item-2",
+                "type": "container",
+                "attributes": {
+                  "backgroundColor": "var(--block-surface-alt)",
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "faq-item-2-question",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 3,
+                      "content": "How do I get started?"
+                    }
+                  },
+                  {
+                    "id": "faq-item-2-answer",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "Getting started is easy! Simply contact us through our contact form or reach out via email or phone. Our team will schedule a consultation to discuss your needs and how we can help."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "faq-item-3",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "faq-item-3-question",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 3,
+                      "content": "What are your pricing options?"
+                    }
+                  },
+                  {
+                    "id": "faq-item-3-answer",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "Our pricing varies depending on the scope and complexity of your project. We offer flexible pricing options and can provide a custom quote based on your specific requirements. Contact us for more information."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "faq-item-4",
+                "type": "container",
+                "attributes": {
+                  "backgroundColor": "var(--block-surface-alt)",
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "faq-item-4-question",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 3,
+                      "content": "Do you provide ongoing support?"
+                    }
+                  },
+                  {
+                    "id": "faq-item-4-answer",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "Yes, we offer comprehensive ongoing support and maintenance services. Our support packages are designed to keep your projects running smoothly and can be customized to fit your needs."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "faq-item-5",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "faq-item-5-question",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 3,
+                      "content": "How long does a typical project take?"
+                    }
+                  },
+                  {
+                    "id": "faq-item-5-answer",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "Project timelines vary based on complexity and scope. Simple projects may take a few weeks, while larger initiatives can span several months. We'll provide a detailed timeline during our initial consultation."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "faq-contact",
+            "type": "container",
+            "attributes": {
+              "backgroundColor": "var(--block-accent)",
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "faq-contact-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Still have questions?",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "faq-contact-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Don't hesitate to reach out. We're here to help!",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "faq-contact-button",
+                "type": "button",
+                "attributes": {
+                  "text": "Contact Us",
+                  "variant": "primary",
+                  "align": "center"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "11",
+      "label": "Testimonials",
+      "content": {
+        "blocks": [
+          {
+            "id": "testimonials-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "What Our Clients Say",
+              "subtitle": "Real feedback from real people",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "testimonials-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "testimonials-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "We're proud of the relationships we've built with our clients. Here's what they have to say about working with us.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "testimonials-grid",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "testimonials-grid-content",
+                "type": "grid",
+                "attributes": {
+                  "columns": 2,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "testimonial-1",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "This service has completely transformed how we work. Highly recommended!",
+                      "author": "Jane Smith",
+                      "role": "CEO, Company Inc.",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "testimonial-2",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "Outstanding quality and exceptional support. Couldn't be happier!",
+                      "author": "John Doe",
+                      "role": "Founder, Startup Co.",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "testimonial-3",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "The team exceeded our expectations at every turn. Professional, reliable, and results-driven.",
+                      "author": "Sarah Johnson",
+                      "role": "Director, Tech Solutions",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "testimonial-4",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "Working with this team was a game-changer for our business. Their expertise is unmatched.",
+                      "author": "Michael Chen",
+                      "role": "VP of Operations, Global Corp",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "testimonial-5",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "From start to finish, the process was smooth and the results were outstanding. Highly professional team.",
+                      "author": "Emily Rodriguez",
+                      "role": "Marketing Manager, Brand Co.",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "testimonial-6",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "The attention to detail and commitment to excellence is evident in everything they do. Truly impressed!",
+                      "author": "David Williams",
+                      "role": "Owner, Local Business",
+                      "image": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "13",
+      "label": "News",
+      "content": {
+        "blocks": [
+          {
+            "id": "news-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Latest News",
+              "subtitle": "Stay updated with our latest updates and announcements",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "news-featured",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "news-featured-post",
+                "type": "card",
+                "attributes": {
+                  "title": "Featured News Article",
+                  "image": true
+                },
+                "innerBlocks": [
+                  {
+                    "id": "news-featured-excerpt",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "This is a featured news article that highlights important updates, announcements, or insights from our organization. Stay informed about the latest developments."
+                    }
+                  },
+                  {
+                    "id": "news-featured-button",
+                    "type": "button",
+                    "attributes": {
+                      "text": "Read More",
+                      "variant": "primary"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "news-grid",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "news-grid-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Recent News",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "news-grid-content",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "news-item-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "News Article One",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "news-item-1-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Latest updates and insights from our team on industry trends and developments."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "news-item-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "News Article Two",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "news-item-2-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Important announcements and news that keep you informed about our progress."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "news-item-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "News Article Three",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "news-item-3-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Stay up to date with the latest happenings and insights from our organization."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "news-item-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "News Article Four",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "news-item-4-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Read about our achievements, milestones, and what's coming next."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "news-item-5",
+                    "type": "card",
+                    "attributes": {
+                      "title": "News Article Five",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "news-item-5-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Explore our latest news and stay connected with our community."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "news-item-6",
+                    "type": "card",
+                    "attributes": {
+                      "title": "News Article Six",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "news-item-6-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Get the latest information and updates directly from our team."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "14",
+      "label": "Events",
+      "content": {
+        "blocks": [
+          {
+            "id": "events-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Upcoming Events",
+              "subtitle": "Join us at our upcoming events and workshops",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "events-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "events-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Discover our upcoming events, workshops, and gatherings. Join us to learn, network, and connect with our community.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "events-grid",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "events-grid-content",
+                "type": "grid",
+                "attributes": {
+                  "columns": 2,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "event-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Workshop: Introduction to Our Services",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "event-1-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Join us for an informative workshop where we'll introduce our services and answer your questions. Perfect for those looking to learn more about what we offer."
+                        }
+                      },
+                      {
+                        "id": "event-1-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Register Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "event-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Networking Event: Industry Meetup",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "event-2-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Connect with industry professionals and expand your network at our monthly meetup. Great opportunity to share ideas and build relationships."
+                        }
+                      },
+                      {
+                        "id": "event-2-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Register Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "event-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Seminar: Best Practices",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "event-3-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Learn from industry experts about best practices and strategies that can help you succeed. This seminar is packed with valuable insights."
+                        }
+                      },
+                      {
+                        "id": "event-3-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Register Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "event-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Conference: Annual Summit",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "event-4-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Our annual conference brings together thought leaders and innovators. Don't miss this opportunity to gain insights and inspiration."
+                        }
+                      },
+                      {
+                        "id": "event-4-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Register Now",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "15",
+      "label": "Resources",
+      "content": {
+        "blocks": [
+          {
+            "id": "resources-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Resources",
+              "subtitle": "Helpful tools and information to support your journey",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "resources-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "resources-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Explore our collection of resources, guides, and tools designed to help you succeed. From documentation to templates, we've got you covered.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "resources-categories",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "resources-categories-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Browse Resources",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "resources-categories-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "resource-category-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Documentation",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "resource-category-1-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Comprehensive guides and documentation to help you get started and make the most of our services."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "resource-category-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Templates",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "resource-category-2-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Ready-to-use templates and examples to accelerate your projects and workflows."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "resource-category-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Video Tutorials",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "resource-category-3-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Step-by-step video tutorials that walk you through key features and best practices."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "resource-category-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Case Studies",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "resource-category-4-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Real-world examples and case studies showcasing successful implementations and results."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "resource-category-5",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Webinars",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "resource-category-5-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Recorded webinars and live sessions covering important topics and industry insights."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "resource-category-6",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Tools & Utilities",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "resource-category-6-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Helpful tools and utilities to streamline your work and improve productivity."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "16",
+      "label": "Support",
+      "content": {
+        "blocks": [
+          {
+            "id": "support-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Support Center",
+              "subtitle": "We're here to help",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "support-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "support-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Need help? Our support team is ready to assist you. Find answers to common questions, access documentation, or get in touch with our team.",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "support-options",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "support-options-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "support-option-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Documentation",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "support-option-1-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Browse our comprehensive documentation and guides to find answers to your questions."
+                        }
+                      },
+                      {
+                        "id": "support-option-1-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "View Docs",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "support-option-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "FAQ",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "support-option-2-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Check out our frequently asked questions for quick answers to common inquiries."
+                        }
+                      },
+                      {
+                        "id": "support-option-2-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "View FAQ",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "support-option-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Contact Support",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "support-option-3-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Can't find what you're looking for? Reach out to our support team for personalized assistance."
+                        }
+                      },
+                      {
+                        "id": "support-option-3-button",
+                        "type": "button",
+                        "attributes": {
+                          "text": "Contact Us",
+                          "variant": "primary"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "support-contact",
+            "type": "section",
+            "attributes": {
+              "backgroundColor": "var(--block-surface-alt)",
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "support-contact-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Get in Touch",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "support-contact-form",
+                "type": "form",
+                "attributes": {
+                  "title": "Send us a Message",
+                  "submitText": "Send Message"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "support-form-name",
+                    "type": "form-field",
+                    "attributes": {
+                      "label": "Name",
+                      "type": "text",
+                      "required": true,
+                      "placeholder": "Your name"
+                    }
+                  },
+                  {
+                    "id": "support-form-email",
+                    "type": "form-field",
+                    "attributes": {
+                      "label": "Email",
+                      "type": "email",
+                      "required": true,
+                      "placeholder": "your.email@example.com"
+                    }
+                  },
+                  {
+                    "id": "support-form-subject",
+                    "type": "form-field",
+                    "attributes": {
+                      "label": "Subject",
+                      "type": "text",
+                      "required": true,
+                      "placeholder": "What can we help you with?"
+                    }
+                  },
+                  {
+                    "id": "support-form-message",
+                    "type": "form-field",
+                    "attributes": {
+                      "label": "Message",
+                      "type": "textarea",
+                      "required": true,
+                      "placeholder": "Please describe your issue or question..."
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "17",
+      "label": "Privacy Policy",
+      "content": {
+        "blocks": [
+          {
+            "id": "privacy-hero",
+            "type": "heading",
+            "attributes": {
+              "level": 1,
+              "content": "Privacy Policy",
+              "align": "center"
+            }
+          },
+          {
+            "id": "privacy-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-6) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "privacy-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Last updated: [Date]",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "privacy-intro-content",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "We respect your privacy and are committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you visit our website or use our services."
+                }
+              }
+            ]
+          },
+          {
+            "id": "privacy-sections",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "privacy-section-1",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "privacy-section-1-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Information We Collect"
+                    }
+                  },
+                  {
+                    "id": "privacy-section-1-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "We collect information that you provide directly to us, such as when you create an account, make a purchase, request customer support, or communicate with us. This may include your name, email address, phone number, billing address, and payment information."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "privacy-section-2",
+                "type": "container",
+                "attributes": {
+                  "backgroundColor": "var(--block-surface-alt)",
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "privacy-section-2-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "How We Use Your Information"
+                    }
+                  },
+                  {
+                    "id": "privacy-section-2-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "We use the information we collect to provide, maintain, and improve our services, process transactions, send you technical notices and support messages, respond to your comments and questions, and communicate with you about products, services, and promotional offers."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "privacy-section-3",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "privacy-section-3-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Data Security"
+                    }
+                  },
+                  {
+                    "id": "privacy-section-3-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "privacy-section-4",
+                "type": "container",
+                "attributes": {
+                  "backgroundColor": "var(--block-surface-alt)",
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "privacy-section-4-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Your Rights"
+                    }
+                  },
+                  {
+                    "id": "privacy-section-4-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "You have the right to access, update, or delete your personal information at any time. You may also opt out of certain communications from us. To exercise these rights, please contact us using the information provided in the Contact section."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "privacy-section-5",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "privacy-section-5-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Contact Us"
+                    }
+                  },
+                  {
+                    "id": "privacy-section-5-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "If you have any questions about this Privacy Policy, please contact us at privacy@example.com or through our contact form."
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "18",
+      "label": "Terms of Service",
+      "content": {
+        "blocks": [
+          {
+            "id": "terms-hero",
+            "type": "heading",
+            "attributes": {
+              "level": 1,
+              "content": "Terms of Service",
+              "align": "center"
+            }
+          },
+          {
+            "id": "terms-intro",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-6) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "terms-intro-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Last updated: [Date]",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "terms-intro-content",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "Please read these Terms of Service carefully before using our website or services. By accessing or using our services, you agree to be bound by these terms."
+                }
+              }
+            ]
+          },
+          {
+            "id": "terms-sections",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "terms-section-1",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "terms-section-1-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Acceptance of Terms"
+                    }
+                  },
+                  {
+                    "id": "terms-section-1-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "terms-section-2",
+                "type": "container",
+                "attributes": {
+                  "backgroundColor": "var(--block-surface-alt)",
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "terms-section-2-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Use License"
+                    }
+                  },
+                  {
+                    "id": "terms-section-2-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "Permission is granted to temporarily download one copy of the materials on our website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not modify or copy the materials, use them for any commercial purpose, or remove any copyright or other proprietary notations."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "terms-section-3",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "terms-section-3-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Disclaimer"
+                    }
+                  },
+                  {
+                    "id": "terms-section-3-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "The materials on our website are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "terms-section-4",
+                "type": "container",
+                "attributes": {
+                  "backgroundColor": "var(--block-surface-alt)",
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "terms-section-4-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Limitations"
+                    }
+                  },
+                  {
+                    "id": "terms-section-4-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "In no event shall we or our suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our website, even if we or an authorized representative has been notified orally or in writing of the possibility of such damage."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "terms-section-5",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "terms-section-5-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Revisions"
+                    }
+                  },
+                  {
+                    "id": "terms-section-5-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "We may revise these terms of service at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service."
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "terms-section-6",
+                "type": "container",
+                "attributes": {
+                  "backgroundColor": "var(--block-surface-alt)",
+                  "padding": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "terms-section-6-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Contact Information"
+                    }
+                  },
+                  {
+                    "id": "terms-section-6-content",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "If you have any questions about these Terms of Service, please contact us at legal@example.com or through our contact form."
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
   ]
 }

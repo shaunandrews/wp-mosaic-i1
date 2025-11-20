@@ -2,6 +2,7 @@ import { Menu, type MenuHandle } from '../Menu/Menu';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import './DocumentBar.css';
+import templatesData from '../../data/templates.json';
 
 type ViewMode = 'single' | 'grid';
 
@@ -59,6 +60,9 @@ export const DocumentBar = ({
           {
             items: [{ id: 'view-all-pages', label: 'View all pages' }],
           },
+        ]}
+        templatesGroups={[
+          { items: templatesData.templates },
         ]}
         selectedItemId={
           viewMode === 'grid' ? 'view-all-pages' : selectedPage.id
