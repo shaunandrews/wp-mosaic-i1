@@ -21,7 +21,10 @@
   border-radius: 0;
   color: #fff;
   text-indent: -9999px;
-  border-top-left-radius: var(--radius-l);
+
+  &.has-sidebar-open {
+    border-top-left-radius: var(--radius-l);
+  }
 
   svg {
     height: 32px;
@@ -37,4 +40,3 @@
     outline-width: 2px;
   }
 }
-

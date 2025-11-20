@@ -1,6 +1,7 @@
 import { Menu, type MenuHandle } from '../Menu/Menu';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
+import { motion, AnimatePresence } from 'framer-motion';
 import './DocumentBar.css';
 import templatesData from '../../data/templates.json';
 import actionsData from '../../data/actions.json';
@@ -56,7 +57,9 @@ const getContextualActions = (
         return true;
       }
       // Show if any of the action's contexts match current contexts
-      return action.contexts.some((context) => currentContexts.includes(context));
+      return action.contexts.some((context) =>
+        currentContexts.includes(context)
+      );
     })
     .map(({ id, label }) => ({ id, label }));
 };
@@ -134,7 +137,28 @@ export const DocumentBar = ({
           </span>
           <span className="title-wrapper row items-center">
             <span className="document-title">
-              {viewMode === 'grid' ? 'All pages' : selectedPage.label}
+              <span className="breadcrumb-top-level">Pages</span>
+              <AnimatePresence>
+                {viewMode === 'single' && (
+                  <motion.span
+                    key="breadcrumb-extra"
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 'auto', opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    style={{
+                      display: 'inline-flex',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    <span className="breadcrumb-divider ml-xs">/</span>
+                    <span className="breadcrumb-page-name ml-xs">
+                      {selectedPage.label}
+                    </span>
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </span>
             <Icon name="chevron-down-small" />
           </span>

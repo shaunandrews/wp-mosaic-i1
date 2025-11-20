@@ -96,3 +96,21 @@
     justify-content: flex-end;
   }
 }
+
+.wordpress-nav {
+  width: 300px;
+  color: var(--color-background-text);
+  overflow: hidden;
+  flex-shrink: 0;
+
+  header {
+    height: 64px;
+    justify-content: space-between;
+  }
+
+  .wordpress-nav-content {
+    p {
+      line-height: 1.4;
+    }
+  }
+}

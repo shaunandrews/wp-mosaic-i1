@@ -12,7 +12,7 @@
 
   .button-document-picker {
     border: 1px solid var(--color-gray-200);
-    width: 300px;
+    min-width: 300px;
     position: relative;
 
     .icon-search {
@@ -32,6 +32,7 @@
 
     .title-wrapper {
       position: relative;
+      gap: var(--space-xs);
 
       .icon {
         position: absolute;
@@ -49,6 +50,20 @@
     .document-title {
       font-weight: 550;
       letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+
+      .breadcrumb-top-level {
+        color: var(--color-surface-text-secondary);
+      }
+
+      .breadcrumb-divider {
+        color: var(--color-surface-text-tertiary);
+      }
+
+      .breadcrumb-page-name {
+        /* Uses default text color */
+      }
     }
 
     small {

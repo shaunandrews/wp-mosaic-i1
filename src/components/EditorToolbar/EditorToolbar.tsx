@@ -27,7 +27,9 @@ interface EditorToolbarProps {
   onNextPage: () => void;
   onTogglePanel: (panelId: string) => void;
   onToggleChat: () => void;
+  onToggleWordPressNav: () => void;
   isChatOpen: boolean;
+  isWordPressNavOpen: boolean;
   openPanelId?: string | null;
 }
 
@@ -42,7 +44,9 @@ export const EditorToolbar = ({
   onNextPage,
   onTogglePanel,
   onToggleChat,
+  onToggleWordPressNav,
   isChatOpen,
+  isWordPressNavOpen,
   openPanelId,
 }: EditorToolbarProps) => {
   const [buttonWidth, setButtonWidth] = useState<number | undefined>(undefined);
@@ -60,7 +64,11 @@ export const EditorToolbar = ({
   return (
     <div className="editor-toolbar row items-center justify-between">
       <div className="editor-toolbar-start row gap-xs items-center">
-        <Button className="button-wordpress">
+        <Button 
+          className={`button-wordpress ${isWordPressNavOpen || isChatOpen ? 'has-sidebar-open' : ''}`}
+          isToggled={isWordPressNavOpen}
+          onClick={onToggleWordPressNav}
+        >
           <svg
             width="24"
             height="24"
