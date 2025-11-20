@@ -22,6 +22,7 @@ interface EditorToolbarProps {
   pages: Page[];
   menuRef: React.RefObject<MenuHandle | null>;
   onPageSelect: (item: { id: string; label: string }) => void;
+  onActionSelect?: (action: { id: string; label: string }) => void;
   onPrevPage: () => void;
   onNextPage: () => void;
   onTogglePanel: (panelId: string) => void;
@@ -35,6 +36,7 @@ export const EditorToolbar = ({
   pages,
   menuRef,
   onPageSelect,
+  onActionSelect,
   onPrevPage,
   onNextPage,
   onTogglePanel,
@@ -91,6 +93,7 @@ export const EditorToolbar = ({
         pages={pages}
         menuRef={menuRef}
         onPageSelect={onPageSelect}
+        onActionSelect={onActionSelect}
         onPrevPage={onPrevPage}
         onNextPage={onNextPage}
       />

@@ -89,6 +89,16 @@ function AppContent() {
     }
   };
 
+  const handleActionSelect = (action: { id: string; label: string }) => {
+    // TODO: Implement action handlers
+    console.log('Action selected:', action);
+    // Example actions:
+    // - rename-page: Open rename dialog
+    // - duplicate: Duplicate the current page
+    // - add-before: Add a new page before the current page
+    // - add-after: Add a new page after the current page
+  };
+
   const handlePrevPage = () => {
     navigatePrev();
   };
@@ -145,6 +155,7 @@ function AppContent() {
             pages={contextPages}
             menuRef={menuRef}
             onPageSelect={handlePageSelect}
+            onActionSelect={handleActionSelect}
             onPrevPage={handlePrevPage}
             onNextPage={handleNextPage}
             onTogglePanel={togglePanel}

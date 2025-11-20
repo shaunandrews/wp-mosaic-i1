@@ -28,6 +28,7 @@ interface MenuProps {
   children: React.ReactNode;
   groups: MenuGroup[];
   templatesGroups?: MenuGroup[];
+  actionsGroups?: MenuGroup[];
   selectedItemId?: string;
   onItemSelect?: (item: { id: string; label: string }) => void;
 }
@@ -38,11 +39,20 @@ export interface MenuHandle {
 
 export const Menu = forwardRef<MenuHandle, MenuProps>(
   (
-    { children, groups, templatesGroups, selectedItemId, onItemSelect },
+    {
+      children,
+      groups,
+      templatesGroups,
+      actionsGroups,
+      selectedItemId,
+      onItemSelect,
+    },
     ref
   ) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState<'pages' | 'templates'>('pages');
+    const [activeTab, setActiveTab] = useState<
+      'pages' | 'templates' | 'actions'
+    >('pages');
     const [canScrollUp, setCanScrollUp] = useState(false);
     const [canScrollDown, setCanScrollDown] = useState(false);
     const firstItemRef = useRef<HTMLButtonElement>(null);
@@ -68,7 +78,9 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
         ? viewAllPagesItem
           ? groups.slice(0, -1)
           : groups
-        : templatesGroups || [];
+        : activeTab === 'templates'
+          ? templatesGroups || []
+          : actionsGroups || [];
 
     const { refs, floatingStyles, context } = useFloating({
       open: isOpen,
@@ -150,10 +162,20 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
         }
 
         e.preventDefault();
+        const tabs: Array<'pages' | 'templates' | 'actions'> = [
+          'pages',
+          'templates',
+          'actions',
+        ];
+        const currentIndex = tabs.indexOf(activeTab);
         if (e.key === 'ArrowLeft') {
-          setActiveTab('pages');
+          const prevIndex =
+            currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+          setActiveTab(tabs[prevIndex]);
         } else {
-          setActiveTab('templates');
+          const nextIndex =
+            currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+          setActiveTab(tabs[nextIndex]);
         }
         return;
       }
@@ -270,7 +292,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
             >
               <div className="menu-list col" onKeyDown={handleKeyDown}>
                 <div
-                  className={`menu-header ${canScrollUp ? 'has-gradient-top' : ''}`}
+                  className={`menu-header ${canScrollUp ? 'has-gradient-top has-scrolled' : ''}`}
                 >
                   <div className="menu-search">
                     <Icon name="search" />
@@ -281,7 +303,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
                       className="menu-search-input"
                     />
                   </div>
-                  <div className="menu-tabs row m-s mt-0">
+                  <div className="menu-tabs row mx-xs my-xxs">
                     <Button
                       align="center"
                       className={`menu-tab ${activeTab === 'pages' ? 'is-active' : ''}`}
@@ -295,6 +317,13 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
                       onClick={() => setActiveTab('templates')}
                     >
                       Templates
+                    </Button>
+                    <Button
+                      align="center"
+                      className={`menu-tab ${activeTab === 'actions' ? 'is-active' : ''}`}
+                      onClick={() => setActiveTab('actions')}
+                    >
+                      Actions
                     </Button>
                   </div>
                 </div>

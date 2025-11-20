@@ -15,6 +15,21 @@
     width: 300px;
     position: relative;
 
+    .icon-search {
+      position: absolute;
+      left: var(--space-xs);
+      top: 50%;
+      height: 18px;
+      width: 18px;
+      transform: translateY(-50%);
+
+      .icon {
+        height: 100%;
+        width: 100%;
+        color: var(--color-surface-text-tertiary);
+      }
+    }
+
     .title-wrapper {
       position: relative;
 
@@ -23,7 +38,7 @@
         right: 0px;
         top: 50%;
         transform: translate(90%, -50%);
-        opacity: 0;
+        opacity: 1;
 
         svg {
           transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -69,4 +84,3 @@
     }
   }
 }
-

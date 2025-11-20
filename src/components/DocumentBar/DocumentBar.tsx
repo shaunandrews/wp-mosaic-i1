@@ -20,6 +20,7 @@ interface DocumentBarProps {
   pages: Page[];
   menuRef: React.RefObject<MenuHandle | null>;
   onPageSelect: (item: { id: string; label: string }) => void;
+  onActionSelect?: (action: { id: string; label: string }) => void;
   onPrevPage: () => void;
   onNextPage: () => void;
 }
@@ -30,6 +31,7 @@ export const DocumentBar = ({
   pages,
   menuRef,
   onPageSelect,
+  onActionSelect,
   onPrevPage,
   onNextPage,
 }: DocumentBarProps) => {
@@ -61,19 +63,43 @@ export const DocumentBar = ({
             items: [{ id: 'view-all-pages', label: 'View all pages' }],
           },
         ]}
-        templatesGroups={[
-          { items: templatesData.templates },
+        templatesGroups={[{ items: templatesData.templates }]}
+        actionsGroups={[
+          {
+            items: [
+              { id: 'rename-page', label: 'Rename page' },
+              { id: 'duplicate', label: 'Duplicate' },
+              { id: 'add-before', label: 'Add before' },
+              { id: 'add-after', label: 'Add after' },
+            ],
+          },
         ]}
         selectedItemId={
           viewMode === 'grid' ? 'view-all-pages' : selectedPage.id
         }
-        onItemSelect={onPageSelect}
+        onItemSelect={(item) => {
+          // Determine if this is an action or a page selection
+          const actionIds = [
+            'rename-page',
+            'duplicate',
+            'add-before',
+            'add-after',
+          ];
+          if (actionIds.includes(item.id)) {
+            onActionSelect?.(item);
+          } else {
+            onPageSelect(item);
+          }
+        }}
       >
         <Button
           align="center"
           className="button-document-picker"
           onKeyDown={handleDocumentPickerKeyDown}
         >
+          <span className="icon-search">
+            <Icon name="search" />
+          </span>
           <span className="title-wrapper row items-center">
             <span className="document-title">
               {viewMode === 'grid' ? 'All pages' : selectedPage.label}
@@ -91,4 +117,3 @@ export const DocumentBar = ({
     </div>
   );
 };
-
