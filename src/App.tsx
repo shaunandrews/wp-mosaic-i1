@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
 import { type MenuHandle } from './components/Menu/Menu';
 import { EditorToolbar } from './components/EditorToolbar/EditorToolbar';
+import { Button } from './components/Button/Button';
+import { Icon } from './components/Icon/Icon';
 import pagesData from './data/pages.json';
 
 const pages = pagesData.pages;
@@ -244,8 +246,26 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="chat p-s">
-        <span>Chat</span>
+      <div className="chat p-s col">
+        <header className="row items-center p-m pr-0">
+          <h3>Chat</h3>
+          <Button layer="background">
+            <Icon name="close" />
+          </Button>
+        </header>
+        <div className="chat-messages fill">
+          {/* TODO: Add chat messages */}
+        </div>
+        <footer>
+          <div className="chat-input">
+            <div className="input-body p-xs" contentEditable></div>
+            <div className="input-actions row gap-xs p-xs">
+              <Button variant="primary" layer="background">
+                <Icon name="send" />
+              </Button>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );

@@ -13,7 +13,9 @@ interface IconProps {
     | 'undo'
     | 'redo'
     | 'check'
-    | 'search';
+    | 'search'
+    | 'send'
+    | 'close';
 }
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -183,6 +185,36 @@ const iconMap: Record<string, React.ReactNode> = {
     >
       <path
         d="M13 5C9.7 5 7 7.7 7 11C7 12.4 7.5 13.7 8.3 14.7L4.5 18.5L5.6 19.6L9.4 15.8C10.4 16.6 11.7 17.1 13.1 17.1C16.4 17.1 19.1 14.4 19.1 11.1C19.1 7.8 16.3 5 13 5ZM13 15.5C10.5 15.5 8.5 13.5 8.5 11C8.5 8.5 10.5 6.5 13 6.5C15.5 6.5 17.5 8.5 17.5 11C17.5 13.5 15.5 15.5 13 15.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  ),
+  send: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M6.33236 5.748C5.30236 5.322 4.27236 6.35499 4.70036 7.38399L6.40236 11.314L13.8834 11.889C14.0064 11.899 14.0064 12.079 13.8834 12.089L6.40036 12.664L4.70036 16.573C4.27136 17.602 5.30236 18.635 6.33236 18.209L18.5974 13.133C19.6274 12.707 19.6274 11.249 18.5974 10.823L6.33236 5.748Z"
+        fill="currentColor"
+      />
+    </svg>
+  ),
+  close: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11.9996 13.06L15.7116 16.773L16.7726 15.713L13.0606 12L16.7726 8.28799L15.7126 7.22799L11.9996 10.938L8.28756 7.22699L7.22656 8.28699L10.9386 12L7.22656 15.712L8.28656 16.773L11.9996 13.06Z"
         fill="currentColor"
       />
     </svg>

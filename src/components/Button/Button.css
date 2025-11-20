@@ -5,11 +5,19 @@
   margin: 0;
   display: inline-flex;
   align-items: center;
-  color: var(--color-surface-text);
   cursor: pointer;
   padding: 0 var(--space-xxs);
   height: 32px;
   border-radius: var(--radius-m);
+}
+
+/* Layer colors */
+.button.layer-surface {
+  color: var(--color-surface-text);
+}
+
+.button.layer-background {
+  color: var(--color-background-text);
 }
 
 .button.align-center {
@@ -25,13 +33,22 @@
 }
 
 /* Default type */
-.button.type-default:hover {
+.button.type-default.layer-surface:hover {
   color: var(--color-theme);
   background-color: var(--color-gray-100);
 }
 
-.button.type-default:active {
+.button.type-default.layer-surface:active {
   background-color: var(--color-gray-200);
+}
+
+.button.type-default.layer-background:hover {
+  color: var(--color-theme);
+  background-color: var(--color-gray-800);
+}
+
+.button.type-default.layer-background:active {
+  background-color: var(--color-gray-700);
 }
 
 /* Primary type */
