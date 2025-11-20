@@ -137,7 +137,13 @@ export const DocumentBar = ({
           </span>
           <span className="title-wrapper row items-center">
             <span className="document-title">
-              <span className="breadcrumb-top-level">Pages</span>
+              <span
+                className={`breadcrumb-top-level ${
+                  viewMode === 'single' ? 'is-secondary' : ''
+                }`}
+              >
+                Pages
+              </span>
               <AnimatePresence>
                 {viewMode === 'single' && (
                   <motion.span

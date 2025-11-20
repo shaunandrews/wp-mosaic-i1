@@ -53,16 +53,12 @@
       display: flex;
       align-items: center;
 
-      .breadcrumb-top-level {
+      .breadcrumb-top-level.is-secondary {
         color: var(--color-surface-text-secondary);
       }
 
       .breadcrumb-divider {
         color: var(--color-surface-text-tertiary);
-      }
-
-      .breadcrumb-page-name {
-        /* Uses default text color */
       }
     }
 
