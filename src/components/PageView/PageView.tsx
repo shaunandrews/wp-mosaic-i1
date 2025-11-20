@@ -9,7 +9,7 @@ export const PageView = () => {
 
   return (
     <div className={`page-view ${viewMode === 'single' ? 'page-view--single' : 'page-view--grid'}`}>
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {viewMode === 'grid' ? (
           <PageGrid key="grid" />
         ) : (

@@ -16,6 +16,16 @@
       "contexts": ["page"]
     },
     {
+      "id": "copy-all-blocks",
+      "label": "Copy all blocks",
+      "contexts": ["page"]
+    },
+    {
+      "id": "version-history",
+      "label": "Version history",
+      "contexts": ["page"]
+    },
+    {
       "id": "delete-page",
       "label": "Delete page",
       "contexts": ["page"]

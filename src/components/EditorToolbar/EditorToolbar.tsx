@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { type MenuHandle } from '../Menu/Menu';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
-import { DocumentBar } from '../DocumentBar/DocumentBar';
+import { Menu, type MenuHandle } from '../Menu/Menu';
+import actionsData from '../../data/actions.json';
 import './EditorToolbar.css';
 
 type ViewMode = 'single' | 'grid';
 
 import { type PageContent as PageContentType } from '../../types/blocks';
+import { type TransitionSource } from '../PageView/PageViewContext';
 
 interface Page {
   id: string;
@@ -20,36 +21,64 @@ interface EditorToolbarProps {
   viewMode: ViewMode;
   selectedPage: Page;
   pages: Page[];
-  menuRef: React.RefObject<MenuHandle | null>;
   onPageSelect: (item: { id: string; label: string }) => void;
-  onActionSelect?: (action: { id: string; label: string }) => void;
-  onPrevPage: () => void;
-  onNextPage: () => void;
+  onViewAllPages: () => void;
+  onPageAction: (actionId: string) => void;
   onTogglePanel: (panelId: string) => void;
   onToggleChat: () => void;
   onToggleWordPressNav: () => void;
   isChatOpen: boolean;
   isWordPressNavOpen: boolean;
   openPanelId?: string | null;
+  transitionSource?: TransitionSource;
 }
 
 export const EditorToolbar = ({
   viewMode,
   selectedPage,
   pages,
-  menuRef,
   onPageSelect,
-  onActionSelect,
-  onPrevPage,
-  onNextPage,
+  onViewAllPages,
+  onPageAction,
   onTogglePanel,
   onToggleChat,
   onToggleWordPressNav,
   isChatOpen,
   isWordPressNavOpen,
   openPanelId,
+  transitionSource,
 }: EditorToolbarProps) => {
   const [buttonWidth, setButtonWidth] = useState<number | undefined>(undefined);
+  const pagesMenuRef = useRef<MenuHandle>(null);
+  const pageActionsMenuRef = useRef<MenuHandle>(null);
+
+  // Filter page actions from actions.json
+  const pageActions = actionsData.actions.filter((action) =>
+    action.contexts.includes('page')
+  );
+
+  // Filter to only include the specific actions we want
+  const allowedPageActions = [
+    'rename-page',
+    'duplicate-page',
+    'copy-all-blocks',
+    'version-history',
+  ];
+  const filteredPageActions = pageActions.filter((action) =>
+    allowedPageActions.includes(action.id)
+  );
+
+  const handlePagesMenuSelect = (item: { id: string; label: string }) => {
+    if (item.id === 'view-all-pages') {
+      onViewAllPages();
+    } else {
+      onPageSelect(item);
+    }
+  };
+
+  const handlePageActionSelect = (item: { id: string; label: string }) => {
+    onPageAction(item.id);
+  };
 
   const measureButton = (element: HTMLButtonElement | null) => {
     if (element && !buttonWidth) {
@@ -64,7 +93,7 @@ export const EditorToolbar = ({
   return (
     <div className="editor-toolbar row items-center justify-between">
       <div className="editor-toolbar-start row gap-xs items-center">
-        <Button 
+        <Button
           className={`button-wordpress ${isWordPressNavOpen || isChatOpen ? 'has-sidebar-open' : ''}`}
           isToggled={isWordPressNavOpen}
           onClick={onToggleWordPressNav}
@@ -83,13 +112,66 @@ export const EditorToolbar = ({
           </svg>
         </Button>
 
-        <Button 
+        <div className="editor-navigation row gap-xxs items-center">
+          <Menu
+            ref={pagesMenuRef}
+            groups={[
+              { items: [{ id: 'view-all-pages', label: 'View all pages' }] },
+              { items: pages },
+            ]}
+            selectedItemId={
+              viewMode === 'grid' ? 'view-all-pages' : selectedPage.id
+            }
+            onItemSelect={handlePagesMenuSelect}
+          >
+            <Button className={viewMode === 'single' ? 'is-secondary' : ''}>
+              <span>Pages</span>
+              <Icon name="chevron-down-small" />
+            </Button>
+          </Menu>
+          <AnimatePresence>
+            {viewMode === 'single' && (
+              <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{
+                  opacity: 1,
+                  width: 'auto',
+                  transition: {
+                    duration: 0.2,
+                    delay: transitionSource === 'grid' ? 0.3 : 0,
+                  },
+                }}
+                exit={{ opacity: 0, width: 0 }}
+                transition={{ duration: 0.2 }}
+                className="row gap-xxs items-center"
+                style={{ whiteSpace: 'nowrap' }}
+              >
+                <span className="breadcrumb-divider text-secondary mx-xxs">
+                  /
+                </span>
+                <Menu
+                  ref={pageActionsMenuRef}
+                  groups={[{ items: filteredPageActions }]}
+                  onItemSelect={handlePageActionSelect}
+                  showSearch={false}
+                >
+                  <Button>
+                    <span>{selectedPage.label}</span>
+                    <Icon name="chevron-down-small" />
+                  </Button>
+                </Menu>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <Button
           isToggled={openPanelId === 'structure'}
           onClick={() => onTogglePanel('structure')}
         >
           <Icon name="list" />
         </Button>
-        <Button 
+        <Button
           variant="primary"
           isToggled={openPanelId === 'inserter'}
           onClick={() => onTogglePanel('inserter')}
@@ -104,17 +186,6 @@ export const EditorToolbar = ({
         </Button>
       </div>
 
-      <DocumentBar
-        viewMode={viewMode}
-        selectedPage={selectedPage}
-        pages={pages}
-        menuRef={menuRef}
-        onPageSelect={onPageSelect}
-        onActionSelect={onActionSelect}
-        onPrevPage={onPrevPage}
-        onNextPage={onNextPage}
-      />
-
       <div className="editor-toolbar-end row gap-xs pr-s">
         <Button>
           <Icon name="more" />
@@ -122,7 +193,7 @@ export const EditorToolbar = ({
         <Button>
           <Icon name="view-desktop" />
         </Button>
-        <Button 
+        <Button
           isToggled={openPanelId === 'settings'}
           onClick={() => onTogglePanel('settings')}
         >

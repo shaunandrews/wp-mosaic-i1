@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
-import { type MenuHandle } from './components/Menu/Menu';
 import { EditorToolbar } from './components/EditorToolbar/EditorToolbar';
 import { Button } from './components/Button/Button';
 import { Icon } from './components/Icon/Icon';
@@ -41,8 +40,7 @@ function AppContent() {
     pages: contextPages,
     setViewMode,
     selectPage,
-    navigatePrev,
-    navigateNext,
+    transitionSource,
   } = usePageView();
   const [panelState, setPanelState] = useState<PanelState>({
     left: null,
@@ -56,7 +54,6 @@ function AppContent() {
     const saved = localStorage.getItem('wordPressNavOpen');
     return saved !== null ? saved === 'true' : false;
   });
-  const menuRef = useRef<MenuHandle>(null);
 
   const getOpenPanelAt = (position: PanelPosition): string | null => {
     return panelState[position];
@@ -89,6 +86,10 @@ function AppContent() {
     });
   };
 
+  const handleStructurePageSelect = (page: Page) => {
+    selectPage(page, 'menu');
+  };
+
   const handlePageSelect = (item: { id: string; label: string }) => {
     if (item.id === 'view-all-pages') {
       setViewMode('grid');
@@ -100,26 +101,14 @@ function AppContent() {
     }
   };
 
-  const handleActionSelect = (action: { id: string; label: string }) => {
-    // TODO: Implement action handlers
-    console.log('Action selected:', action);
-    // Example actions:
-    // - rename-page: Open rename dialog
-    // - duplicate: Duplicate the current page
-    // - add-before: Add a new page before the current page
-    // - add-after: Add a new page after the current page
+  const handleViewAllPages = () => {
+    setViewMode('grid');
   };
 
-  const handlePrevPage = () => {
-    navigatePrev();
-  };
-
-  const handleNextPage = () => {
-    navigateNext();
-  };
-
-  const handleStructurePageSelect = (page: Page) => {
-    selectPage(page, 'menu');
+  const handlePageAction = (actionId: string) => {
+    // Handle page actions (rename, duplicate, copy all blocks, version history)
+    console.log('Page action:', actionId, selectedPage);
+    // TODO: Implement actual action handlers
   };
 
   useEffect(() => {
@@ -132,11 +121,6 @@ function AppContent() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // Check for Command-K (Mac) or Ctrl-K (Windows/Linux)
-      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-        event.preventDefault();
-        menuRef.current?.open(true);
-      }
       // Check for Command-Shift-P (Mac) or Ctrl-Shift-P (Windows/Linux)
       if (
         (event.metaKey || event.ctrlKey) &&
@@ -145,10 +129,14 @@ function AppContent() {
       ) {
         event.preventDefault();
         if (viewMode === 'grid') {
+          // Switch to single view - select the first page or currently selected page
           if (selectedPage) {
             selectPage(selectedPage, 'menu');
+          } else if (contextPages.length > 0) {
+            selectPage(contextPages[0], 'menu');
           }
         } else {
+          // Switch to grid view
           setViewMode('grid');
         }
       }
@@ -158,7 +146,7 @@ function AppContent() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [viewMode, selectedPage, selectPage]);
+  }, [viewMode, selectedPage, contextPages, setViewMode, selectPage]);
 
   return (
     <div className="app row">
@@ -216,17 +204,16 @@ function AppContent() {
             viewMode={viewMode}
             selectedPage={selectedPage || contextPages[0]}
             pages={contextPages}
-            menuRef={menuRef}
             onPageSelect={handlePageSelect}
-            onActionSelect={handleActionSelect}
-            onPrevPage={handlePrevPage}
-            onNextPage={handleNextPage}
+            onViewAllPages={handleViewAllPages}
+            onPageAction={handlePageAction}
             onTogglePanel={togglePanel}
             onToggleChat={() => setIsChatOpen((prev) => !prev)}
             onToggleWordPressNav={() => setIsWordPressNavOpen((prev) => !prev)}
             isChatOpen={isChatOpen}
             isWordPressNavOpen={isWordPressNavOpen}
             openPanelId={getOpenPanelId()}
+            transitionSource={transitionSource}
           />
           <div className="row editor-content">
             <AnimatePresence>
