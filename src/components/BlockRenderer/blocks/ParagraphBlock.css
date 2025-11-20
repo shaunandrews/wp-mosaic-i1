@@ -1,0 +1,24 @@
+.paragraph-block {
+  margin-bottom: var(--block-space-4);
+}
+
+.paragraph-block p {
+  margin: 0;
+  color: var(--block-text);
+  font-family: var(--block-font-family);
+  font-size: var(--block-font-size-base);
+  line-height: var(--block-line-height-relaxed);
+}
+
+.paragraph-block.align-center {
+  text-align: center;
+}
+
+.paragraph-block.align-right {
+  text-align: right;
+}
+
+.paragraph-block-inner {
+  margin-top: var(--block-space-4);
+}
+

@@ -1,0 +1,29 @@
+.image-block {
+  margin-bottom: var(--block-space-4);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--block-radius-md);
+  background-color: var(--block-gray-200);
+}
+
+.image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-block-inner {
+  margin-top: var(--block-space-4);
+}
+

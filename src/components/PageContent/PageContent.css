@@ -1,0 +1,18 @@
+.page-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--block-space-6);
+  color: var(--block-text);
+  font-family: var(--block-font-family);
+  font-size: var(--block-font-size-base);
+  line-height: var(--block-line-height-normal);
+  background-color: var(--block-background);
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: var(--block-space-4);
+  }
+}
+

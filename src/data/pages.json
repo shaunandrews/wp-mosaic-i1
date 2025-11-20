@@ -1,17 +1,1183 @@
 {
   "pages": [
-    { "id": "1", "label": "Home" },
-    { "id": "2", "label": "About" },
-    { "id": "3", "label": "Contact" },
-    { "id": "4", "label": "Blog" },
+    {
+      "id": "1",
+      "label": "Home",
+      "content": {
+        "blocks": [
+          {
+            "id": "home-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Welcome to Our Site",
+              "subtitle": "Building amazing experiences for everyone",
+              "align": "center",
+              "backgroundImage": true
+            },
+            "innerBlocks": [
+              {
+                "id": "home-hero-button",
+                "type": "button",
+                "attributes": {
+                  "text": "Get Started",
+                  "variant": "primary",
+                  "align": "center"
+                }
+              }
+            ]
+          },
+          {
+            "id": "home-features",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "home-features-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Our Features",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "home-features-grid",
+                "type": "columns",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "home-feature-1",
+                    "type": "column",
+                    "attributes": {
+                      "width": "1/3"
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "home-feature-1-card",
+                        "type": "card",
+                        "attributes": {
+                          "title": "Feature One",
+                          "image": true
+                        },
+                        "innerBlocks": [
+                          {
+                            "id": "home-feature-1-text",
+                            "type": "paragraph",
+                            "attributes": {
+                              "content": "This is a description of our first amazing feature that helps you achieve your goals."
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "home-feature-2",
+                    "type": "column",
+                    "attributes": {
+                      "width": "1/3"
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "home-feature-2-card",
+                        "type": "card",
+                        "attributes": {
+                          "title": "Feature Two",
+                          "image": true
+                        },
+                        "innerBlocks": [
+                          {
+                            "id": "home-feature-2-text",
+                            "type": "paragraph",
+                            "attributes": {
+                              "content": "Our second feature provides incredible value and makes your life easier."
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "home-feature-3",
+                    "type": "column",
+                    "attributes": {
+                      "width": "1/3"
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "home-feature-3-card",
+                        "type": "card",
+                        "attributes": {
+                          "title": "Feature Three",
+                          "image": true
+                        },
+                        "innerBlocks": [
+                          {
+                            "id": "home-feature-3-text",
+                            "type": "paragraph",
+                            "attributes": {
+                              "content": "The third feature completes our offering with powerful capabilities."
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "home-testimonials",
+            "type": "section",
+            "attributes": {
+              "backgroundColor": "var(--block-surface-alt)",
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "home-testimonials-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "What Our Customers Say",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "home-testimonials-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 2,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "home-testimonial-1",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "This service has completely transformed how we work. Highly recommended!",
+                      "author": "Jane Smith",
+                      "role": "CEO, Company Inc.",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "home-testimonial-2",
+                    "type": "testimonial",
+                    "attributes": {
+                      "quote": "Outstanding quality and exceptional support. Couldn't be happier!",
+                      "author": "John Doe",
+                      "role": "Founder, Startup Co.",
+                      "image": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "home-cta",
+            "type": "container",
+            "attributes": {
+              "backgroundColor": "var(--block-accent)",
+              "padding": "var(--block-space-8) var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "home-cta-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Ready to Get Started?",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "home-cta-button",
+                "type": "button",
+                "attributes": {
+                  "text": "Contact Us Today",
+                  "variant": "primary",
+                  "align": "center"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "label": "About",
+      "content": {
+        "blocks": [
+          {
+            "id": "about-hero",
+            "type": "heading",
+            "attributes": {
+              "level": 1,
+              "content": "About Us",
+              "align": "center"
+            }
+          },
+          {
+            "id": "about-intro",
+            "type": "paragraph",
+            "attributes": {
+              "content": "We are a company dedicated to excellence and innovation. Our mission is to provide the best possible experience for our customers while maintaining the highest standards of quality and service."
+            }
+          },
+          {
+            "id": "about-mission",
+            "type": "container",
+            "attributes": {
+              "backgroundColor": "var(--block-surface-alt)",
+              "padding": "var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "about-mission-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Our Mission"
+                }
+              },
+              {
+                "id": "about-mission-text",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "To empower businesses and individuals through innovative solutions that make a real difference in their daily lives."
+                }
+              }
+            ]
+          },
+          {
+            "id": "about-team",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "about-team-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Our Team",
+                  "align": "center"
+                }
+              },
+              {
+                "id": "about-team-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "about-team-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member One",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "about-team-1-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Chief Executive Officer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "about-team-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member Two",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "about-team-2-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Chief Technology Officer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "about-team-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Team Member Three",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "about-team-3-role",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Head of Design"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "label": "Contact",
+      "content": {
+        "blocks": [
+          {
+            "id": "contact-heading",
+            "type": "heading",
+            "attributes": {
+              "level": 1,
+              "content": "Get in Touch",
+              "align": "center"
+            }
+          },
+          {
+            "id": "contact-intro",
+            "type": "paragraph",
+            "attributes": {
+              "content": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+              "align": "center"
+            }
+          },
+          {
+            "id": "contact-info",
+            "type": "columns",
+            "attributes": {
+              "columns": 2,
+              "gap": "var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "contact-info-column",
+                "type": "column",
+                "attributes": {
+                  "width": "1/2"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "contact-info-heading",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "Contact Information"
+                    }
+                  },
+                  {
+                    "id": "contact-info-list",
+                    "type": "list",
+                    "attributes": {
+                      "ordered": false,
+                      "items": [
+                        "Email: hello@example.com",
+                        "Phone: +1 (555) 123-4567",
+                        "Address: 123 Main St, City, State 12345"
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "contact-form-column",
+                "type": "column",
+                "attributes": {
+                  "width": "1/2"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "contact-form",
+                    "type": "form",
+                    "attributes": {
+                      "title": "Send us a Message",
+                      "submitText": "Send Message"
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "contact-form-name",
+                        "type": "form-field",
+                        "attributes": {
+                          "label": "Name",
+                          "type": "text",
+                          "required": true,
+                          "placeholder": "Your name"
+                        }
+                      },
+                      {
+                        "id": "contact-form-email",
+                        "type": "form-field",
+                        "attributes": {
+                          "label": "Email",
+                          "type": "email",
+                          "required": true,
+                          "placeholder": "your.email@example.com"
+                        }
+                      },
+                      {
+                        "id": "contact-form-message",
+                        "type": "form-field",
+                        "attributes": {
+                          "label": "Message",
+                          "type": "textarea",
+                          "required": true,
+                          "placeholder": "Your message here..."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "contact-map",
+            "type": "spacer",
+            "attributes": {
+              "height": "var(--block-space-6)"
+            }
+          },
+          {
+            "id": "contact-map-placeholder",
+            "type": "image",
+            "attributes": {
+              "alt": "Map location",
+              "aspectRatio": "16/9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "label": "Blog",
+      "content": {
+        "blocks": [
+          {
+            "id": "blog-featured",
+            "type": "hero",
+            "attributes": {
+              "title": "Featured Post Title",
+              "subtitle": "This is a featured blog post that highlights important content",
+              "align": "left",
+              "backgroundImage": false
+            },
+            "innerBlocks": [
+              {
+                "id": "blog-featured-image",
+                "type": "image",
+                "attributes": {
+                  "alt": "Featured post image",
+                  "aspectRatio": "16/9"
+                }
+              },
+              {
+                "id": "blog-featured-excerpt",
+                "type": "paragraph",
+                "attributes": {
+                  "content": "This is an excerpt from the featured blog post. It provides a preview of the content and encourages readers to continue reading..."
+                }
+              },
+              {
+                "id": "blog-featured-button",
+                "type": "button",
+                "attributes": {
+                  "text": "Read More",
+                  "variant": "primary"
+                }
+              }
+            ]
+          },
+          {
+            "id": "blog-posts",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "blog-posts-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Latest Posts"
+                }
+              },
+              {
+                "id": "blog-posts-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "blog-post-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Blog Post Title One",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "blog-post-1-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "A brief excerpt from the first blog post that gives readers a taste of what's inside..."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "blog-post-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Blog Post Title Two",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "blog-post-2-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Another interesting blog post excerpt that captures the essence of the content..."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "blog-post-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Blog Post Title Three",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "blog-post-3-excerpt",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "The third blog post offers valuable insights and information for our readers..."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "blog-categories",
+            "type": "section",
+            "attributes": {
+              "backgroundColor": "var(--block-surface-alt)",
+              "padding": "var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "blog-categories-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Categories"
+                }
+              },
+              {
+                "id": "blog-categories-list",
+                "type": "list",
+                "attributes": {
+                  "ordered": false,
+                  "items": [
+                    "Technology",
+                    "Design",
+                    "Business",
+                    "Lifestyle",
+                    "News"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "label": "Store",
+      "content": {
+        "blocks": [
+          {
+            "id": "store-hero",
+            "type": "hero",
+            "attributes": {
+              "title": "Our Store",
+              "subtitle": "Discover amazing products",
+              "align": "center",
+              "backgroundImage": true
+            }
+          },
+          {
+            "id": "store-categories",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--space-xl) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "store-categories-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Shop by Category"
+                }
+              },
+              {
+                "id": "store-categories-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 4,
+                  "gap": "var(--block-space-4)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "store-category-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Category One",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "store-category-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Category Two",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "store-category-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Category Three",
+                      "image": true
+                    }
+                  },
+                  {
+                    "id": "store-category-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Category Four",
+                      "image": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "store-products",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "store-products-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Featured Products"
+                }
+              },
+              {
+                "id": "store-products-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 4,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "store-product-1",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product One",
+                      "price": "29.99",
+                      "image": true,
+                      "onSale": false
+                    }
+                  },
+                  {
+                    "id": "store-product-2",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product Two",
+                      "price": "49.99",
+                      "image": true,
+                      "onSale": true
+                    }
+                  },
+                  {
+                    "id": "store-product-3",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product Three",
+                      "price": "39.99",
+                      "image": true,
+                      "onSale": false
+                    }
+                  },
+                  {
+                    "id": "store-product-4",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product Four",
+                      "price": "59.99",
+                      "image": true,
+                      "onSale": false
+                    }
+                  },
+                  {
+                    "id": "store-product-5",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product Five",
+                      "price": "79.99",
+                      "image": true,
+                      "onSale": true
+                    }
+                  },
+                  {
+                    "id": "store-product-6",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product Six",
+                      "price": "34.99",
+                      "image": true,
+                      "onSale": false
+                    }
+                  },
+                  {
+                    "id": "store-product-7",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product Seven",
+                      "price": "44.99",
+                      "image": true,
+                      "onSale": false
+                    }
+                  },
+                  {
+                    "id": "store-product-8",
+                    "type": "product-card",
+                    "attributes": {
+                      "title": "Product Eight",
+                      "price": "64.99",
+                      "image": true,
+                      "onSale": false
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "19",
+      "label": "Product",
+      "content": {
+        "blocks": [
+          {
+            "id": "product-gallery",
+            "type": "columns",
+            "attributes": {
+              "columns": 2,
+              "gap": "var(--block-space-6)"
+            },
+            "innerBlocks": [
+              {
+                "id": "product-gallery-column",
+                "type": "column",
+                "attributes": {
+                  "width": "1/2"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "product-main-image",
+                    "type": "image",
+                    "attributes": {
+                      "alt": "Product main image",
+                      "aspectRatio": "1/1"
+                    }
+                  },
+                  {
+                    "id": "product-thumbnails",
+                    "type": "gallery-grid",
+                    "attributes": {
+                      "images": 4,
+                      "columns": 4,
+                      "gap": "var(--block-space-3)"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "product-info-column",
+                "type": "column",
+                "attributes": {
+                  "width": "1/2"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "product-title",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 1,
+                      "content": "Product Name"
+                    }
+                  },
+                  {
+                    "id": "product-price",
+                    "type": "heading",
+                    "attributes": {
+                      "level": 2,
+                      "content": "$49.99"
+                    }
+                  },
+                  {
+                    "id": "product-description",
+                    "type": "paragraph",
+                    "attributes": {
+                      "content": "This is a detailed description of the product. It includes all the important features, benefits, and specifications that customers need to know before making a purchase."
+                    }
+                  },
+                  {
+                    "id": "product-specs",
+                    "type": "list",
+                    "attributes": {
+                      "ordered": false,
+                      "items": [
+                        "High-quality materials",
+                        "Durable construction",
+                        "Easy to use",
+                        "30-day money-back guarantee"
+                      ]
+                    }
+                  },
+                  {
+                    "id": "product-button",
+                    "type": "button",
+                    "attributes": {
+                      "text": "Add to Cart",
+                      "variant": "primary"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "12",
+      "label": "Gallery",
+      "content": {
+        "blocks": [
+          {
+            "id": "gallery-heading",
+            "type": "heading",
+            "attributes": {
+              "level": 1,
+              "content": "Photo Gallery",
+              "align": "center"
+            }
+          },
+          {
+            "id": "gallery-filters",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-5) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "gallery-filter-buttons",
+                "type": "container",
+                "attributes": {
+                  "padding": "var(--block-space-4) 0"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "gallery-filter-all",
+                    "type": "button",
+                    "attributes": {
+                      "text": "All",
+                      "variant": "primary"
+                    }
+                  },
+                  {
+                    "id": "gallery-filter-category1",
+                    "type": "button",
+                    "attributes": {
+                      "text": "Category One",
+                      "variant": "default"
+                    }
+                  },
+                  {
+                    "id": "gallery-filter-category2",
+                    "type": "button",
+                    "attributes": {
+                      "text": "Category Two",
+                      "variant": "default"
+                    }
+                  },
+                  {
+                    "id": "gallery-filter-category3",
+                    "type": "button",
+                    "attributes": {
+                      "text": "Category Three",
+                      "variant": "default"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "gallery-grid",
+            "type": "gallery-grid",
+            "attributes": {
+              "images": 12,
+              "columns": 3,
+              "gap": "var(--block-space-3)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "20",
+      "label": "Directory",
+      "content": {
+        "blocks": [
+          {
+            "id": "directory-heading",
+            "type": "heading",
+            "attributes": {
+              "level": 1,
+              "content": "Directory",
+              "align": "center"
+            }
+          },
+          {
+            "id": "directory-search",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--space-xl) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "directory-search-field",
+                "type": "form-field",
+                "attributes": {
+                  "label": "Search",
+                  "type": "text",
+                  "placeholder": "Search directory..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "directory-categories",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-5) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "directory-categories-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Browse by Category"
+                }
+              },
+              {
+                "id": "directory-categories-list",
+                "type": "list",
+                "attributes": {
+                  "ordered": false,
+                  "items": [
+                    "Category A",
+                    "Category B",
+                    "Category C",
+                    "Category D"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "directory-entries",
+            "type": "section",
+            "attributes": {
+              "padding": "var(--block-space-8) 0"
+            },
+            "innerBlocks": [
+              {
+                "id": "directory-entries-heading",
+                "type": "heading",
+                "attributes": {
+                  "level": 2,
+                  "content": "Directory Entries"
+                }
+              },
+              {
+                "id": "directory-entries-grid",
+                "type": "grid",
+                "attributes": {
+                  "columns": 3,
+                  "gap": "var(--block-space-5)"
+                },
+                "innerBlocks": [
+                  {
+                    "id": "directory-entry-1",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Entry One",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "directory-entry-1-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Description of directory entry one with relevant information."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directory-entry-2",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Entry Two",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "directory-entry-2-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Description of directory entry two with relevant information."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directory-entry-3",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Entry Three",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "directory-entry-3-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Description of directory entry three with relevant information."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directory-entry-4",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Entry Four",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "directory-entry-4-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Description of directory entry four with relevant information."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directory-entry-5",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Entry Five",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "directory-entry-5-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Description of directory entry five with relevant information."
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directory-entry-6",
+                    "type": "card",
+                    "attributes": {
+                      "title": "Entry Six",
+                      "image": true
+                    },
+                    "innerBlocks": [
+                      {
+                        "id": "directory-entry-6-desc",
+                        "type": "paragraph",
+                        "attributes": {
+                          "content": "Description of directory entry six with relevant information."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     { "id": "5", "label": "Services" },
     { "id": "6", "label": "Portfolio" },
-    { "id": "7", "label": "Products" },
     { "id": "8", "label": "Team" },
     { "id": "9", "label": "Careers" },
     { "id": "10", "label": "FAQ" },
     { "id": "11", "label": "Testimonials" },
-    { "id": "12", "label": "Gallery" },
     { "id": "13", "label": "News" },
     { "id": "14", "label": "Events" },
     { "id": "15", "label": "Resources" },

@@ -1,0 +1,22 @@
+.list-block {
+  margin-bottom: var(--block-space-4);
+}
+
+.list-block ul,
+.list-block ol {
+  margin: 0;
+  padding-left: var(--block-space-6);
+  color: var(--block-text);
+  font-family: var(--block-font-family);
+  font-size: var(--block-font-size-base);
+}
+
+.list-block li {
+  margin-bottom: var(--block-space-2);
+  line-height: var(--block-line-height-relaxed);
+}
+
+.list-block-inner {
+  margin-top: var(--block-space-4);
+}
+

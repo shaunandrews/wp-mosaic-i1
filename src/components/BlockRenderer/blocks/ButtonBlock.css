@@ -1,0 +1,21 @@
+.button-block {
+  margin-bottom: var(--block-space-4);
+}
+
+.button-block.align-center {
+  text-align: center;
+}
+
+.button-block.align-right {
+  text-align: right;
+}
+
+.button-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button-block-inner {
+  margin-top: var(--block-space-4);
+}
+

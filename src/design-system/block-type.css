@@ -1,0 +1,38 @@
+:root {
+  /* Block typography - separate from UI */
+  --block-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Block font sizes */
+  --block-font-size-xs: 0.75rem; /* 12px */
+  --block-font-size-sm: 0.875rem; /* 14px */
+  --block-font-size-base: 1rem; /* 16px */
+  --block-font-size-lg: 1.125rem; /* 18px */
+  --block-font-size-xl: 1.25rem; /* 20px */
+  --block-font-size-2xl: 1.5rem; /* 24px */
+  --block-font-size-3xl: 1.875rem; /* 30px */
+  --block-font-size-4xl: 2.25rem; /* 36px */
+  --block-font-size-5xl: 3rem; /* 48px */
+  --block-font-size-6xl: 3.75rem; /* 60px */
+
+  /* Block font weights */
+  --block-font-weight-normal: 400;
+  --block-font-weight-medium: 500;
+  --block-font-weight-semibold: 600;
+  --block-font-weight-bold: 700;
+
+  /* Block line heights */
+  --block-line-height-tight: 1.25;
+  --block-line-height-snug: 1.375;
+  --block-line-height-normal: 1.5;
+  --block-line-height-relaxed: 1.625;
+  --block-line-height-loose: 2;
+
+  /* Block letter spacing */
+  --block-letter-spacing-tight: -0.025em;
+  --block-letter-spacing-normal: 0;
+  --block-letter-spacing-wide: 0.025em;
+  --block-letter-spacing-wider: 0.05em;
+}
+

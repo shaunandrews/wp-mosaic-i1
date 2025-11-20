@@ -1,0 +1,27 @@
+.form-block {
+  background-color: var(--block-surface);
+  border: 1px solid var(--block-border);
+  border-radius: var(--block-radius-md);
+  padding: var(--block-space-5);
+  margin-bottom: var(--block-space-4);
+}
+
+.form-title {
+  margin: 0 0 var(--block-space-5) 0;
+  font-family: var(--block-font-family);
+  font-size: var(--block-font-size-2xl);
+  font-weight: var(--block-font-weight-semibold);
+  color: var(--block-text);
+  line-height: var(--block-line-height-tight);
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--block-space-4);
+}
+
+.form-submit {
+  margin-top: var(--block-space-3);
+}
+

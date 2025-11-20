@@ -1,0 +1,32 @@
+.quote-block {
+  margin-bottom: var(--block-space-4);
+}
+
+.quote-block blockquote {
+  margin: 0;
+  padding: var(--block-space-5);
+  border-left: 4px solid var(--block-accent);
+  background-color: var(--block-surface-alt);
+  border-radius: var(--block-radius-md);
+}
+
+.quote-block blockquote p {
+  margin: 0 0 var(--block-space-3) 0;
+  color: var(--block-text);
+  font-family: var(--block-font-family);
+  font-size: var(--block-font-size-lg);
+  font-style: italic;
+  line-height: var(--block-line-height-relaxed);
+}
+
+.quote-block blockquote cite {
+  display: block;
+  color: var(--block-text-secondary);
+  font-size: var(--block-font-size-sm);
+  font-style: normal;
+}
+
+.quote-block-inner {
+  margin-top: var(--block-space-4);
+}
+

@@ -1,0 +1,14 @@
+.columns-block {
+  display: grid;
+  margin-bottom: var(--block-space-4);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .columns-block {
+    grid-template-columns: 1fr !important;
+  }
+}
+

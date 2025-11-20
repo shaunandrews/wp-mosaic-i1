@@ -1,0 +1,25 @@
+:root {
+  /* Block spacing - can reuse base spacing or define block-specific */
+  /* Using same grid unit for consistency */
+  --block-space-unit: 4px;
+
+  --block-space-1: calc(var(--block-space-unit) * 1); /* 4px */
+  --block-space-2: calc(var(--block-space-unit) * 2); /* 8px */
+  --block-space-3: calc(var(--block-space-unit) * 3); /* 12px */
+  --block-space-4: calc(var(--block-space-unit) * 4); /* 16px */
+  --block-space-5: calc(var(--block-space-unit) * 6); /* 24px */
+  --block-space-6: calc(var(--block-space-unit) * 8); /* 32px */
+  --block-space-7: calc(var(--block-space-unit) * 10); /* 40px */
+  --block-space-8: calc(var(--block-space-unit) * 12); /* 48px */
+  --block-space-9: calc(var(--block-space-unit) * 16); /* 64px */
+  --block-space-10: calc(var(--block-space-unit) * 20); /* 80px */
+
+  /* Block border radius */
+  --block-radius-sm: 4px;
+  --block-radius-md: 6px;
+  --block-radius-lg: 8px;
+  --block-radius-xl: 12px;
+  --block-radius-2xl: 16px;
+  --block-radius-full: 9999px;
+}
+

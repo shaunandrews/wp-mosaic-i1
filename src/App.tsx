@@ -5,9 +5,17 @@ import { type MenuHandle } from './components/Menu/Menu';
 import { EditorToolbar } from './components/EditorToolbar/EditorToolbar';
 import { Button } from './components/Button/Button';
 import { Icon } from './components/Icon/Icon';
+import { PageContent } from './components/PageContent/PageContent';
 import pagesData from './data/pages.json';
+import { type PageContent as PageContentType } from './types/blocks';
 
 const pages = pagesData.pages;
+
+interface Page {
+  id: string;
+  label: string;
+  content?: PageContentType;
+}
 
 type ViewMode = 'single' | 'grid';
 type Direction = 'left' | 'right';
@@ -30,7 +38,7 @@ const PANEL_CONFIG: PanelConfig[] = [
 ];
 
 function App() {
-  const [selectedPage, setSelectedPage] = useState(pages[0]);
+  const [selectedPage, setSelectedPage] = useState<Page>(pages[0] as Page);
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [direction, setDirection] = useState<Direction>('right');
   const [shouldAnimate, setShouldAnimate] = useState(true);
@@ -73,7 +81,8 @@ function App() {
       setViewMode('grid');
     } else {
       setShouldAnimate(false);
-      setSelectedPage(item);
+      const page = pages.find((p) => p.id === item.id) as Page;
+      setSelectedPage(page || (item as Page));
       setViewMode('single');
     }
   };
@@ -83,7 +92,7 @@ function App() {
     setShouldAnimate(true);
     const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
     const prevIndex = currentIndex > 0 ? currentIndex - 1 : pages.length - 1;
-    setSelectedPage(pages[prevIndex]);
+    setSelectedPage(pages[prevIndex] as Page);
   };
 
   const handleNextPage = () => {
@@ -91,7 +100,7 @@ function App() {
     setShouldAnimate(true);
     const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
     const nextIndex = currentIndex < pages.length - 1 ? currentIndex + 1 : 0;
-    setSelectedPage(pages[nextIndex]);
+    setSelectedPage(pages[nextIndex] as Page);
   };
 
   useEffect(() => {
@@ -192,7 +201,11 @@ function App() {
                       exit="exit"
                       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                     >
-                      {selectedPage.label}
+                      {selectedPage.content ? (
+                        <PageContent content={selectedPage.content} />
+                      ) : (
+                        selectedPage.label
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 ) : (
@@ -200,7 +213,11 @@ function App() {
                     key={selectedPage.id}
                     className="document document-single"
                   >
-                    {selectedPage.label}
+                    {selectedPage.content ? (
+                      <PageContent content={selectedPage.content} />
+                    ) : (
+                      selectedPage.label
+                    )}
                   </div>
                 )
               ) : (
@@ -226,7 +243,13 @@ function App() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {page.label}
+                      {(page as Page).content ? (
+                        <div className="document-preview">
+                          <PageContent content={(page as Page).content} />
+                        </div>
+                      ) : (
+                        page.label
+                      )}
                     </motion.div>
                   ))}
                 </motion.div>

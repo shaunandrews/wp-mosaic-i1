@@ -1,0 +1,43 @@
+.hero-block {
+  padding: var(--block-space-8) var(--block-space-6);
+  margin-bottom: var(--block-space-6);
+  border-radius: var(--block-radius-lg);
+  background-color: var(--block-surface-alt);
+  text-align: center;
+}
+
+.hero-block.has-background {
+  background: linear-gradient(135deg, var(--block-accent) 0%, var(--block-accent-hover) 100%);
+  color: var(--block-gray-900);
+}
+
+.hero-block.align-left {
+  text-align: left;
+}
+
+.hero-block.align-right {
+  text-align: right;
+}
+
+.hero-title {
+  margin: 0 0 var(--block-space-4) 0;
+  font-family: var(--block-font-family);
+  font-size: var(--block-font-size-5xl);
+  font-weight: var(--block-font-weight-bold);
+  line-height: var(--block-line-height-tight);
+  color: inherit;
+}
+
+.hero-subtitle {
+  margin: 0 0 var(--block-space-5) 0;
+  font-family: var(--block-font-family);
+  font-size: var(--block-font-size-xl);
+  line-height: var(--block-line-height-normal);
+  opacity: 0.9;
+  color: inherit;
+}
+
+.hero-content {
+  margin-top: var(--block-space-5);
+}
+

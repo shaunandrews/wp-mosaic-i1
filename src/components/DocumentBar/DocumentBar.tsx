@@ -5,9 +5,12 @@ import './DocumentBar.css';
 
 type ViewMode = 'single' | 'grid';
 
+import { type PageContent as PageContentType } from '../../types/blocks';
+
 interface Page {
   id: string;
   label: string;
+  content?: PageContentType;
 }
 
 interface DocumentBarProps {

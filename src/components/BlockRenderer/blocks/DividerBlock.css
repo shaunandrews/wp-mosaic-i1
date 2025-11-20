@@ -1,0 +1,18 @@
+.divider-block {
+  margin: var(--block-space-6) 0;
+}
+
+.divider-block hr {
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--block-border);
+}
+
+.divider-block.divider-dashed hr {
+  border-top-style: dashed;
+}
+
+.divider-block.divider-dotted hr {
+  border-top-style: dotted;
+}
+
