@@ -9,7 +9,7 @@
 
 .page-grid-content {
   column-width: 300px;
-  column-gap: var(--space-l);
+  column-gap: var(--space-xl);
   width: 100%;
   /* Allow height to grow automatically */
 }
@@ -21,4 +21,14 @@
   /* Fix for some browsers to ensure block formatting context and avoid splitting */
   display: inline-block;
   width: 100%;
+}
+
+.page-grid-cell__title {
+  font-size: 12px;
+  color: var(--color-surface-text-secondary);
+  margin-bottom: var(--space-xxs);
+  margin-left: var(--space-xxs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -10,8 +10,8 @@ export const PageGrid = () => {
   const { pages, selectPage } = usePageView();
   const containerRef = useRef<HTMLDivElement>(null);
   // Initial visible set (first few items)
-  const [visibleIndices, setVisibleIndices] = useState<Set<number>>(() => 
-    new Set(Array.from({ length: 12 }, (_, i) => i))
+  const [visibleIndices, setVisibleIndices] = useState<Set<number>>(
+    () => new Set(Array.from({ length: 12 }, (_, i) => i))
   );
 
   // Use Intersection Observer to track visibility
@@ -26,7 +26,10 @@ export const PageGrid = () => {
           let hasChanges = false;
 
           entries.forEach((entry) => {
-            const index = parseInt(entry.target.getAttribute('data-index') || '-1', 10);
+            const index = parseInt(
+              entry.target.getAttribute('data-index') || '-1',
+              10
+            );
             if (index === -1) return;
 
             if (entry.isIntersecting) {
@@ -51,7 +54,7 @@ export const PageGrid = () => {
     );
 
     // Observe all item wrappers
-    // Note: This approach creates an observer for every item. 
+    // Note: This approach creates an observer for every item.
     // For very large lists (1000+), virtualizing the wrappers themselves is needed.
     // For < 100 items, this is fine and stable.
     const items = container.querySelectorAll('[data-index]');
@@ -80,6 +83,7 @@ export const PageGrid = () => {
       <div className="page-grid-content">
         {pages.map((page, index) => (
           <div key={page.id} data-index={index} className="page-grid-cell">
+            <div className="page-grid-cell__title">{page.label}</div>
             <PageGridItem
               page={page}
               onClick={() => handleItemClick(page.id)}
@@ -91,4 +95,3 @@ export const PageGrid = () => {
     </motion.div>
   );
 };
-

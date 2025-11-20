@@ -45,7 +45,10 @@ function AppContent() {
     left: null,
     right: null,
   });
-  const [isChatOpen, setIsChatOpen] = useState(true);
+  const [isChatOpen, setIsChatOpen] = useState(() => {
+    const saved = localStorage.getItem('chatOpen');
+    return saved !== null ? saved === 'true' : true;
+  });
   const menuRef = useRef<MenuHandle>(null);
 
   const getOpenPanelAt = (position: PanelPosition): string | null => {
@@ -97,6 +100,10 @@ function AppContent() {
   const handleStructurePageSelect = (page: Page) => {
     selectPage(page, 'menu');
   };
+
+  useEffect(() => {
+    localStorage.setItem('chatOpen', String(isChatOpen));
+  }, [isChatOpen]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
