@@ -8,6 +8,7 @@ import { Icon } from './components/Icon/Icon';
 import { PageViewProvider, type Page } from './components/PageView/PageViewContext';
 import { PageView } from './components/PageView/PageView';
 import { usePageView } from './components/PageView/usePageView';
+import { StructurePanel } from './components/StructurePanel/StructurePanel';
 import pagesData from './data/pages.json';
 
 const pages = pagesData.pages as Page[];
@@ -93,6 +94,10 @@ function AppContent() {
     navigateNext();
   };
 
+  const handleStructurePageSelect = (page: Page) => {
+    selectPage(page, 'menu');
+  };
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // Check for Command-K (Mac) or Ctrl-K (Windows/Linux)
@@ -155,7 +160,15 @@ function AppContent() {
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {getOpenPanelAt('left') === 'structure' ? (
-                    <h3>Structure</h3>
+                    <>
+                      <h3>Structure</h3>
+                      <StructurePanel
+                        viewMode={viewMode}
+                        selectedPage={selectedPage}
+                        pages={contextPages}
+                        onPageSelect={handleStructurePageSelect}
+                      />
+                    </>
                   ) : (
                     <h3>Inserter</h3>
                   )}
