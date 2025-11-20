@@ -40,7 +40,7 @@ export const PageViewProvider = ({
   const [selectedPage, setSelectedPage] = useState<Page | null>(
     initialPage || initialPages[0] || null
   );
-  const [direction, setDirection] = useState<Direction>('right');
+  const [direction] = useState<Direction>('right');
   const [transitionSource, setTransitionSource] = useState<TransitionSource>('menu');
 
   const selectPage = useCallback((page: Page, source: TransitionSource = 'menu') => {

@@ -23,7 +23,9 @@ describe('EditorToolbar', () => {
         onPageAction={vi.fn()}
         onTogglePanel={onTogglePanel}
         onToggleChat={vi.fn()}
+        onToggleWordPressNav={vi.fn()}
         isChatOpen={false}
+        isWordPressNavOpen={false}
       />
     );
 
@@ -57,7 +59,9 @@ describe('EditorToolbar', () => {
         onPageAction={vi.fn()}
         onTogglePanel={onTogglePanel}
         onToggleChat={vi.fn()}
+        onToggleWordPressNav={vi.fn()}
         isChatOpen={false}
+        isWordPressNavOpen={false}
       />
     );
 
