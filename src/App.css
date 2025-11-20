@@ -89,6 +89,18 @@
     justify-content: space-between;
   }
 
+  .chat-messages {
+    justify-content: flex-end;
+
+    p {
+      line-height: 1.4;
+
+      &:not(:last-child) {
+        margin-bottom: var(--space-s);
+      }
+    }
+  }
+
   .chat-input {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-l);

@@ -137,6 +137,7 @@ function App() {
             onNextPage={handleNextPage}
             onTogglePanel={togglePanel}
             onToggleChat={() => setIsChatOpen((prev) => !prev)}
+            isChatOpen={isChatOpen}
           />
           <div className="row editor-content">
             <AnimatePresence>
@@ -261,7 +262,7 @@ function App() {
             }}
             style={{ overflow: 'hidden', minWidth: 0 }}
           >
-            <header className="row items-center mt-s p-s">
+            <header className="row items-center mt-s p-s pl-m">
               <div className="row items-center gap-xs full-height">
                 <Icon name="chat" />
                 <h3>Chat</h3>
@@ -270,12 +271,15 @@ function App() {
                 <Icon name="close" />
               </Button>
             </header>
-            <div className="chat-messages fill p-s">
-              {/* TODO: Add chat messages */}
+            <div className="chat-messages col fill px-l py-xs">
+              <div className="message">
+                <p>Hi there, I'm your AI-powered assistant. I can answer questions and perform tasks to help you with your site.</p>
+                <p>How can I help you today?</p>
+              </div>
             </div>
             <footer className="p-s">
               <div className="chat-input">
-                <div className="input-body p-xs" contentEditable></div>
+                <div className="input-body p-s" contentEditable></div>
                 <div className="input-actions row gap-xs p-xs">
                   <Button variant="primary" layer="background">
                     <Icon name="send" />

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { type MenuHandle } from '../Menu/Menu';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
@@ -21,6 +23,7 @@ interface EditorToolbarProps {
   onNextPage: () => void;
   onTogglePanel: (panelId: string) => void;
   onToggleChat: () => void;
+  isChatOpen: boolean;
 }
 
 export const EditorToolbar = ({
@@ -33,7 +36,20 @@ export const EditorToolbar = ({
   onNextPage,
   onTogglePanel,
   onToggleChat,
+  isChatOpen,
 }: EditorToolbarProps) => {
+  const [buttonWidth, setButtonWidth] = useState<number | undefined>(undefined);
+
+  const measureButton = (element: HTMLButtonElement | null) => {
+    if (element && !buttonWidth) {
+      // Only measure if we don't have a width yet
+      const width = element.offsetWidth;
+      if (width > 0) {
+        setButtonWidth(width);
+      }
+    }
+  };
+
   return (
     <div className="editor-toolbar row items-center justify-between">
       <div className="editor-toolbar-start row gap-xs items-center">
@@ -78,6 +94,9 @@ export const EditorToolbar = ({
 
       <div className="editor-toolbar-end row gap-xs pr-s">
         <Button>
+          <Icon name="more" />
+        </Button>
+        <Button>
           <Icon name="view-desktop" />
         </Button>
         <Button onClick={() => onTogglePanel('settings')}>
@@ -86,13 +105,32 @@ export const EditorToolbar = ({
         <Button variant="primary" align="center" className="button-save">
           Save
         </Button>
-        <Button>
-          <Icon name="more" />
-        </Button>
-        <Button className="button-chat" align="center" onClick={onToggleChat}>
-          {/* Assistant */}
-          <Icon name="chat" />
-        </Button>
+        <motion.div
+          animate={{
+            width: isChatOpen ? 0 : buttonWidth || 40,
+            opacity: isChatOpen ? 0 : 1,
+            marginLeft: isChatOpen ? '-8px' : '0px',
+          }}
+          transition={{
+            width: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+            opacity: { duration: 0.2, ease: [0.4, 0, 0.2, 1] },
+            marginLeft: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+          }}
+          style={{
+            overflow: 'hidden',
+            minWidth: 0,
+          }}
+        >
+          <Button
+            ref={measureButton}
+            className="button-chat"
+            align="center"
+            onClick={onToggleChat}
+          >
+            {/* Assistant */}
+            <Icon name="chat" />
+          </Button>
+        </motion.div>
       </div>
     </div>
   );
