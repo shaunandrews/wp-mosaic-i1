@@ -19,8 +19,6 @@ interface PageViewContextValue {
   pages: Page[];
   setViewMode: (mode: ViewMode) => void;
   selectPage: (page: Page, source?: TransitionSource) => void;
-  navigatePrev: () => void;
-  navigateNext: () => void;
   setPages: (pages: Page[]) => void;
 }
 
@@ -42,7 +40,7 @@ export const PageViewProvider = ({
   const [selectedPage, setSelectedPage] = useState<Page | null>(
     initialPage || initialPages[0] || null
   );
-  const [direction, setDirection] = useState<Direction>('right');
+  const [direction] = useState<Direction>('right');
   const [transitionSource, setTransitionSource] = useState<TransitionSource>('menu');
 
   const selectPage = useCallback((page: Page, source: TransitionSource = 'menu') => {
@@ -50,24 +48,6 @@ export const PageViewProvider = ({
     setTransitionSource(source);
     setViewMode('single');
   }, []);
-
-  const navigatePrev = useCallback(() => {
-    if (!selectedPage) return;
-    setDirection('left');
-    setTransitionSource('navigation');
-    const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
-    const prevIndex = currentIndex > 0 ? currentIndex - 1 : pages.length - 1;
-    setSelectedPage(pages[prevIndex] || null);
-  }, [selectedPage, pages]);
-
-  const navigateNext = useCallback(() => {
-    if (!selectedPage) return;
-    setDirection('right');
-    setTransitionSource('navigation');
-    const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
-    const nextIndex = currentIndex < pages.length - 1 ? currentIndex + 1 : 0;
-    setSelectedPage(pages[nextIndex] || null);
-  }, [selectedPage, pages]);
 
   const value: PageViewContextValue = {
     viewMode,
@@ -77,8 +57,6 @@ export const PageViewProvider = ({
     pages,
     setViewMode,
     selectPage,
-    navigatePrev,
-    navigateNext,
     setPages,
   };
 

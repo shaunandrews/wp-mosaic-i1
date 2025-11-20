@@ -47,7 +47,7 @@ describe('Menu', () => {
     await user.click(trigger);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/Pages, posts, settings/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Search pages/i)).toBeInTheDocument();
     });
   });
 
@@ -117,7 +117,7 @@ describe('Menu', () => {
     await user.click(simulateCmdK);
 
     await waitFor(() => {
-      const searchInput = screen.getByPlaceholderText(/Pages, posts, settings/i);
+      const searchInput = screen.getByPlaceholderText(/Search pages/i);
       expect(searchInput).toHaveFocus();
     });
   });
@@ -135,7 +135,7 @@ describe('Menu', () => {
     await user.click(trigger);
 
     await waitFor(() => {
-      const searchInput = screen.getByPlaceholderText(/Pages, posts, settings/i);
+      const searchInput = screen.getByPlaceholderText(/Search pages/i);
       // Search input should NOT be focused when opened via click
       expect(searchInput).not.toHaveFocus();
     });
@@ -155,7 +155,7 @@ describe('Menu', () => {
     await user.click(trigger);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/Pages, posts, settings/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Search pages/i)).toBeInTheDocument();
     });
 
     const aboutButton = screen.getByRole('button', { name: /About/i });
@@ -178,14 +178,14 @@ describe('Menu', () => {
     await user.click(trigger);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/Pages, posts, settings/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Search pages/i)).toBeInTheDocument();
     });
 
     const aboutButton = screen.getByRole('button', { name: /About/i });
     await user.click(aboutButton);
 
     await waitFor(() => {
-      expect(screen.queryByPlaceholderText(/Pages, posts, settings/i)).not.toBeInTheDocument();
+      expect(screen.queryByPlaceholderText(/Search pages/i)).not.toBeInTheDocument();
     });
   });
 
@@ -233,11 +233,11 @@ describe('Menu', () => {
     await user.click(simulateCmdK);
 
     await waitFor(() => {
-      const searchInput = screen.getByPlaceholderText(/Pages, posts, settings/i);
+      const searchInput = screen.getByPlaceholderText(/Search pages/i);
       expect(searchInput).toHaveFocus();
     });
 
-    const searchInput = screen.getByPlaceholderText(/Pages, posts, settings/i);
+    const searchInput = screen.getByPlaceholderText(/Search pages/i);
     await user.type(searchInput, 'test search');
 
     // Input should still have focus and contain the typed text
