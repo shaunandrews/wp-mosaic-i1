@@ -2,9 +2,9 @@
   background-color: var(--color-surface);
   border-radius: var(--radius-l);
   border: 1px solid var(--color-gray-200);
-  box-shadow:
-    0 0 2px rgba(0, 0, 0, 0.2),
-    0 4px 12px rgba(0, 0, 0, 0.1);
+  /* box-shadow:
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.05); */
   width: 300px;
   z-index: 1000;
 
@@ -51,7 +51,6 @@
 .menu-list .button-menu-item {
   width: 100%;
   padding: 0 var(--space-s);
-  padding-left: calc(var(--space-s) + 24px);
 
   & > span {
     text-align: left;

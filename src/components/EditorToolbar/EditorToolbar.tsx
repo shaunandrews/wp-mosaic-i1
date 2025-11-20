@@ -4,6 +4,7 @@ import { type MenuDocumentPickerHandle } from '../MenuDocumentPicker/MenuDocumen
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import { DocumentBar } from '../DocumentBar/DocumentBar';
+import { MenuEditorOptions } from '../MenuEditorOptions/MenuEditorOptions';
 import './EditorToolbar.css';
 
 type ViewMode = 'single' | 'grid';
@@ -113,9 +114,7 @@ export const EditorToolbar = ({
       />
 
       <div className="editor-toolbar-end row gap-xs pr-s">
-        <Button>
-          <Icon name="more" />
-        </Button>
+        
         <Button>
           <Icon name="view-desktop" />
         </Button>
@@ -128,6 +127,11 @@ export const EditorToolbar = ({
         <Button variant="primary" align="center" className="button-save">
           Save
         </Button>
+        <MenuEditorOptions>
+          <Button>
+            <Icon name="more" />
+          </Button>
+        </MenuEditorOptions>
         <motion.div
           animate={{
             width: isChatOpen ? 0 : buttonWidth || 40,
