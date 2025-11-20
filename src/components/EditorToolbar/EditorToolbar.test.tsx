@@ -28,6 +28,8 @@ describe('EditorToolbar', () => {
         onPrevPage={vi.fn()}
         onNextPage={vi.fn()}
         onTogglePanel={onTogglePanel}
+        onToggleChat={vi.fn()}
+        isChatOpen={false}
       />
     );
 
@@ -61,6 +63,8 @@ describe('EditorToolbar', () => {
         onPrevPage={vi.fn()}
         onNextPage={vi.fn()}
         onTogglePanel={onTogglePanel}
+        onToggleChat={vi.fn()}
+        isChatOpen={false}
       />
     );
 

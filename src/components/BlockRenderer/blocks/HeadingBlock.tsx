@@ -1,3 +1,4 @@
+import React from 'react';
 import { type HeadingBlock as HeadingBlockType } from '../../../types/blocks';
 import { BlockRenderer } from '../BlockRenderer';
 import './HeadingBlock.css';
@@ -11,7 +12,8 @@ export const HeadingBlock = ({ block }: HeadingBlockProps) => {
   const content = block.attributes?.content || '';
   const align = block.attributes?.align || 'left';
 
-  const HeadingTag = `h${Math.min(Math.max(level, 1), 6)}` as keyof JSX.IntrinsicElements;
+  const headingLevel = Math.min(Math.max(level, 1), 6);
+  const HeadingTag = `h${headingLevel}` as React.ElementType;
 
   return (
     <div className={`heading-block align-${align}`}>

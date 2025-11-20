@@ -9,7 +9,7 @@ import { PageContent } from './components/PageContent/PageContent';
 import pagesData from './data/pages.json';
 import { type PageContent as PageContentType } from './types/blocks';
 
-const pages = pagesData.pages;
+const pages = pagesData.pages as Page[];
 
 interface Page {
   id: string;
