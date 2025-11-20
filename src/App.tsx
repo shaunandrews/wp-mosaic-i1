@@ -5,20 +5,13 @@ import { type MenuHandle } from './components/Menu/Menu';
 import { EditorToolbar } from './components/EditorToolbar/EditorToolbar';
 import { Button } from './components/Button/Button';
 import { Icon } from './components/Icon/Icon';
-import { PageContent } from './components/PageContent/PageContent';
+import { PageViewProvider, type Page } from './components/PageView/PageViewContext';
+import { PageView } from './components/PageView/PageView';
+import { usePageView } from './components/PageView/usePageView';
 import pagesData from './data/pages.json';
-import { type PageContent as PageContentType } from './types/blocks';
 
 const pages = pagesData.pages as Page[];
 
-interface Page {
-  id: string;
-  label: string;
-  content?: PageContentType;
-}
-
-type ViewMode = 'single' | 'grid';
-type Direction = 'left' | 'right';
 type PanelPosition = 'left' | 'right';
 type PanelState = {
   left: string | null;
@@ -37,11 +30,16 @@ const PANEL_CONFIG: PanelConfig[] = [
   { id: 'settings', position: 'right', buttonIcon: 'drawer-right' },
 ];
 
-function App() {
-  const [selectedPage, setSelectedPage] = useState<Page>(pages[0] as Page);
-  const [viewMode, setViewMode] = useState<ViewMode>('grid');
-  const [direction, setDirection] = useState<Direction>('right');
-  const [shouldAnimate, setShouldAnimate] = useState(true);
+function AppContent() {
+  const {
+    viewMode,
+    selectedPage,
+    pages: contextPages,
+    setViewMode,
+    selectPage,
+    navigatePrev,
+    navigateNext,
+  } = usePageView();
   const [panelState, setPanelState] = useState<PanelState>({
     left: null,
     right: null,
@@ -80,27 +78,19 @@ function App() {
     if (item.id === 'view-all-pages') {
       setViewMode('grid');
     } else {
-      setShouldAnimate(false);
-      const page = pages.find((p) => p.id === item.id) as Page;
-      setSelectedPage(page || (item as Page));
-      setViewMode('single');
+      const page = contextPages.find((p) => p.id === item.id);
+      if (page) {
+        selectPage(page, 'menu');
+      }
     }
   };
 
   const handlePrevPage = () => {
-    setDirection('left');
-    setShouldAnimate(true);
-    const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
-    const prevIndex = currentIndex > 0 ? currentIndex - 1 : pages.length - 1;
-    setSelectedPage(pages[prevIndex] as Page);
+    navigatePrev();
   };
 
   const handleNextPage = () => {
-    setDirection('right');
-    setShouldAnimate(true);
-    const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
-    const nextIndex = currentIndex < pages.length - 1 ? currentIndex + 1 : 0;
-    setSelectedPage(pages[nextIndex] as Page);
+    navigateNext();
   };
 
   useEffect(() => {
@@ -118,8 +108,9 @@ function App() {
       ) {
         event.preventDefault();
         if (viewMode === 'grid') {
-          setShouldAnimate(false);
-          setViewMode('single');
+          if (selectedPage) {
+            selectPage(selectedPage, 'menu');
+          }
         } else {
           setViewMode('grid');
         }
@@ -130,7 +121,7 @@ function App() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [viewMode]);
+  }, [viewMode, selectedPage, selectPage]);
 
   return (
     <div className="app row">
@@ -138,8 +129,8 @@ function App() {
         <div className="editor full-height">
           <EditorToolbar
             viewMode={viewMode}
-            selectedPage={selectedPage}
-            pages={pages}
+            selectedPage={selectedPage || contextPages[0]}
+            pages={contextPages}
             menuRef={menuRef}
             onPageSelect={handlePageSelect}
             onPrevPage={handlePrevPage}
@@ -171,89 +162,8 @@ function App() {
                 </motion.div>
               )}
             </AnimatePresence>
-            <div
-              className={`editor-canvas fill ${viewMode === 'single' ? 'view-single' : 'view-grid'}`}
-            >
-              {viewMode === 'single' ? (
-                shouldAnimate ? (
-                  <AnimatePresence custom={direction}>
-                    <motion.div
-                      key={selectedPage.id}
-                      layoutId={`document-${selectedPage.id}`}
-                      className="document document-single"
-                      custom={direction}
-                      variants={{
-                        enter: (dir: Direction) => ({
-                          x: dir === 'right' ? '100%' : '-100%',
-                          opacity: 0,
-                        }),
-                        center: {
-                          x: 0,
-                          opacity: 1,
-                        },
-                        exit: (dir: Direction) => ({
-                          x: dir === 'right' ? '-100%' : '100%',
-                          opacity: 0,
-                        }),
-                      }}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                    >
-                      {selectedPage.content ? (
-                        <PageContent content={selectedPage.content} />
-                      ) : (
-                        selectedPage.label
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
-                ) : (
-                  <div
-                    key={selectedPage.id}
-                    className="document document-single"
-                  >
-                    {selectedPage.content ? (
-                      <PageContent content={selectedPage.content} />
-                    ) : (
-                      selectedPage.label
-                    )}
-                  </div>
-                )
-              ) : (
-                <motion.div
-                  className="editor-canvas-grid row wrap gap-l p-l"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {pages.map((page) => (
-                    <motion.div
-                      key={page.id}
-                      layoutId={`document-${page.id}`}
-                      className="document document-grid"
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                      onClick={() => {
-                        setSelectedPage(page);
-                        setViewMode('single');
-                      }}
-                      style={{ cursor: 'pointer' }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {(page as Page).content ? (
-                        <div className="document-preview">
-                          <PageContent content={(page as Page).content} />
-                        </div>
-                      ) : (
-                        page.label
-                      )}
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )}
+            <div className="editor-canvas fill">
+              <PageView />
             </div>
             <AnimatePresence>
               {getOpenPanelAt('right') === 'settings' && (
@@ -314,6 +224,14 @@ function App() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <PageViewProvider initialPages={pages} initialPage={pages[0]}>
+      <AppContent />
+    </PageViewProvider>
   );
 }
 

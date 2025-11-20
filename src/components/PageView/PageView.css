@@ -1,0 +1,16 @@
+.page-view {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-view--grid {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.page-view--single {
+  overflow: hidden;
+}
+

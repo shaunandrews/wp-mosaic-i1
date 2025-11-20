@@ -1,0 +1,11 @@
+.page-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-l);
+  padding: var(--space-l);
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+

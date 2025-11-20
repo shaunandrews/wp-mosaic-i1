@@ -1,0 +1,38 @@
+.page-preview {
+  pointer-events: none;
+  overflow: hidden;
+  display: block;
+}
+
+.page-preview--grid {
+  /* Grid preview mode */
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transition: height 0.2s ease-out; /* Smooth height changes */
+}
+
+.page-preview__content-wrapper {
+  /* Unscaled content wrapper */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Width set inline to 400% */
+}
+
+.page-preview--full {
+  /* Full size mode */
+  width: 100%;
+  height: 100%;
+}
+
+.page-preview__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* relative to the scaled wrapper (400%) */
+  height: 800px; /* Arbitrary large height for loading state */
+  color: var(--color-surface-text-tertiary);
+  font-size: 48px; /* Scaled down 0.25x = 12px */
+}
+
