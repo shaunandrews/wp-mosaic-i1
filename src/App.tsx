@@ -38,6 +38,7 @@ function App() {
     left: null,
     right: null,
   });
+  const [isChatOpen, setIsChatOpen] = useState(true);
   const menuRef = useRef<MenuHandle>(null);
 
   const getOpenPanelAt = (position: PanelPosition): string | null => {
@@ -124,7 +125,7 @@ function App() {
 
   return (
     <div className="app row">
-      <div className="stage fill m-s mr-0 radius-l">
+      <div className={`stage fill ${isChatOpen ? 'm-s mr-0 radius-l' : ''}`}>
         <div className="editor full-height">
           <EditorToolbar
             viewMode={viewMode}
@@ -135,6 +136,7 @@ function App() {
             onPrevPage={handlePrevPage}
             onNextPage={handleNextPage}
             onTogglePanel={togglePanel}
+            onToggleChat={() => setIsChatOpen((prev) => !prev)}
           />
           <div className="row editor-content">
             <AnimatePresence>
@@ -246,27 +248,44 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="chat p-s col">
-        <header className="row items-center p-m pr-0">
-          <h3>Chat</h3>
-          <Button layer="background">
-            <Icon name="close" />
-          </Button>
-        </header>
-        <div className="chat-messages fill">
-          {/* TODO: Add chat messages */}
-        </div>
-        <footer>
-          <div className="chat-input">
-            <div className="input-body p-xs" contentEditable></div>
-            <div className="input-actions row gap-xs p-xs">
-              <Button variant="primary" layer="background">
-                <Icon name="send" />
+      <AnimatePresence>
+        {isChatOpen && (
+          <motion.div
+            className="chat col"
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: 300, opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
+            transition={{
+              width: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+              opacity: { duration: 0.2, ease: [0.4, 0, 0.2, 1] },
+            }}
+            style={{ overflow: 'hidden', minWidth: 0 }}
+          >
+            <header className="row items-center mt-s p-s">
+              <div className="row items-center gap-xs full-height">
+                <Icon name="chat" />
+                <h3>Chat</h3>
+              </div>
+              <Button layer="background" onClick={() => setIsChatOpen(false)}>
+                <Icon name="close" />
               </Button>
+            </header>
+            <div className="chat-messages fill p-s">
+              {/* TODO: Add chat messages */}
             </div>
-          </div>
-        </footer>
-      </div>
+            <footer className="p-s">
+              <div className="chat-input">
+                <div className="input-body p-xs" contentEditable></div>
+                <div className="input-actions row gap-xs p-xs">
+                  <Button variant="primary" layer="background">
+                    <Icon name="send" />
+                  </Button>
+                </div>
+              </div>
+            </footer>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

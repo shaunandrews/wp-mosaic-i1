@@ -5,6 +5,7 @@
 
 .stage {
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
 .editor {
@@ -80,15 +81,18 @@
 .chat {
   width: 300px;
   color: var(--color-background-text);
+  overflow: hidden;
+  flex-shrink: 0;
 
   header {
+    height: 64px;
     justify-content: space-between;
   }
 
   .chat-input {
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-l);
-    background-color: rgba(255,255,255,0.025);
+    background-color: rgba(255, 255, 255, 0.025);
 
     &:focus-within {
       border: 1px solid var(--color-theme);

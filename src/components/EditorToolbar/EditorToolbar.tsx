@@ -20,6 +20,7 @@ interface EditorToolbarProps {
   onPrevPage: () => void;
   onNextPage: () => void;
   onTogglePanel: (panelId: string) => void;
+  onToggleChat: () => void;
 }
 
 export const EditorToolbar = ({
@@ -31,6 +32,7 @@ export const EditorToolbar = ({
   onPrevPage,
   onNextPage,
   onTogglePanel,
+  onToggleChat,
 }: EditorToolbarProps) => {
   return (
     <div className="editor-toolbar row items-center justify-between">
@@ -86,6 +88,10 @@ export const EditorToolbar = ({
         </Button>
         <Button>
           <Icon name="more" />
+        </Button>
+        <Button className="button-chat" align="center" onClick={onToggleChat}>
+          {/* Assistant */}
+          <Icon name="chat" />
         </Button>
       </div>
     </div>

@@ -15,7 +15,8 @@ interface IconProps {
     | 'check'
     | 'search'
     | 'send'
-    | 'close';
+    | 'close'
+    | 'chat';
 }
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -215,6 +216,20 @@ const iconMap: Record<string, React.ReactNode> = {
     >
       <path
         d="M11.9996 13.06L15.7116 16.773L16.7726 15.713L13.0606 12L16.7726 8.28799L15.7126 7.22799L11.9996 10.938L8.28756 7.22699L7.22656 8.28699L10.9386 12L7.22656 15.712L8.28656 16.773L11.9996 13.06Z"
+        fill="currentColor"
+      />
+    </svg>
+  ),
+  chat: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14 10.1V4C14 3.4 13.6 3 13 3H5C4.4 3 4 3.4 4 4V12.3C4 12.6 4.2 13 4.6 13.1C4.7 13.2 4.8 13.2 4.9 13.2C5.1 13.2 5.4 13.1 5.5 12.9L7.3 11.1H13C13.6 11.1 14 10.7 14 10.1ZM12.5 9.6H6.7L5.5 10.8V4.5H12.5V9.6ZM19 12H11C10.4 12 10 12.4 10 13V19.1C10 19.7 10.4 20.1 11 20.1H16.7L18.5 21.9C18.6 22.1 18.9 22.2 19.1 22.2C19.2 22.2 19.3 22.2 19.4 22.1C19.8 22 20 21.6 20 21.3V13C20 12.4 19.6 12 19 12ZM18.5 19.8L17.3 18.6H11.5V13.5H18.5V19.8Z"
         fill="currentColor"
       />
     </svg>
