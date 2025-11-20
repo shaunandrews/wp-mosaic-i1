@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "id": "rename-page",
+      "label": "Rename page",
+      "contexts": ["page"]
+    },
+    {
+      "id": "change-status",
+      "label": "Change status",
+      "contexts": ["page"]
+    },
+    {
+      "id": "duplicate-page",
+      "label": "Duplicate page",
+      "contexts": ["page"]
+    },
+    {
+      "id": "delete-page",
+      "label": "Delete page",
+      "contexts": ["page"]
+    },
+    {
+      "id": "add-new-page",
+      "label": "Add new page",
+      "contexts": ["grid"]
+    },
+    {
+      "id": "import-pages",
+      "label": "Import pages",
+      "contexts": ["grid"]
+    },
+    {
+      "id": "export-pages",
+      "label": "Export pages",
+      "contexts": ["grid"]
+    },
+    {
+      "id": "move-up",
+      "label": "Move up",
+      "contexts": ["block"]
+    },
+    {
+      "id": "move-down",
+      "label": "Move down",
+      "contexts": ["block"]
+    },
+    {
+      "id": "duplicate-block",
+      "label": "Duplicate block",
+      "contexts": ["block"]
+    },
+    {
+      "id": "add-before",
+      "label": "Add before",
+      "contexts": ["block"]
+    },
+    {
+      "id": "add-after",
+      "label": "Add after",
+      "contexts": ["block"]
+    },
+    {
+      "id": "delete-block",
+      "label": "Delete block",
+      "contexts": ["block"]
+    }
+  ]
+}

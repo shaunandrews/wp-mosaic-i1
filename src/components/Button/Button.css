@@ -65,6 +65,28 @@
   background-color: var(--color-theme-darker-20);
 }
 
+/* Toggled state */
+.button.is-toggled {
+  background-color: var(--color-button-toggle-bg);
+  color: var(--color-button-toggle-text);
+}
+
+.button.is-toggled:hover,
+.button.is-toggled.type-default.layer-surface:hover,
+.button.is-toggled.type-default.layer-background:hover,
+.button.is-toggled.type-primary:hover {
+  background-color: var(--color-button-toggle-bg-hover);
+  color: var(--color-button-toggle-text);
+}
+
+.button.is-toggled:active,
+.button.is-toggled.type-default.layer-surface:active,
+.button.is-toggled.type-default.layer-background:active,
+.button.is-toggled.type-primary:active {
+  background-color: var(--color-button-toggle-bg);
+  color: var(--color-button-toggle-text);
+}
+
 .button:focus {
   outline: 1.5px solid var(--color-theme);
   outline-offset: 1px;

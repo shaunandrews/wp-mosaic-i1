@@ -159,3 +159,16 @@
   pointer-events: none;
   z-index: 1;
 }
+
+.menu-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
+
+.menu-empty-text {
+  color: var(--color-surface-text-tertiary);
+  font-size: 14px;
+  text-align: center;
+}

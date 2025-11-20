@@ -53,6 +53,7 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
     const [activeTab, setActiveTab] = useState<
       'pages' | 'templates' | 'actions'
     >('pages');
+    const [searchQuery, setSearchQuery] = useState('');
     const [canScrollUp, setCanScrollUp] = useState(false);
     const [canScrollDown, setCanScrollDown] = useState(false);
     const firstItemRef = useRef<HTMLButtonElement>(null);
@@ -72,9 +73,45 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
         ? groups[groups.length - 1].items[0]
         : null;
 
-    // Determine which groups to display based on active tab
-    const displayGroups =
-      activeTab === 'pages'
+    // Flatten all items for search
+    const allPages = groups.flatMap((group) => group.items);
+    const allTemplates = (templatesGroups || []).flatMap((group) => group.items);
+    const allActions = (actionsGroups || []).flatMap((group) => group.items);
+
+    // Filter function for search
+    const getFilteredResults = (
+      query: string
+    ): { pages: MenuGroup[]; templates: MenuGroup[]; actions: MenuGroup[] } => {
+      const lowerQuery = query.toLowerCase();
+      const filterItems = (items: Array<{ id: string; label: string }>) =>
+        items.filter((item) =>
+          item.label.toLowerCase().includes(lowerQuery)
+        );
+
+      return {
+        pages: filterItems(allPages).length > 0
+          ? [{ items: filterItems(allPages) }]
+          : [],
+        templates: filterItems(allTemplates).length > 0
+          ? [{ items: filterItems(allTemplates) }]
+          : [],
+        actions: filterItems(allActions).length > 0
+          ? [{ items: filterItems(allActions) }]
+          : [],
+      };
+    };
+
+    // Determine which groups to display based on active tab or search
+    const isSearching = searchQuery.trim().length > 0;
+    const filteredResults = isSearching ? getFilteredResults(searchQuery) : null;
+
+    const displayGroups = isSearching
+      ? [
+          ...(filteredResults?.pages || []),
+          ...(filteredResults?.templates || []),
+          ...(filteredResults?.actions || []),
+        ]
+      : activeTab === 'pages'
         ? viewAllPagesItem
           ? groups.slice(0, -1)
           : groups
@@ -140,13 +177,24 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
       setCanScrollDown(canScrollDownValue);
     }, []);
 
-    // Reset scroll position when switching tabs
+    // Reset scroll position when switching tabs or search query changes
     useEffect(() => {
       if (scrollableContainerRef.current) {
         scrollableContainerRef.current.scrollTop = 0;
         checkScrollState();
       }
-    }, [activeTab, checkScrollState]);
+    }, [activeTab, searchQuery, checkScrollState]);
+
+    const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const items = getAllMenuItems();
+        if (items.length > 0 && items[0]) {
+          items[0].focus();
+          items[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (!isOpen) return;
@@ -201,6 +249,11 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
         if (e.key === 'ArrowDown') {
           nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
         } else {
+          // ArrowUp: if on first item, go to search input
+          if (currentIndex === 0) {
+            searchInputRef.current?.focus();
+            return;
+          }
           nextIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
         }
 
@@ -266,7 +319,14 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
         container.removeEventListener('scroll', handleScroll);
         window.removeEventListener('resize', checkScrollState);
       };
-    }, [isOpen, checkScrollState, activeTab]);
+    }, [isOpen, checkScrollState, activeTab, searchQuery]);
+
+    // Reset search when menu closes
+    useEffect(() => {
+      if (!isOpen) {
+        setSearchQuery('');
+      }
+    }, [isOpen]);
 
     return (
       <>
@@ -301,86 +361,114 @@ export const Menu = forwardRef<MenuHandle, MenuProps>(
                       type="text"
                       placeholder="Pages, posts, settings, and more&hellip;"
                       className="menu-search-input"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={handleSearchKeyDown}
                     />
                   </div>
-                  <div className="menu-tabs row mx-xs my-xxs">
-                    <Button
-                      align="center"
-                      className={`menu-tab ${activeTab === 'pages' ? 'is-active' : ''}`}
-                      onClick={() => setActiveTab('pages')}
-                    >
-                      Pages
-                    </Button>
-                    <Button
-                      align="center"
-                      className={`menu-tab ${activeTab === 'templates' ? 'is-active' : ''}`}
-                      onClick={() => setActiveTab('templates')}
-                    >
-                      Templates
-                    </Button>
-                    <Button
-                      align="center"
-                      className={`menu-tab ${activeTab === 'actions' ? 'is-active' : ''}`}
-                      onClick={() => setActiveTab('actions')}
-                    >
-                      Actions
-                    </Button>
-                  </div>
+                  {!isSearching && (
+                    <div className="menu-tabs row mx-xs my-xxs">
+                      <Button
+                        align="center"
+                        className={`menu-tab ${activeTab === 'pages' ? 'is-active' : ''}`}
+                        onClick={() => setActiveTab('pages')}
+                      >
+                        Pages
+                      </Button>
+                      <Button
+                        align="center"
+                        className={`menu-tab ${activeTab === 'templates' ? 'is-active' : ''}`}
+                        onClick={() => setActiveTab('templates')}
+                      >
+                        Templates
+                      </Button>
+                      <Button
+                        align="center"
+                        className={`menu-tab ${activeTab === 'actions' ? 'is-active' : ''}`}
+                        onClick={() => setActiveTab('actions')}
+                      >
+                        Actions
+                      </Button>
+                    </div>
+                  )}
                 </div>
                 <div
                   ref={scrollableContainerRef}
                   className="menu-list-scrollable"
                 >
                   <div ref={menuContainerRef}>
-                    {displayGroups.map((group, groupIndex) => {
-                      let itemIndex = 0;
-                      if (groupIndex > 0) {
-                        // Calculate the starting index for this group
-                        for (let i = 0; i < groupIndex; i++) {
-                          itemIndex += displayGroups[i].items.length;
+                    {displayGroups.length === 0 && isSearching ? (
+                      <div className="menu-empty-state p-s">
+                        <p className="menu-empty-text">No results found</p>
+                      </div>
+                    ) : (
+                      displayGroups.map((group, groupIndex) => {
+                        let itemIndex = 0;
+                        if (groupIndex > 0) {
+                          // Calculate the starting index for this group
+                          for (let i = 0; i < groupIndex; i++) {
+                            itemIndex += displayGroups[i].items.length;
+                          }
                         }
-                      }
-                      return (
-                        <ul
-                          key={groupIndex}
-                          className="menu-group col gap-xxs p-xs"
-                        >
-                          {/* {groupIndex === 0 && (
-                            <li className="menu-group-heading my-xxs ml-s">
-                              <h3>Recent pages</h3>
-                            </li>
-                          )} */}
-                          {group.items.map((item) => {
-                            const isSelected = selectedItemId === item.id;
-                            const currentIndex = itemIndex++;
-                            return (
-                              <li key={item.id} className="menu-item">
-                                <Button
-                                  ref={(el) => {
-                                    if (currentIndex === 0) {
-                                      firstItemRef.current = el;
-                                    }
-                                    if (isSelected) {
-                                      selectedItemRef.current = el;
-                                    }
-                                  }}
-                                  className={`button-menu-item ${isSelected ? 'is-selected' : ''}`}
-                                  onClick={() => handleItemClick(item)}
-                                >
-                                  <span className="menu-item-content full-width row items-center gap-xxs">
-                                    {isSelected && <Icon name="check" />}
-                                    <span>{item.label}</span>
-                                  </span>
-                                </Button>
+
+                        // Determine category label for search results
+                        // Since filtered results are added in order: pages, templates, actions
+                        let categoryLabel: string | null = null;
+                        if (isSearching && filteredResults) {
+                          const pagesCount = filteredResults.pages.length;
+                          const templatesCount = filteredResults.templates.length;
+                          
+                          if (groupIndex < pagesCount) {
+                            categoryLabel = 'Pages';
+                          } else if (groupIndex < pagesCount + templatesCount) {
+                            categoryLabel = 'Templates';
+                          } else {
+                            categoryLabel = 'Actions';
+                          }
+                        }
+
+                        return (
+                          <ul
+                            key={groupIndex}
+                            className="menu-group col gap-xxs p-xs"
+                          >
+                            {categoryLabel && (
+                              <li className="menu-group-heading my-xxs ml-s">
+                                <h3>{categoryLabel}</h3>
                               </li>
-                            );
-                          })}
-                        </ul>
-                      );
-                    })}
+                            )}
+                            {group.items.map((item) => {
+                              const isSelected = selectedItemId === item.id;
+                              const currentIndex = itemIndex++;
+                              return (
+                                <li key={item.id} className="menu-item">
+                                  <Button
+                                    ref={(el) => {
+                                      if (currentIndex === 0) {
+                                        firstItemRef.current = el;
+                                      }
+                                      if (isSelected) {
+                                        selectedItemRef.current = el;
+                                      }
+                                    }}
+                                    className={`button-menu-item ${isSelected ? 'is-selected' : ''}`}
+                                    onClick={() => handleItemClick(item)}
+                                  >
+                                    <span className="menu-item-content full-width row items-center gap-xxs">
+                                      {isSelected && <Icon name="check" />}
+                                      <span>{item.label}</span>
+                                    </span>
+                                  </Button>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        );
+                      })
+                    )}
                   </div>
                 </div>
-                {viewAllPagesItem && (
+                {viewAllPagesItem && !isSearching && (
                   <div
                     className={`menu-footer ${canScrollDown ? 'has-gradient-bottom' : ''}`}
                   >

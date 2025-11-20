@@ -28,6 +28,7 @@ interface EditorToolbarProps {
   onTogglePanel: (panelId: string) => void;
   onToggleChat: () => void;
   isChatOpen: boolean;
+  openPanelId?: string | null;
 }
 
 export const EditorToolbar = ({
@@ -42,6 +43,7 @@ export const EditorToolbar = ({
   onTogglePanel,
   onToggleChat,
   isChatOpen,
+  openPanelId,
 }: EditorToolbarProps) => {
   const [buttonWidth, setButtonWidth] = useState<number | undefined>(undefined);
 
@@ -73,10 +75,17 @@ export const EditorToolbar = ({
           </svg>
         </Button>
 
-        <Button onClick={() => onTogglePanel('structure')}>
+        <Button 
+          isToggled={openPanelId === 'structure'}
+          onClick={() => onTogglePanel('structure')}
+        >
           <Icon name="list" />
         </Button>
-        <Button variant="primary" onClick={() => onTogglePanel('inserter')}>
+        <Button 
+          variant="primary"
+          isToggled={openPanelId === 'inserter'}
+          onClick={() => onTogglePanel('inserter')}
+        >
           <Icon name="plus" />
         </Button>
         <Button>
@@ -105,7 +114,10 @@ export const EditorToolbar = ({
         <Button>
           <Icon name="view-desktop" />
         </Button>
-        <Button onClick={() => onTogglePanel('settings')}>
+        <Button 
+          isToggled={openPanelId === 'settings'}
+          onClick={() => onTogglePanel('settings')}
+        >
           <Icon name="drawer-right" />
         </Button>
         <Button variant="primary" align="center" className="button-save">
@@ -131,6 +143,7 @@ export const EditorToolbar = ({
             ref={measureButton}
             className="button-chat"
             align="center"
+            isToggled={isChatOpen}
             onClick={onToggleChat}
           >
             {/* Assistant */}

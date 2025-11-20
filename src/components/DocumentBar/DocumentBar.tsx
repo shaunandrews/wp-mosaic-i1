@@ -3,6 +3,7 @@ import { Icon } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import './DocumentBar.css';
 import templatesData from '../../data/templates.json';
+import actionsData from '../../data/actions.json';
 
 type ViewMode = 'single' | 'grid';
 
@@ -12,6 +13,12 @@ interface Page {
   id: string;
   label: string;
   content?: PageContentType;
+}
+
+interface Action {
+  id: string;
+  label: string;
+  contexts?: string[];
 }
 
 interface DocumentBarProps {
@@ -25,6 +32,35 @@ interface DocumentBarProps {
   onNextPage: () => void;
 }
 
+const getContextualActions = (
+  actions: Action[],
+  viewMode: ViewMode,
+  hasBlockSelection: boolean = false
+): Array<{ id: string; label: string }> => {
+  const currentContexts: string[] = [];
+
+  if (viewMode === 'single') {
+    currentContexts.push('page');
+  } else if (viewMode === 'grid') {
+    currentContexts.push('grid');
+  }
+
+  if (hasBlockSelection) {
+    currentContexts.push('block');
+  }
+
+  return actions
+    .filter((action) => {
+      // If no contexts specified, show in all contexts (backward compatibility)
+      if (!action.contexts || action.contexts.length === 0) {
+        return true;
+      }
+      // Show if any of the action's contexts match current contexts
+      return action.contexts.some((context) => currentContexts.includes(context));
+    })
+    .map(({ id, label }) => ({ id, label }));
+};
+
 export const DocumentBar = ({
   viewMode,
   selectedPage,
@@ -35,6 +71,17 @@ export const DocumentBar = ({
   onPrevPage,
   onNextPage,
 }: DocumentBarProps) => {
+  // Get contextual actions based on current view mode
+  // TODO: Pass hasBlockSelection when block selection is implemented
+  const contextualActions = getContextualActions(
+    actionsData.actions as Action[],
+    viewMode,
+    false
+  );
+
+  // Get all action IDs for determining if an item is an action
+  const allActionIds = actionsData.actions.map((action) => action.id);
+
   const handleDocumentPickerKeyDown = (
     e: React.KeyboardEvent<HTMLButtonElement>
   ) => {
@@ -64,28 +111,13 @@ export const DocumentBar = ({
           },
         ]}
         templatesGroups={[{ items: templatesData.templates }]}
-        actionsGroups={[
-          {
-            items: [
-              { id: 'rename-page', label: 'Rename page' },
-              { id: 'duplicate', label: 'Duplicate' },
-              { id: 'add-before', label: 'Add before' },
-              { id: 'add-after', label: 'Add after' },
-            ],
-          },
-        ]}
+        actionsGroups={[{ items: contextualActions }]}
         selectedItemId={
           viewMode === 'grid' ? 'view-all-pages' : selectedPage.id
         }
         onItemSelect={(item) => {
           // Determine if this is an action or a page selection
-          const actionIds = [
-            'rename-page',
-            'duplicate',
-            'add-before',
-            'add-after',
-          ];
-          if (actionIds.includes(item.id)) {
+          if (allActionIds.includes(item.id)) {
             onActionSelect?.(item);
           } else {
             onPageSelect(item);

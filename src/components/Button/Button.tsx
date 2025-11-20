@@ -7,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   align?: 'center' | 'left' | 'right';
   variant?: 'default' | 'primary';
   layer?: 'surface' | 'background';
+  isToggled?: boolean;
   className?: string;
 }
 
@@ -15,13 +16,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   align = 'left',
   variant = 'default',
   layer = 'surface',
+  isToggled = false,
   className = '',
   ...props 
 }, ref) => {
   const alignClass = `align-${align}`;
   const typeClass = `type-${variant}`;
   const layerClass = `layer-${layer}`;
-  const classes = `button ${alignClass} ${typeClass} ${layerClass} ${className}`.trim();
+  const toggledClass = isToggled ? 'is-toggled' : '';
+  const classes = `button ${alignClass} ${typeClass} ${layerClass} ${toggledClass} ${className}`.trim();
 
   return (
     <button ref={ref} className={classes} {...props}>

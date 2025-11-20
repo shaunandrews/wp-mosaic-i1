@@ -55,6 +55,10 @@ function AppContent() {
     return panelState[position];
   };
 
+  const getOpenPanelId = (): string | null => {
+    return panelState.left || panelState.right;
+  };
+
   const togglePanel = (panelId: string) => {
     const config = PANEL_CONFIG.find((p) => p.id === panelId);
     if (!config) return;
@@ -161,6 +165,7 @@ function AppContent() {
             onTogglePanel={togglePanel}
             onToggleChat={() => setIsChatOpen((prev) => !prev)}
             isChatOpen={isChatOpen}
+            openPanelId={getOpenPanelId()}
           />
           <div className="row editor-content">
             <AnimatePresence>

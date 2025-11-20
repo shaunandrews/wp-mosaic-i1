@@ -35,6 +35,11 @@
   --color-alert-yellow: hsla(40, 85%, 61%, 1);
   --color-alert-green: hsla(135, 44%, 51%, 1);
   --color-alert-purple: hsla(273, 100%, 44%, 1);
+
+  /* Button toggle state */
+  --color-button-toggle-bg: var(--color-gray-800);
+  --color-button-toggle-bg-hover: hsla(0, 0%, 25%, 1);
+  --color-button-toggle-text: var(--color-white);
 }
 
 /** Dark mode overrides */
@@ -63,6 +68,11 @@
   --color-background: hsla(0, 0%, 2%, 1);
   --color-background-text: var(--color-black);
   --color-background-text-secondary: var(--color-gray-100);
+
+  /* Button toggle state */
+  --color-button-toggle-bg: var(--color-gray-800);
+  --color-button-toggle-bg-hover: hsla(0, 0%, 50%, 1);
+  --color-button-toggle-text: var(--color-black);
   }
 }
 
