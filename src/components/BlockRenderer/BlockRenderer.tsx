@@ -23,54 +23,80 @@ import './BlockRenderer.css';
 
 interface BlockRendererProps {
   block: Block;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const BlockRenderer = ({ block }: BlockRendererProps) => {
+const renderBlock = (block: Block, onBlockClick?: (blockId: string) => void, selectedBlockId?: string | null) => {
   switch (block.type) {
     case 'heading':
-      return <HeadingBlock block={block} />;
+      return <HeadingBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'paragraph':
-      return <ParagraphBlock block={block} />;
+      return <ParagraphBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'list':
-      return <ListBlock block={block} />;
+      return <ListBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'quote':
-      return <QuoteBlock block={block} />;
+      return <QuoteBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'image':
-      return <ImageBlock block={block} />;
+      return <ImageBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'button':
-      return <ButtonBlock block={block} />;
+      return <ButtonBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'container':
-      return <ContainerBlock block={block} />;
+      return <ContainerBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'section':
-      return <SectionBlock block={block} />;
+      return <SectionBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'columns':
-      return <ColumnsBlock block={block} />;
+      return <ColumnsBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'column':
-      return <ColumnBlock block={block} />;
+      return <ColumnBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'grid':
-      return <GridBlock block={block} />;
+      return <GridBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'spacer':
-      return <SpacerBlock block={block} />;
+      return <SpacerBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'divider':
-      return <DividerBlock block={block} />;
+      return <DividerBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'hero':
-      return <HeroBlock block={block} />;
+      return <HeroBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'card':
-      return <CardBlock block={block} />;
+      return <CardBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'testimonial':
-      return <TestimonialBlock block={block} />;
+      return <TestimonialBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'product-card':
-      return <ProductCardBlock block={block} />;
+      return <ProductCardBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'gallery-grid':
-      return <GalleryGridBlock block={block} />;
+      return <GalleryGridBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'form':
-      return <FormBlock block={block} />;
+      return <FormBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     case 'form-field':
-      return <FormFieldBlock block={block} />;
+      return <FormFieldBlock block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />;
     default:
       // Fallback for unknown block types
       console.warn(`Unknown block type: ${(block as BaseBlock).type}`);
       return null;
   }
+};
+
+export const BlockRenderer = ({ block, onBlockClick, selectedBlockId }: BlockRendererProps) => {
+  const isSelected = selectedBlockId === block.id;
+  const blockContent = renderBlock(block, onBlockClick, selectedBlockId);
+
+  if (!blockContent) {
+    return null;
+  }
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onBlockClick?.(block.id);
+  };
+
+  return (
+    <div
+      className={`block-renderer ${isSelected ? 'is-selected' : ''}`}
+      onClick={handleClick}
+      data-block-id={block.id}
+    >
+      {blockContent}
+    </div>
+  );
 };
 

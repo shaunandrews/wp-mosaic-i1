@@ -4,9 +4,11 @@ import './HeroBlock.css';
 
 interface HeroBlockProps {
   block: HeroBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const HeroBlock = ({ block }: HeroBlockProps) => {
+export const HeroBlock = ({ block, onBlockClick, selectedBlockId }: HeroBlockProps) => {
   const title = block.attributes?.title;
   const subtitle = block.attributes?.subtitle;
   const backgroundImage = block.attributes?.backgroundImage;
@@ -21,7 +23,7 @@ export const HeroBlock = ({ block }: HeroBlockProps) => {
       {block.innerBlocks && block.innerBlocks.length > 0 && (
         <div className="hero-content">
           {block.innerBlocks.map((innerBlock) => (
-            <BlockRenderer key={innerBlock.id} block={innerBlock} />
+            <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
           ))}
         </div>
       )}

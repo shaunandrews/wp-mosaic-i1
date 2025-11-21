@@ -4,9 +4,11 @@ import './ImageBlock.css';
 
 interface ImageBlockProps {
   block: ImageBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const ImageBlock = ({ block }: ImageBlockProps) => {
+export const ImageBlock = ({ block, onBlockClick, selectedBlockId }: ImageBlockProps) => {
   const alt = block.attributes?.alt || '';
   const url = block.attributes?.url;
   const aspectRatio = block.attributes?.aspectRatio || '16/9';
@@ -43,7 +45,7 @@ export const ImageBlock = ({ block }: ImageBlockProps) => {
       {block.innerBlocks && block.innerBlocks.length > 0 && (
         <div className="image-block-inner">
           {block.innerBlocks.map((innerBlock) => (
-            <BlockRenderer key={innerBlock.id} block={innerBlock} />
+            <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
           ))}
         </div>
       )}

@@ -31,12 +31,14 @@ export type TransitionSource = 'grid' | 'menu' | 'navigation';
 interface PageViewContextValue {
   viewMode: ViewMode;
   selectedPage: Page | null;
+  selectedBlockId: string | null;
   direction: Direction;
   transitionSource: TransitionSource;
   pages: Page[];
   setViewMode: (mode: ViewMode) => void;
   selectPage: (page: Page, source?: TransitionSource, switchToSingle?: boolean) => void;
   deselectPage: () => void;
+  selectBlock: (blockId: string | null) => void;
   navigatePrev: () => void;
   navigateNext: () => void;
   setPages: (pages: Page[]) => void;
@@ -64,6 +66,7 @@ export const PageViewProvider = ({
   );
   const [direction, setDirection] = useState<Direction>('right');
   const [transitionSource, setTransitionSource] = useState<TransitionSource>('menu');
+  const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
 
   // Cache for page heights to prevent layout reflows
   const pageHeights = useRef<Map<string, number>>(new Map());
@@ -79,6 +82,8 @@ export const PageViewProvider = ({
   const selectPage = useCallback((page: Page, source: TransitionSource = 'menu', switchToSingle: boolean = true) => {
     setSelectedPage(page);
     setTransitionSource(source);
+    // Clear block selection when page changes
+    setSelectedBlockId(null);
     if (switchToSingle) {
       setViewMode('single');
     }
@@ -95,6 +100,8 @@ export const PageViewProvider = ({
     const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
     const prevIndex = currentIndex > 0 ? currentIndex - 1 : pages.length - 1;
     setSelectedPage(pages[prevIndex] || null);
+    // Clear block selection when navigating to different page
+    setSelectedBlockId(null);
   }, [selectedPage, pages]);
 
   const navigateNext = useCallback(() => {
@@ -104,17 +111,25 @@ export const PageViewProvider = ({
     const currentIndex = pages.findIndex((page) => page.id === selectedPage.id);
     const nextIndex = currentIndex < pages.length - 1 ? currentIndex + 1 : 0;
     setSelectedPage(pages[nextIndex] || null);
+    // Clear block selection when navigating to different page
+    setSelectedBlockId(null);
   }, [selectedPage, pages]);
+
+  const selectBlock = useCallback((blockId: string | null) => {
+    setSelectedBlockId(blockId);
+  }, []);
 
   const value: PageViewContextValue = {
     viewMode,
     selectedPage,
+    selectedBlockId,
     direction,
     transitionSource,
     pages,
     setViewMode,
     selectPage,
     deselectPage,
+    selectBlock,
     navigatePrev,
     navigateNext,
     setPages,

@@ -4,9 +4,11 @@ import './GridBlock.css';
 
 interface GridBlockProps {
   block: GridBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const GridBlock = ({ block }: GridBlockProps) => {
+export const GridBlock = ({ block, onBlockClick, selectedBlockId }: GridBlockProps) => {
   const columns = block.attributes?.columns || 3;
   const gap = block.attributes?.gap || 'var(--block-space-5)';
 
@@ -18,7 +20,7 @@ export const GridBlock = ({ block }: GridBlockProps) => {
   return (
     <div className="grid-block" style={style}>
       {block.innerBlocks?.map((innerBlock) => (
-        <BlockRenderer key={innerBlock.id} block={innerBlock} />
+        <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
       ))}
     </div>
   );

@@ -39,11 +39,22 @@ function AppContent() {
     viewMode,
     selectedPage,
     pages: contextPages,
+    selectedBlockId,
     setViewMode,
     selectPage,
+    selectBlock,
     navigatePrev,
     navigateNext,
   } = usePageView();
+
+  const handleBlockClick = (blockId: string) => {
+    // Toggle selection: if clicking the same block, deselect it
+    if (selectedBlockId === blockId) {
+      selectBlock(null);
+    } else {
+      selectBlock(blockId);
+    }
+  };
   const [panelState, setPanelState] = useState<PanelState>({
     left: null,
     right: null,
@@ -241,6 +252,8 @@ function AppContent() {
                         selectedPage={selectedPage}
                         pages={contextPages}
                         onPageSelect={handleStructurePageSelect}
+                        onBlockClick={handleBlockClick}
+                        selectedBlockId={selectedBlockId}
                       />
                     </>
                   ) : (

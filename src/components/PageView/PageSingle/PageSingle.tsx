@@ -5,7 +5,24 @@ import { PageErrorBoundary } from '../PageErrorBoundary';
 import './PageSingle.css';
 
 export const PageSingle = () => {
-  const { selectedPage, direction, transitionSource } = usePageView();
+  const { selectedPage, direction, transitionSource, selectedBlockId, selectBlock } = usePageView();
+
+  const handleBlockClick = (blockId: string) => {
+    // Toggle selection: if clicking the same block, deselect it
+    if (selectedBlockId === blockId) {
+      selectBlock(null);
+    } else {
+      selectBlock(blockId);
+    }
+  };
+
+  const handleContentClick = (e: React.MouseEvent) => {
+    // Only deselect if clicking directly on the page-content container
+    // (not on a block, which will have stopped propagation)
+    if (e.target === e.currentTarget) {
+      selectBlock(null);
+    }
+  };
 
   if (!selectedPage) {
     return null;
@@ -53,7 +70,13 @@ export const PageSingle = () => {
                 </div>
               }
             >
-              <PagePreview content={selectedPage.content} mode="full" />
+              <PagePreview 
+                content={selectedPage.content} 
+                mode="full" 
+                onBlockClick={handleBlockClick}
+                selectedBlockId={selectedBlockId}
+                onContentClick={handleContentClick}
+              />
             </PageErrorBoundary>
           ) : (
             <div className="page-single__empty">
@@ -82,7 +105,13 @@ export const PageSingle = () => {
             </div>
           }
         >
-          <PagePreview content={selectedPage.content} mode="full" />
+          <PagePreview 
+            content={selectedPage.content} 
+            mode="full" 
+            onBlockClick={handleBlockClick}
+            selectedBlockId={selectedBlockId}
+            onContentClick={handleContentClick}
+          />
         </PageErrorBoundary>
       ) : (
         <div className="page-single__empty">

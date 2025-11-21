@@ -4,9 +4,11 @@ import './ContainerBlock.css';
 
 interface ContainerBlockProps {
   block: ContainerBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const ContainerBlock = ({ block }: ContainerBlockProps) => {
+export const ContainerBlock = ({ block, onBlockClick, selectedBlockId }: ContainerBlockProps) => {
   const backgroundColor = block.attributes?.backgroundColor;
   const padding = block.attributes?.padding;
   const maxWidth = block.attributes?.maxWidth;
@@ -19,7 +21,7 @@ export const ContainerBlock = ({ block }: ContainerBlockProps) => {
   return (
     <div className="container-block" style={style}>
       {block.innerBlocks?.map((innerBlock) => (
-        <BlockRenderer key={innerBlock.id} block={innerBlock} />
+        <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
       ))}
     </div>
   );

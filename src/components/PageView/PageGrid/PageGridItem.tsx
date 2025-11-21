@@ -24,7 +24,7 @@ export const PageGridItem = memo(
     isSelected = false,
     'data-index': dataIndex,
   }: PageGridItemProps) => {
-    const { getPageHeight, setPageHeight } = usePageView();
+    const { getPageHeight, setPageHeight, selectedBlockId } = usePageView();
     const hasContent = page.content?.blocks && page.content.blocks.length > 0;
     const [lastHeight, setLastHeight] = useState<number | undefined>(() => getPageHeight(page.id));
     const itemRef = useRef<HTMLDivElement>(null);
@@ -75,7 +75,8 @@ export const PageGridItem = memo(
                 <PagePreview 
                   content={page.content} 
                   mode="grid" 
-                  initialHeight={lastHeight ? Math.max(200, lastHeight - 40) : undefined} 
+                  initialHeight={lastHeight ? Math.max(200, lastHeight - 40) : undefined}
+                  selectedBlockId={isSelected ? selectedBlockId : null}
                 />
               </PageErrorBoundary>
             </div>

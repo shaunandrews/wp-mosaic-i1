@@ -3,6 +3,8 @@ import './SpacerBlock.css';
 
 interface SpacerBlockProps {
   block: SpacerBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
 export const SpacerBlock = ({ block }: SpacerBlockProps) => {

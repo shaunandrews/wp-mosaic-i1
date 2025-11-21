@@ -5,9 +5,11 @@ import './HeadingBlock.css';
 
 interface HeadingBlockProps {
   block: HeadingBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const HeadingBlock = ({ block }: HeadingBlockProps) => {
+export const HeadingBlock = ({ block, onBlockClick, selectedBlockId }: HeadingBlockProps) => {
   const level = block.attributes?.level || 1;
   const content = block.attributes?.content || '';
   const align = block.attributes?.align || 'left';
@@ -21,7 +23,7 @@ export const HeadingBlock = ({ block }: HeadingBlockProps) => {
       {block.innerBlocks && block.innerBlocks.length > 0 && (
         <div className="heading-block-inner">
           {block.innerBlocks.map((innerBlock) => (
-            <BlockRenderer key={innerBlock.id} block={innerBlock} />
+            <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
           ))}
         </div>
       )}

@@ -1,4 +1,6 @@
 .structure-block-content {
+  cursor: pointer;
+
   .structure-block-type {
     text-transform: capitalize;
   }
@@ -12,6 +14,21 @@
 
   &:hover {
     background-color: var(--color-gray-100);
+  }
+
+  &.is-selected {
+    background-color: var(--color-theme-alpha-08);
+    outline: 1.5px solid var(--color-theme);
+    outline-offset: -1.5px;
+
+    .structure-block-type {
+      color: var(--color-theme);
+      font-weight: 500;
+    }
+
+    .structure-block-text {
+      color: var(--color-theme);
+    }
   }
 }
 

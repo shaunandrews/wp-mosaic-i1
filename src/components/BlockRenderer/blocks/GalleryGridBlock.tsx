@@ -3,6 +3,8 @@ import './GalleryGridBlock.css';
 
 interface GalleryGridBlockProps {
   block: GalleryGridBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
 export const GalleryGridBlock = ({ block }: GalleryGridBlockProps) => {

@@ -4,9 +4,11 @@ import './ListBlock.css';
 
 interface ListBlockProps {
   block: ListBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const ListBlock = ({ block }: ListBlockProps) => {
+export const ListBlock = ({ block, onBlockClick, selectedBlockId }: ListBlockProps) => {
   const items = block.attributes?.items || [];
   const ordered = block.attributes?.ordered || false;
 
@@ -22,7 +24,7 @@ export const ListBlock = ({ block }: ListBlockProps) => {
       {block.innerBlocks && block.innerBlocks.length > 0 && (
         <div className="list-block-inner">
           {block.innerBlocks.map((innerBlock) => (
-            <BlockRenderer key={innerBlock.id} block={innerBlock} />
+            <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
           ))}
         </div>
       )}

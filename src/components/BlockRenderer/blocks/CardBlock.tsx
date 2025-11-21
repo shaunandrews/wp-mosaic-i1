@@ -4,9 +4,11 @@ import './CardBlock.css';
 
 interface CardBlockProps {
   block: CardBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const CardBlock = ({ block }: CardBlockProps) => {
+export const CardBlock = ({ block, onBlockClick, selectedBlockId }: CardBlockProps) => {
   const title = block.attributes?.title;
   const image = block.attributes?.image;
 
@@ -26,7 +28,7 @@ export const CardBlock = ({ block }: CardBlockProps) => {
       {block.innerBlocks && block.innerBlocks.length > 0 && (
         <div className="card-content">
           {block.innerBlocks.map((innerBlock) => (
-            <BlockRenderer key={innerBlock.id} block={innerBlock} />
+            <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
           ))}
         </div>
       )}

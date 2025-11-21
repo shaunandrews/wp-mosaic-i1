@@ -9,6 +9,8 @@ interface StructurePanelProps {
   selectedPage: Page | null;
   pages: Page[];
   onPageSelect?: (page: Page) => void;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
 /**
@@ -71,22 +73,38 @@ const getBlockLabel = (block: Block): string | null => {
 
 interface BlockTreeItemProps {
   block: Block;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-const BlockTreeItem = ({ block }: BlockTreeItemProps) => {
+const BlockTreeItem = ({ block, onBlockClick, selectedBlockId }: BlockTreeItemProps) => {
   const label = getBlockLabel(block);
   const hasInnerBlocks = block.innerBlocks && block.innerBlocks.length > 0;
+  const isSelected = selectedBlockId === block.id;
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onBlockClick?.(block.id);
+  };
 
   return (
     <div className="structure-block-item col">
-      <div className="structure-block-content row gap-xs px-s py-xs radius-m">
+      <div 
+        className={`structure-block-content row gap-xs px-s py-xs radius-m ${isSelected ? 'is-selected' : ''}`}
+        onClick={handleClick}
+      >
         <div className="structure-block-type">{block.type}</div>
         {label && <div className="structure-block-text">{label}</div>}
       </div>
       {hasInnerBlocks && (
         <div className="structure-block-children pl-s">
           {block.innerBlocks!.map((innerBlock) => (
-            <BlockTreeItem key={innerBlock.id} block={innerBlock} />
+            <BlockTreeItem 
+              key={innerBlock.id} 
+              block={innerBlock} 
+              onBlockClick={onBlockClick}
+              selectedBlockId={selectedBlockId}
+            />
           ))}
         </div>
       )}
@@ -99,6 +117,8 @@ export const StructurePanel = ({
   selectedPage,
   pages,
   onPageSelect,
+  onBlockClick,
+  selectedBlockId,
 }: StructurePanelProps) => {
   // Show selected page's blocks if available (works in both grid and single mode)
   if (selectedPage?.content?.blocks) {
@@ -111,7 +131,12 @@ export const StructurePanel = ({
             <div className="structure-empty">No blocks in this page</div>
           ) : (
             blocks.map((block) => (
-              <BlockTreeItem key={block.id} block={block} />
+              <BlockTreeItem 
+                key={block.id} 
+                block={block} 
+                onBlockClick={onBlockClick}
+                selectedBlockId={selectedBlockId}
+              />
             ))
           )}
         </div>

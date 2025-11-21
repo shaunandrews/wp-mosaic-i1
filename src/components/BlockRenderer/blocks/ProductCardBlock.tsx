@@ -3,6 +3,8 @@ import './ProductCardBlock.css';
 
 interface ProductCardBlockProps {
   block: ProductCardBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
 export const ProductCardBlock = ({ block }: ProductCardBlockProps) => {

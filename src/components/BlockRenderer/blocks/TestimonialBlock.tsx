@@ -3,6 +3,8 @@ import './TestimonialBlock.css';
 
 interface TestimonialBlockProps {
   block: TestimonialBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
 export const TestimonialBlock = ({ block }: TestimonialBlockProps) => {

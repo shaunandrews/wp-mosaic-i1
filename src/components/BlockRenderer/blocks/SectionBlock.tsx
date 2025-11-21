@@ -4,9 +4,11 @@ import './SectionBlock.css';
 
 interface SectionBlockProps {
   block: SectionBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const SectionBlock = ({ block }: SectionBlockProps) => {
+export const SectionBlock = ({ block, onBlockClick, selectedBlockId }: SectionBlockProps) => {
   const backgroundColor = block.attributes?.backgroundColor;
   const padding = block.attributes?.padding;
 
@@ -17,7 +19,7 @@ export const SectionBlock = ({ block }: SectionBlockProps) => {
   return (
     <section className="section-block" style={style}>
       {block.innerBlocks?.map((innerBlock) => (
-        <BlockRenderer key={innerBlock.id} block={innerBlock} />
+        <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
       ))}
     </section>
   );

@@ -3,6 +3,8 @@ import './DividerBlock.css';
 
 interface DividerBlockProps {
   block: DividerBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
 export const DividerBlock = ({ block }: DividerBlockProps) => {

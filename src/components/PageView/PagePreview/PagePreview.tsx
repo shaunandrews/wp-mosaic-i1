@@ -8,6 +8,9 @@ interface PagePreviewProps {
   mode?: 'grid' | 'full';
   onLoad?: () => void;
   initialHeight?: number;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
+  onContentClick?: (e: React.MouseEvent) => void;
 }
 
 const GRID_ITEM_WIDTH = 300;
@@ -19,6 +22,9 @@ export const PagePreview = ({
   mode = 'grid',
   onLoad,
   initialHeight,
+  onBlockClick,
+  selectedBlockId,
+  onContentClick,
 }: PagePreviewProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -83,7 +89,7 @@ export const PagePreview = ({
           {isLoading ? (
             <div className="page-preview__loading">Loading...</div>
           ) : (
-            <PageContent content={content} />
+            <PageContent content={content} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} onContentClick={onContentClick} />
           )}
         </div>
       </div>
@@ -92,7 +98,7 @@ export const PagePreview = ({
 
   return (
     <div className="page-preview page-preview--full">
-      <PageContent content={content} />
+      <PageContent content={content} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} onContentClick={onContentClick} />
     </div>
   );
 };

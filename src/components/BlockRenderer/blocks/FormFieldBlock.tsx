@@ -3,6 +3,8 @@ import './FormFieldBlock.css';
 
 interface FormFieldBlockProps {
   block: FormFieldBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
 export const FormFieldBlock = ({ block }: FormFieldBlockProps) => {

@@ -4,9 +4,11 @@ import './ColumnsBlock.css';
 
 interface ColumnsBlockProps {
   block: ColumnsBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const ColumnsBlock = ({ block }: ColumnsBlockProps) => {
+export const ColumnsBlock = ({ block, onBlockClick, selectedBlockId }: ColumnsBlockProps) => {
   const columns = block.attributes?.columns || 2;
   const gap = block.attributes?.gap || 'var(--block-space-5)';
 
@@ -18,7 +20,7 @@ export const ColumnsBlock = ({ block }: ColumnsBlockProps) => {
   return (
     <div className="columns-block" style={style}>
       {block.innerBlocks?.map((innerBlock) => (
-        <BlockRenderer key={innerBlock.id} block={innerBlock} />
+        <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
       ))}
     </div>
   );

@@ -7,17 +7,20 @@ import './PageContent.css';
 
 interface PageContentProps {
   content?: PageContentType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
+  onContentClick?: (e: React.MouseEvent) => void;
 }
 
-export const PageContent = ({ content }: PageContentProps) => {
+export const PageContent = ({ content, onBlockClick, selectedBlockId, onContentClick }: PageContentProps) => {
   if (!content?.blocks || content.blocks.length === 0) {
     return null;
   }
 
   return (
-    <div className="page-content">
+    <div className="page-content" onClick={onContentClick}>
       {content.blocks.map((block) => (
-        <BlockRenderer key={block.id} block={block} />
+        <BlockRenderer key={block.id} block={block} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
       ))}
     </div>
   );

@@ -5,9 +5,11 @@ import './ButtonBlock.css';
 
 interface ButtonBlockProps {
   block: ButtonBlockType;
+  onBlockClick?: (blockId: string) => void;
+  selectedBlockId?: string | null;
 }
 
-export const ButtonBlock = ({ block }: ButtonBlockProps) => {
+export const ButtonBlock = ({ block, onBlockClick, selectedBlockId }: ButtonBlockProps) => {
   const text = block.attributes?.text || '';
   const url = block.attributes?.url;
   const variant = block.attributes?.variant || 'default';
@@ -31,7 +33,7 @@ export const ButtonBlock = ({ block }: ButtonBlockProps) => {
       {block.innerBlocks && block.innerBlocks.length > 0 && (
         <div className="button-block-inner">
           {block.innerBlocks.map((innerBlock) => (
-            <BlockRenderer key={innerBlock.id} block={innerBlock} />
+            <BlockRenderer key={innerBlock.id} block={innerBlock} onBlockClick={onBlockClick} selectedBlockId={selectedBlockId} />
           ))}
         </div>
       )}
