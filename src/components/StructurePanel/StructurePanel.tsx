@@ -1,6 +1,7 @@
 import { type Block } from '../../types/blocks';
 import { type Page } from '../PageView/PageViewContext';
 import { type ViewMode } from '../PageView/PageViewContext';
+import { formatTimeSince } from '../../utils/formatTimeSince';
 import './StructurePanel.css';
 
 interface StructurePanelProps {
@@ -22,17 +23,23 @@ const getBlockLabel = (block: Block): string | null => {
       return (attributes as { content?: string })?.content || null;
     case 'paragraph':
       const paraContent = (attributes as { content?: string })?.content || '';
-      return paraContent.length > 50 ? paraContent.substring(0, 50) + '...' : paraContent || null;
+      return paraContent.length > 50
+        ? paraContent.substring(0, 50) + '...'
+        : paraContent || null;
     case 'button':
       return (attributes as { text?: string })?.text || null;
     case 'card':
       return (attributes as { title?: string })?.title || null;
     case 'quote':
       const quoteContent = (attributes as { content?: string })?.content || '';
-      return quoteContent.length > 40 ? quoteContent.substring(0, 40) + '...' : quoteContent || null;
+      return quoteContent.length > 40
+        ? quoteContent.substring(0, 40) + '...'
+        : quoteContent || null;
     case 'testimonial':
       const testimonialQuote = (attributes as { quote?: string })?.quote || '';
-      return testimonialQuote.length > 40 ? testimonialQuote.substring(0, 40) + '...' : testimonialQuote || null;
+      return testimonialQuote.length > 40
+        ? testimonialQuote.substring(0, 40) + '...'
+        : testimonialQuote || null;
     case 'product-card':
       return (attributes as { title?: string })?.title || null;
     case 'image':
@@ -71,8 +78,8 @@ const BlockTreeItem = ({ block }: BlockTreeItemProps) => {
   const hasInnerBlocks = block.innerBlocks && block.innerBlocks.length > 0;
 
   return (
-    <div className="structure-block-item">
-      <div className="structure-block-content">
+    <div className="structure-block-item col">
+      <div className="structure-block-content row gap-xs px-s py-xs radius-m">
         <div className="structure-block-type">{block.type}</div>
         {label && <div className="structure-block-text">{label}</div>}
       </div>
@@ -99,7 +106,7 @@ export const StructurePanel = ({
 
     return (
       <div className="structure-panel-content">
-        <div className="structure-panel-list">
+        <div className="structure-panel-list col p-xs">
           {blocks.length === 0 ? (
             <div className="structure-empty">No blocks in this page</div>
           ) : (
@@ -116,14 +123,17 @@ export const StructurePanel = ({
   if (viewMode === 'grid') {
     return (
       <div className="structure-panel-content">
-        <div className="structure-panel-list">
+        <div className="structure-panel-list col p-xs">
           {pages.map((page) => (
             <button
               key={page.id}
-              className="structure-page-item"
+              className="structure-page-item row gap-xs px-s py-xs radius-m"
               onClick={() => onPageSelect?.(page)}
             >
-              {page.label}
+              <div className="structure-page-item__label">{page.label}</div>
+              <div className="structure-page-item__date">
+                {formatTimeSince(page.meta.dateLastUpdated)}
+              </div>
             </button>
           ))}
         </div>
@@ -137,4 +147,3 @@ export const StructurePanel = ({
     </div>
   );
 };
-

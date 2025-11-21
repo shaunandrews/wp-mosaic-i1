@@ -3,7 +3,7 @@ import { type PageContent as PageContentType } from '../../types/blocks';
 
 export interface PageMeta {
   dateCreated: string;
-  dateLastUpdated: string;
+  dateLastUpdated: string | null;
   status: 'draft' | 'scheduled' | 'published' | 'archived';
   author: string;
   editors: string[];
