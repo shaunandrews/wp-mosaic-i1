@@ -27,8 +27,11 @@
   font-size: 12px;
   color: var(--color-surface-text-secondary);
   margin-bottom: var(--space-xxs);
-  margin-left: var(--space-xxs);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  .page-grid-cell:hover & {
+    color: var(--color-theme);
+  }
 }

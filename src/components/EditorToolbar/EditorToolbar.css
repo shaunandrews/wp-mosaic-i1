@@ -8,35 +8,3 @@
 .button-save {
   min-width: 80px;
 }
-
-/* WP Button */
-.editor-toolbar .button-wordpress {
-  height: 64px;
-  width: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000;
-  overflow: hidden;
-  border-radius: 0;
-  color: #fff;
-  text-indent: -9999px;
-
-  &.has-sidebar-open {
-    border-top-left-radius: var(--radius-l);
-  }
-
-  svg {
-    height: 32px;
-    width: 32px;
-  }
-
-  &:hover {
-    background-color: #000 !important;
-  }
-
-  &:focus {
-    outline-offset: -2px;
-    outline-width: 2px;
-  }
-}
