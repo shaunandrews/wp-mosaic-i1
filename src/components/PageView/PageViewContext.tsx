@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useState, useCallback, useRef, type ReactNode } from 'react';
 import { type PageContent as PageContentType } from '../../types/blocks';
 
 export interface PageMeta {
@@ -40,6 +40,8 @@ interface PageViewContextValue {
   navigatePrev: () => void;
   navigateNext: () => void;
   setPages: (pages: Page[]) => void;
+  setPageHeight: (id: string, height: number) => void;
+  getPageHeight: (id: string) => number | undefined;
 }
 
 export const PageViewContext = createContext<PageViewContextValue | undefined>(undefined);
@@ -62,6 +64,17 @@ export const PageViewProvider = ({
   );
   const [direction, setDirection] = useState<Direction>('right');
   const [transitionSource, setTransitionSource] = useState<TransitionSource>('menu');
+
+  // Cache for page heights to prevent layout reflows
+  const pageHeights = useRef<Map<string, number>>(new Map());
+
+  const setPageHeight = useCallback((id: string, height: number) => {
+    pageHeights.current.set(id, height);
+  }, []);
+
+  const getPageHeight = useCallback((id: string) => {
+    return pageHeights.current.get(id);
+  }, []);
 
   const selectPage = useCallback((page: Page, source: TransitionSource = 'menu', switchToSingle: boolean = true) => {
     setSelectedPage(page);
@@ -105,6 +118,8 @@ export const PageViewProvider = ({
     navigatePrev,
     navigateNext,
     setPages,
+    setPageHeight,
+    getPageHeight,
   };
 
   return (

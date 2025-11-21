@@ -7,6 +7,7 @@ interface PagePreviewProps {
   content?: PageContentType;
   mode?: 'grid' | 'full';
   onLoad?: () => void;
+  initialHeight?: number;
 }
 
 const GRID_ITEM_WIDTH = 300;
@@ -17,10 +18,13 @@ export const PagePreview = ({
   content,
   mode = 'grid',
   onLoad,
+  initialHeight,
 }: PagePreviewProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [containerHeight, setContainerHeight] = useState<number | 'auto'>('auto');
+  const [containerHeight, setContainerHeight] = useState<number | 'auto'>(
+    initialHeight ? initialHeight : 'auto'
+  );
 
   useEffect(() => {
     if (content) {
@@ -58,13 +62,13 @@ export const PagePreview = ({
     return null;
   }
 
-  if (mode === 'grid') {
+    if (mode === 'grid') {
     return (
       <div
         className="page-preview page-preview--grid"
         style={{
           height: containerHeight,
-          minHeight: isLoading ? 200 : undefined,
+          minHeight: isLoading && !initialHeight ? 200 : undefined,
         }}
       >
         <div

@@ -44,28 +44,9 @@ function AppContent() {
     navigatePrev,
     navigateNext,
   } = usePageView();
-  const [panelState, setPanelState] = useState<PanelState>(() => {
-    const saved = localStorage.getItem('editorPanelState');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        // Validate that parsed data matches PanelState structure
-        if (
-          parsed &&
-          typeof parsed === 'object' &&
-          (parsed.left === null || typeof parsed.left === 'string') &&
-          (parsed.right === null || typeof parsed.right === 'string')
-        ) {
-          return parsed;
-        }
-      } catch (e) {
-        // If parsing fails, use default
-      }
-    }
-    return {
-      left: null,
-      right: null,
-    };
+  const [panelState, setPanelState] = useState<PanelState>({
+    left: null,
+    right: null,
   });
   const [isChatOpen, setIsChatOpen] = useState(() => {
     const saved = localStorage.getItem('chatOpen');
@@ -76,7 +57,6 @@ function AppContent() {
     return saved !== null ? saved === 'true' : false;
   });
   const menuRef = useRef<MenuDocumentPickerHandle>(null);
-  const isInitialMount = useRef(true);
 
   const getOpenPanelAt = (position: PanelPosition): string | null => {
     return panelState[position];
@@ -141,15 +121,6 @@ function AppContent() {
   }, [isWordPressNavOpen]);
 
   useEffect(() => {
-    localStorage.setItem('editorPanelState', JSON.stringify(panelState));
-  }, [panelState]);
-
-  // Mark initial mount as complete after first render
-  useEffect(() => {
-    isInitialMount.current = false;
-  }, []);
-
-  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // Check for Command-K (Mac) or Ctrl-K (Windows/Linux)
       if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
@@ -185,7 +156,7 @@ function AppContent() {
         {isWordPressNavOpen && (
           <motion.div
             className="wordpress-nav col"
-            initial={isInitialMount.current ? false : { width: 0, opacity: 0 }}
+            initial={{ width: 0, opacity: 0 }}
             animate={{ width: 300, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{
@@ -242,6 +213,7 @@ function AppContent() {
             onTogglePanel={togglePanel}
             onToggleChat={() => setIsChatOpen((prev) => !prev)}
             onToggleWordPressNav={() => setIsWordPressNavOpen((prev) => !prev)}
+            onToggleViewMode={() => setViewMode(viewMode === 'grid' ? 'single' : 'grid')}
             isChatOpen={isChatOpen}
             isWordPressNavOpen={isWordPressNavOpen}
             openPanelId={getOpenPanelId()}
@@ -256,7 +228,7 @@ function AppContent() {
                       ? 'panel-structure'
                       : 'panel-inserter'
                   }`}
-                  initial={isInitialMount.current ? false : { width: 0, opacity: 0 }}
+                  initial={{ width: 0, opacity: 0 }}
                   animate={{ width: 300, opacity: 1 }}
                   exit={{ width: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
@@ -285,7 +257,7 @@ function AppContent() {
                 <motion.div
                   key="settings"
                   className="panel panel-settings"
-                  initial={isInitialMount.current ? false : { width: 0, opacity: 0 }}
+                  initial={{ width: 0, opacity: 0 }}
                   animate={{ width: 300, opacity: 1 }}
                   exit={{ width: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
@@ -301,7 +273,7 @@ function AppContent() {
         {isChatOpen && (
           <motion.div
             className="chat col"
-            initial={isInitialMount.current ? false : { width: 0, opacity: 0 }}
+            initial={{ width: 0, opacity: 0 }}
             animate={{ width: 300, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{

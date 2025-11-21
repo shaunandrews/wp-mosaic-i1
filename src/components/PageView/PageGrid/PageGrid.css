@@ -10,4 +10,5 @@
   column-width: 300px;
   column-gap: var(--space-xl);
   width: 100%;
+  user-select: none;
 }

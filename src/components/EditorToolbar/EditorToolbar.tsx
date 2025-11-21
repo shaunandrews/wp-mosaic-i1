@@ -29,6 +29,7 @@ interface EditorToolbarProps {
   onTogglePanel: (panelId: string) => void;
   onToggleChat: () => void;
   onToggleWordPressNav: () => void;
+  onToggleViewMode: () => void;
   isChatOpen: boolean;
   isWordPressNavOpen: boolean;
   openPanelId?: string | null;
@@ -45,6 +46,7 @@ export const EditorToolbar = ({
   onTogglePanel,
   onToggleChat,
   onToggleWordPressNav,
+  onToggleViewMode,
   isChatOpen,
   isWordPressNavOpen,
   openPanelId,
@@ -69,8 +71,16 @@ export const EditorToolbar = ({
           hasSidebarOpen={isWordPressNavOpen || isChatOpen}
           onClick={onToggleWordPressNav}
         />
+        <Button
+          isToggled={viewMode === 'grid'}
+          onClick={onToggleViewMode}
+          className="gap-xs"
+        >
+          <Icon name="grid" />
+          <span className="pr-xs">All pages</span>
+        </Button>
 
-        <div className="row gap-s items-center">
+        <div className="row gap-xxs items-center">
           <Button
             variant="primary"
             isToggled={openPanelId === 'inserter'}
@@ -78,17 +88,17 @@ export const EditorToolbar = ({
           >
             <Icon name="plus" />
           </Button>
-          <Button>
-            <Icon name="undo" />
-          </Button>
-          <Button>
-            <Icon name="redo" />
-          </Button>
           <Button
             isToggled={openPanelId === 'structure'}
             onClick={() => onTogglePanel('structure')}
           >
             <Icon name="list" />
+          </Button>
+          <Button>
+            <Icon name="undo" />
+          </Button>
+          <Button>
+            <Icon name="redo" />
           </Button>
         </div>
       </div>

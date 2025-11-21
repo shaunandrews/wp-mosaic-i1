@@ -1,5 +1,6 @@
 import { memo, useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { usePageView } from '../usePageView';
 import { PagePreview } from '../PagePreview/PagePreview';
 import { PageErrorBoundary } from '../PageErrorBoundary';
 import { type Page } from '../PageViewContext';
@@ -23,8 +24,9 @@ export const PageGridItem = memo(
     isSelected = false,
     'data-index': dataIndex,
   }: PageGridItemProps) => {
+    const { getPageHeight, setPageHeight } = usePageView();
     const hasContent = page.content?.blocks && page.content.blocks.length > 0;
-    const [lastHeight, setLastHeight] = useState<number | undefined>(undefined);
+    const [lastHeight, setLastHeight] = useState<number | undefined>(() => getPageHeight(page.id));
     const itemRef = useRef<HTMLDivElement>(null);
 
     // Capture height when visible to use as placeholder when hidden
@@ -34,14 +36,16 @@ export const PageGridItem = memo(
       const observer = new ResizeObserver((entries) => {
         for (const entry of entries) {
           if (entry.contentRect.height > 0) {
-            setLastHeight(entry.contentRect.height);
+            const height = entry.contentRect.height;
+            setLastHeight(height);
+            setPageHeight(page.id, height);
           }
         }
       });
 
       observer.observe(itemRef.current);
       return () => observer.disconnect();
-    }, []);
+    }, [page.id, setPageHeight]);
 
     return (
       <motion.div
@@ -57,7 +61,7 @@ export const PageGridItem = memo(
           e.stopPropagation();
           onDoubleClick?.();
         }}
-        style={{ minHeight: !isVisible ? lastHeight : undefined }}
+        style={{ minHeight: lastHeight }}
       >
         <div className="page-grid-item__title">{page.label}</div>
         {isVisible ? (
@@ -68,7 +72,11 @@ export const PageGridItem = memo(
                   <div className="page-grid-item__error">{page.label}</div>
                 }
               >
-                <PagePreview content={page.content} mode="grid" />
+                <PagePreview 
+                  content={page.content} 
+                  mode="grid" 
+                  initialHeight={lastHeight ? Math.max(200, lastHeight - 40) : undefined} 
+                />
               </PageErrorBoundary>
             </div>
           ) : (
