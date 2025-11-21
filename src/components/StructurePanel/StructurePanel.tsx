@@ -93,6 +93,26 @@ export const StructurePanel = ({
   pages,
   onPageSelect,
 }: StructurePanelProps) => {
+  // Show selected page's blocks if available (works in both grid and single mode)
+  if (selectedPage?.content?.blocks) {
+    const blocks = selectedPage.content.blocks;
+
+    return (
+      <div className="structure-panel-content">
+        <div className="structure-panel-list">
+          {blocks.length === 0 ? (
+            <div className="structure-empty">No blocks in this page</div>
+          ) : (
+            blocks.map((block) => (
+              <BlockTreeItem key={block.id} block={block} />
+            ))
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // In grid mode with no selection, show page list
   if (viewMode === 'grid') {
     return (
       <div className="structure-panel-content">
@@ -106,24 +126,6 @@ export const StructurePanel = ({
               {page.label}
             </button>
           ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (viewMode === 'single' && selectedPage?.content?.blocks) {
-    const blocks = selectedPage.content.blocks;
-
-    return (
-      <div className="structure-panel-content">
-        <div className="structure-panel-list">
-          {blocks.length === 0 ? (
-            <div className="structure-empty">No blocks in this page</div>
-          ) : (
-            blocks.map((block) => (
-              <BlockTreeItem key={block.id} block={block} />
-            ))
-          )}
         </div>
       </div>
     );

@@ -8,11 +8,21 @@ import './PageGridItem.css';
 interface PageGridItemProps {
   page: Page;
   onClick: () => void;
+  onDoubleClick?: () => void;
   isVisible?: boolean;
+  isSelected?: boolean;
+  'data-index'?: number;
 }
 
 export const PageGridItem = memo(
-  ({ page, onClick, isVisible = true }: PageGridItemProps) => {
+  ({
+    page,
+    onClick,
+    onDoubleClick,
+    isVisible = true,
+    isSelected = false,
+    'data-index': dataIndex,
+  }: PageGridItemProps) => {
     const hasContent = page.content?.blocks && page.content.blocks.length > 0;
     const [lastHeight, setLastHeight] = useState<number | undefined>(undefined);
     const itemRef = useRef<HTMLDivElement>(null);
@@ -36,38 +46,35 @@ export const PageGridItem = memo(
     return (
       <motion.div
         ref={itemRef}
+        data-index={dataIndex}
         layoutId={`document-${page.id}`}
-        className="page-grid-item"
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-        onClick={onClick}
-        whileTap={{ scale: 0.98 }}
+        className={`page-grid-item col gap-xxs ${isSelected ? 'is-selected' : ''}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
+        onDoubleClick={(e) => {
+          e.stopPropagation();
+          onDoubleClick?.();
+        }}
         style={{ minHeight: !isVisible ? lastHeight : undefined }}
       >
+        <div className="page-grid-item__title">{page.label}</div>
         {isVisible ? (
           hasContent ? (
-            <PageErrorBoundary
-              fallback={
-                <div className="page-grid-item__error">
-                  <span className="page-grid-item__label">{page.label}</span>
-                </div>
-              }
-            >
-              <div className="page-grid-item__preview-wrapper">
-                <div className="page-grid-item__preview">
-                  <PagePreview content={page.content} mode="grid" />
-                </div>
-              </div>
-            </PageErrorBoundary>
-          ) : (
-            <div className="page-grid-item__empty">
-              <span className="page-grid-item__label">{page.label}</span>
+            <div className="page-grid-item__preview-wrapper">
+              <PageErrorBoundary
+                fallback={
+                  <div className="page-grid-item__error">{page.label}</div>
+                }
+              >
+                <PagePreview content={page.content} mode="grid" />
+              </PageErrorBoundary>
             </div>
+          ) : (
+            <div className="page-grid-item__empty">{page.label}</div>
           )
-        ) : (
-          <div style={{ height: lastHeight || 200 }} />
-        )}
+        ) : null}
       </motion.div>
     );
   }

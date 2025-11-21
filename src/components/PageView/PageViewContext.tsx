@@ -35,7 +35,8 @@ interface PageViewContextValue {
   transitionSource: TransitionSource;
   pages: Page[];
   setViewMode: (mode: ViewMode) => void;
-  selectPage: (page: Page, source?: TransitionSource) => void;
+  selectPage: (page: Page, source?: TransitionSource, switchToSingle?: boolean) => void;
+  deselectPage: () => void;
   navigatePrev: () => void;
   navigateNext: () => void;
   setPages: (pages: Page[]) => void;
@@ -62,10 +63,16 @@ export const PageViewProvider = ({
   const [direction, setDirection] = useState<Direction>('right');
   const [transitionSource, setTransitionSource] = useState<TransitionSource>('menu');
 
-  const selectPage = useCallback((page: Page, source: TransitionSource = 'menu') => {
+  const selectPage = useCallback((page: Page, source: TransitionSource = 'menu', switchToSingle: boolean = true) => {
     setSelectedPage(page);
     setTransitionSource(source);
-    setViewMode('single');
+    if (switchToSingle) {
+      setViewMode('single');
+    }
+  }, []);
+
+  const deselectPage = useCallback(() => {
+    setSelectedPage(null);
   }, []);
 
   const navigatePrev = useCallback(() => {
@@ -94,6 +101,7 @@ export const PageViewProvider = ({
     pages,
     setViewMode,
     selectPage,
+    deselectPage,
     navigatePrev,
     navigateNext,
     setPages,

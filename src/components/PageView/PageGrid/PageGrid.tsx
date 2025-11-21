@@ -7,7 +7,7 @@ import './PageGrid.css';
 const BUFFER_SIZE = 4; // Render buffer around visible area
 
 export const PageGrid = () => {
-  const { pages, selectPage } = usePageView();
+  const { pages, selectPage, selectedPage, deselectPage } = usePageView();
   const containerRef = useRef<HTMLDivElement>(null);
   // Initial visible set (first few items)
   const [visibleIndices, setVisibleIndices] = useState<Set<number>>(
@@ -68,7 +68,25 @@ export const PageGrid = () => {
   const handleItemClick = (pageId: string) => {
     const page = pages.find((p) => p.id === pageId);
     if (page) {
+      selectPage(page, 'grid', false);
+    }
+  };
+
+  const handleItemDoubleClick = (pageId: string) => {
+    const page = pages.find((p) => p.id === pageId);
+    if (page) {
       selectPage(page, 'grid');
+    }
+  };
+
+  const handleGridClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Only deselect if clicking directly on the grid container (whitespace)
+    // and not on a grid item
+    if (
+      e.target === e.currentTarget ||
+      (e.target as HTMLElement).classList.contains('page-grid-content')
+    ) {
+      deselectPage();
     }
   };
 
@@ -79,18 +97,23 @@ export const PageGrid = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
+      onClick={handleGridClick}
     >
       <div className="page-grid-content">
-        {pages.map((page, index) => (
-          <div key={page.id} data-index={index} className="page-grid-cell">
-            <div className="page-grid-cell__title">{page.label}</div>
+        {pages.map((page, index) => {
+          const isSelected = selectedPage?.id === page.id;
+          return (
             <PageGridItem
+              key={page.id}
+              data-index={index}
               page={page}
               onClick={() => handleItemClick(page.id)}
+              onDoubleClick={() => handleItemDoubleClick(page.id)}
               isVisible={visibleIndices.has(index)}
+              isSelected={isSelected}
             />
-          </div>
-        ))}
+          );
+        })}
       </div>
     </motion.div>
   );
