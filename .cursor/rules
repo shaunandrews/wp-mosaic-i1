@@ -1,0 +1,56 @@
+# Cursor Rules for wp-mosaic-i1
+
+## Testing Guidelines
+
+### Component Test Requirements
+
+1. **Always provide all required props in test files**
+   - When writing or updating component tests, ensure ALL required props from the component's TypeScript interface are provided
+   - Use `vi.fn()` for function props and appropriate mock values for other props
+   - If a component's props change, update ALL test files that use that component
+
+2. **TypeScript Type Safety**
+   - Never use `as any` or type assertions to bypass TypeScript errors in tests
+   - If TypeScript complains about missing props, add them rather than suppressing the error
+   - Run `npm run build` locally before committing to catch type errors early
+
+3. **Test File Maintenance**
+   - When adding new required props to a component, search for all test files that render that component and update them
+   - Use grep or code search to find all usages: `grep -r "ComponentName" src/**/*.test.tsx`
+
+4. **Build Validation**
+   - Always run `npm run type-check` or `npm run build` before committing
+   - The `type-check` script runs TypeScript compiler without emitting files (faster for validation)
+   - The build process will catch missing props and other TypeScript errors
+   - Use `npm run validate` to run both type-check and tests
+   - Consider adding a pre-commit hook to run type checking
+
+5. **Test Helpers**
+   - Use test helpers from `src/test/test-helpers.tsx` for common component prop patterns
+   - The `createEditorToolbarProps()` helper ensures all required props are provided
+   - Create similar helpers for other frequently-tested components
+
+## Code Quality
+
+### TypeScript
+- Always use proper TypeScript types - avoid `any` unless absolutely necessary
+- Keep component interfaces in sync with their implementations
+- When updating component props, update all usages including tests
+
+### Component Development
+- When adding new required props to a component:
+  1. Update the component's TypeScript interface
+  2. Search for all usages: use codebase search or grep to find all files using the component
+  3. Update all places where the component is used (including tests)
+  4. Update test helpers if the component has a helper in `src/test/test-helpers.tsx`
+  5. Run `npm run type-check` to verify no type errors (faster than full build)
+  6. Run `npm run test:run` to ensure tests still pass
+  7. Run `npm run build` before committing to production
+
+## Best Practices
+
+1. **Incremental Changes**: Make small, focused changes and test frequently
+2. **Type Safety First**: Let TypeScript guide you - if it complains, fix the issue rather than working around it
+3. **Test Coverage**: Keep tests up to date with component changes
+4. **Build Verification**: Always verify the build passes before considering work complete
+
