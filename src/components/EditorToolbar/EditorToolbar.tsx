@@ -63,31 +63,34 @@ export const EditorToolbar = ({
 
   return (
     <div className="editor-toolbar row items-center justify-between">
-      <div className="editor-toolbar-start row gap-xs items-center">
+      <div className="editor-toolbar-start row gap-m items-center">
         <ButtonWordPress
           isToggled={isWordPressNavOpen}
           hasSidebarOpen={isWordPressNavOpen || isChatOpen}
           onClick={onToggleWordPressNav}
         />
-        <Button 
-          variant="primary"
-          isToggled={openPanelId === 'inserter'}
-          onClick={() => onTogglePanel('inserter')}
-        >
-          <Icon name="plus" />
-        </Button>
-        <Button>
-          <Icon name="undo" />
-        </Button>
-        <Button>
-          <Icon name="redo" />
-        </Button>
-        <Button 
-          isToggled={openPanelId === 'structure'}
-          onClick={() => onTogglePanel('structure')}
-        >
-          <Icon name="list" />
-        </Button>
+
+        <div className="row gap-s items-center">
+          <Button
+            variant="primary"
+            isToggled={openPanelId === 'inserter'}
+            onClick={() => onTogglePanel('inserter')}
+          >
+            <Icon name="plus" />
+          </Button>
+          <Button>
+            <Icon name="undo" />
+          </Button>
+          <Button>
+            <Icon name="redo" />
+          </Button>
+          <Button
+            isToggled={openPanelId === 'structure'}
+            onClick={() => onTogglePanel('structure')}
+          >
+            <Icon name="list" />
+          </Button>
+        </div>
       </div>
 
       <DocumentBar
@@ -101,11 +104,10 @@ export const EditorToolbar = ({
       />
 
       <div className="editor-toolbar-end row gap-xs pr-s">
-        
         <Button>
           <Icon name="view-desktop" />
         </Button>
-        <Button 
+        <Button
           isToggled={openPanelId === 'settings'}
           onClick={() => onTogglePanel('settings')}
         >

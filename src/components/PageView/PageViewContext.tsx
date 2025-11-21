@@ -1,9 +1,26 @@
 import { createContext, useState, useCallback, type ReactNode } from 'react';
 import { type PageContent as PageContentType } from '../../types/blocks';
 
+export interface PageMeta {
+  dateCreated: string;
+  dateLastUpdated: string;
+  status: 'draft' | 'scheduled' | 'published' | 'archived';
+  author: string;
+  editors: string[];
+  slug: string;
+  parent: string | null;
+  menuOrder: number;
+  template: string;
+  excerpt?: string;
+  featuredImage?: string | null;
+  commentStatus: 'open' | 'closed';
+  scheduledDate?: string | null;
+}
+
 export interface Page {
   id: string;
   label: string;
+  meta: PageMeta;
   content?: PageContentType;
 }
 

@@ -34,6 +34,7 @@
   overflow-y: auto;
   flex: 1;
   min-height: 0;
+  padding-top: 3px; /* ensure first item's focus ring is visible */
 }
 
 .menu-footer {
@@ -48,7 +49,7 @@
 
 .menu-list .button-menu-item {
   width: 100%;
-  padding: 0 var(--space-s);
+  padding: 0 var(--space-xs);
 
   & > span {
     text-align: left;
@@ -78,6 +79,7 @@
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-s);
+  border-radius: var(--radius-l);
 
   .icon {
     color: var(--color-surface-text-tertiary);
@@ -96,6 +98,11 @@
     &::placeholder {
       color: var(--color-surface-text-tertiary);
     }
+  }
+
+  &:focus-within {
+    outline: 1.5px solid var(--color-theme);
+    outline-offset: -6px;
   }
 }
 

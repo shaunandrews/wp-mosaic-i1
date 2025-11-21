@@ -51,11 +51,6 @@ export const DocumentBar = ({
 
   return (
     <div className="document-bar row gap-xs">
-      {viewMode === 'single' && (
-        <Button className="button-prev" onClick={onPrevPage}>
-          <Icon name="chevron-left-small" />
-        </Button>
-      )}
       <MenuDocumentPicker
         ref={menuRef}
         groups={[
@@ -109,11 +104,6 @@ export const DocumentBar = ({
           </span>
         </Button>
       </MenuDocumentPicker>
-      {viewMode === 'single' && (
-        <Button className="button-next" onClick={onNextPage}>
-          <Icon name="chevron-right-small" />
-        </Button>
-      )}
     </div>
   );
 };

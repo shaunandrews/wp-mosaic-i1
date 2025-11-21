@@ -3,6 +3,21 @@
     {
       "id": "1",
       "label": "Home",
+      "meta": {
+        "dateCreated": "2024-01-15T10:00:00Z",
+        "dateLastUpdated": "2024-01-20T14:30:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "home",
+        "parent": null,
+        "menuOrder": 0,
+        "template": "default",
+        "excerpt": "Welcome to our homepage",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -215,6 +230,21 @@
     {
       "id": "2",
       "label": "About",
+      "meta": {
+        "dateCreated": "2024-01-16T09:00:00Z",
+        "dateLastUpdated": "2024-01-21T11:15:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "about",
+        "parent": null,
+        "menuOrder": 1,
+        "template": "default",
+        "excerpt": "Learn more about our company and mission",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -343,6 +373,21 @@
     {
       "id": "3",
       "label": "Contact",
+      "meta": {
+        "dateCreated": "2024-01-17T10:30:00Z",
+        "dateLastUpdated": "2024-01-22T08:45:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "contact",
+        "parent": null,
+        "menuOrder": 2,
+        "template": "default",
+        "excerpt": "Get in touch with us",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -471,6 +516,21 @@
     {
       "id": "4",
       "label": "Blog",
+      "meta": {
+        "dateCreated": "2024-01-18T11:00:00Z",
+        "dateLastUpdated": "2024-01-23T13:20:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "editor1"],
+        "slug": "blog",
+        "parent": null,
+        "menuOrder": 3,
+        "template": "default",
+        "excerpt": "Latest news and updates",
+        "featuredImage": null,
+        "commentStatus": "open",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -624,6 +684,21 @@
     {
       "id": "7",
       "label": "Store",
+      "meta": {
+        "dateCreated": "2024-01-19T09:30:00Z",
+        "dateLastUpdated": "2024-01-24T10:00:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "store",
+        "parent": null,
+        "menuOrder": 4,
+        "template": "default",
+        "excerpt": "Browse our products",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -808,6 +883,21 @@
     {
       "id": "19",
       "label": "Product",
+      "meta": {
+        "dateCreated": "2024-01-20T14:00:00Z",
+        "dateLastUpdated": "2024-01-25T16:30:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "product",
+        "parent": "7",
+        "menuOrder": 0,
+        "template": "default",
+        "excerpt": "Product details page",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -905,6 +995,21 @@
     {
       "id": "12",
       "label": "Gallery",
+      "meta": {
+        "dateCreated": "2024-01-21T10:15:00Z",
+        "dateLastUpdated": "2024-01-26T09:45:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "gallery",
+        "parent": null,
+        "menuOrder": 5,
+        "template": "default",
+        "excerpt": "View our photo gallery",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -981,6 +1086,21 @@
     {
       "id": "20",
       "label": "Directory",
+      "meta": {
+        "dateCreated": "2024-01-22T11:30:00Z",
+        "dateLastUpdated": "2024-01-27T14:00:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "directory",
+        "parent": null,
+        "menuOrder": 6,
+        "template": "default",
+        "excerpt": "Browse our directory",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -1175,6 +1295,21 @@
     {
       "id": "5",
       "label": "Services",
+      "meta": {
+        "dateCreated": "2024-01-23T08:00:00Z",
+        "dateLastUpdated": "2024-01-28T12:30:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "services",
+        "parent": null,
+        "menuOrder": 7,
+        "template": "default",
+        "excerpt": "Our professional services",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -1376,6 +1511,21 @@
     {
       "id": "6",
       "label": "Portfolio",
+      "meta": {
+        "dateCreated": "2024-01-24T09:45:00Z",
+        "dateLastUpdated": "2024-01-29T15:15:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "portfolio",
+        "parent": null,
+        "menuOrder": 8,
+        "template": "default",
+        "excerpt": "Our work and achievements",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -1532,6 +1682,21 @@
     {
       "id": "8",
       "label": "Team",
+      "meta": {
+        "dateCreated": "2024-01-25T10:20:00Z",
+        "dateLastUpdated": "2024-01-30T11:00:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "team",
+        "parent": null,
+        "menuOrder": 9,
+        "template": "default",
+        "excerpt": "Meet our team",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -1688,6 +1853,21 @@
     {
       "id": "9",
       "label": "Careers",
+      "meta": {
+        "dateCreated": "2024-01-26T13:00:00Z",
+        "dateLastUpdated": "2024-01-31T09:30:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "hr"],
+        "slug": "careers",
+        "parent": null,
+        "menuOrder": 10,
+        "template": "default",
+        "excerpt": "Join our team",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -1884,6 +2064,21 @@
     {
       "id": "10",
       "label": "FAQ",
+      "meta": {
+        "dateCreated": "2024-01-27T14:15:00Z",
+        "dateLastUpdated": "2024-02-01T10:45:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "support"],
+        "slug": "faq",
+        "parent": null,
+        "menuOrder": 11,
+        "template": "default",
+        "excerpt": "Frequently asked questions",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -2086,6 +2281,21 @@
     {
       "id": "11",
       "label": "Testimonials",
+      "meta": {
+        "dateCreated": "2024-01-28T15:30:00Z",
+        "dateLastUpdated": "2024-02-02T13:20:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "testimonials",
+        "parent": null,
+        "menuOrder": 12,
+        "template": "default",
+        "excerpt": "What our clients say",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -2200,6 +2410,21 @@
     {
       "id": "13",
       "label": "News",
+      "meta": {
+        "dateCreated": "2024-01-29T08:45:00Z",
+        "dateLastUpdated": "2024-02-03T14:00:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "editor1"],
+        "slug": "news",
+        "parent": null,
+        "menuOrder": 13,
+        "template": "default",
+        "excerpt": "Latest news and updates",
+        "featuredImage": null,
+        "commentStatus": "open",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -2382,6 +2607,21 @@
     {
       "id": "14",
       "label": "Events",
+      "meta": {
+        "dateCreated": "2024-01-30T10:00:00Z",
+        "dateLastUpdated": "2024-02-04T11:30:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "editor1"],
+        "slug": "events",
+        "parent": null,
+        "menuOrder": 14,
+        "template": "default",
+        "excerpt": "Upcoming events and workshops",
+        "featuredImage": null,
+        "commentStatus": "open",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -2536,6 +2776,21 @@
     {
       "id": "15",
       "label": "Resources",
+      "meta": {
+        "dateCreated": "2024-01-31T12:15:00Z",
+        "dateLastUpdated": "2024-02-05T09:00:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin"],
+        "slug": "resources",
+        "parent": null,
+        "menuOrder": 15,
+        "template": "default",
+        "excerpt": "Helpful tools and information",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -2701,6 +2956,21 @@
     {
       "id": "16",
       "label": "Support",
+      "meta": {
+        "dateCreated": "2024-02-01T09:30:00Z",
+        "dateLastUpdated": "2024-02-06T15:45:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "support"],
+        "slug": "support",
+        "parent": null,
+        "menuOrder": 16,
+        "template": "default",
+        "excerpt": "Get help and support",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -2899,6 +3169,21 @@
     {
       "id": "17",
       "label": "Privacy Policy",
+      "meta": {
+        "dateCreated": "2024-02-02T11:00:00Z",
+        "dateLastUpdated": "2024-02-07T10:20:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "legal"],
+        "slug": "privacy-policy",
+        "parent": null,
+        "menuOrder": 17,
+        "template": "default",
+        "excerpt": "Our privacy policy",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {
@@ -3071,6 +3356,21 @@
     {
       "id": "18",
       "label": "Terms of Service",
+      "meta": {
+        "dateCreated": "2024-02-03T13:45:00Z",
+        "dateLastUpdated": "2024-02-08T12:00:00Z",
+        "status": "published",
+        "author": "admin",
+        "editors": ["admin", "legal"],
+        "slug": "terms-of-service",
+        "parent": null,
+        "menuOrder": 18,
+        "template": "default",
+        "excerpt": "Terms and conditions",
+        "featuredImage": null,
+        "commentStatus": "closed",
+        "scheduledDate": null
+      },
       "content": {
         "blocks": [
           {

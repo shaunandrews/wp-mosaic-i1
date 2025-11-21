@@ -4,12 +4,6 @@
   left: 50%;
   transform: translateX(-50%);
 
-  .button-prev,
-  .button-next {
-    opacity: 0;
-    padding: 0 2px;
-  }
-
   .button-document-picker {
     min-width: 80px;
     padding: 0 var(--space-l) 0 var(--space-s);
@@ -58,18 +52,6 @@
           transform: rotate(180deg);
         }
       }
-    }
-  }
-
-  &:focus-within,
-  &:hover {
-    .button-prev,
-    .button-next {
-      opacity: 1;
-    }
-
-    .title-wrapper .icon {
-      opacity: 1;
     }
   }
 }
