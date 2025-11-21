@@ -131,6 +131,15 @@
 .pt-s {
   padding-top: var(--space-s);
 }
+.pt-m {
+  padding-top: var(--space-m);
+}
+.pt-l {
+  padding-top: var(--space-l);
+}
+.pt-xl {
+  padding-top: var(--space-xl);
+}
 .pt-xxl {
   padding-top: var(--space-xxl);
 }

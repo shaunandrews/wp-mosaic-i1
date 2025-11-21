@@ -93,7 +93,7 @@ export const PageGrid = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="page-grid"
+      className="page-grid px-xl py-xl pt-m"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
